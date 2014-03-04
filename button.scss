@@ -1,0 +1,44 @@
+// 1. Use BEM for components and their variations
+.button{
+  background: blue;
+  padding: 10px;
+  color: #e2e2e2;
+  border-radius: 5px;
+
+  &--large{
+    @extend .button;
+    padding: 20px;
+    font-size: 18px;
+  }
+
+  &--small{
+    @extend .button;
+    font-size: 12px;
+    padding: 10px; 
+  }
+}
+
+
+
+// 2. Use direct classes for one-off tweaks
+// Would need to include them AFTER the components
+// since they're all same specificity
+.background-grey{
+  background: grey;
+}
+
+.margin-left-100{
+  margin-left: 100px;
+}
+
+.margin-left-99{
+  margin-left: 100px;
+}
+
+
+
+// 3. Use page class parent for page-specific styling
+.home .button{
+  border-bottom: 5px solid orange;
+  color: orange;
+}
