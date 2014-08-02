@@ -1,0 +1,22 @@
+.button{
+  background: blue;
+  padding: 10px;
+  color: #e2e2e2;
+  border-radius: 5px;
+
+  @include mod(--large){
+    padding: 20px;
+    font-size: 18px;
+  }
+
+  @include mod(--critical){
+    color: red;
+    margin-left: 300px;
+    border-bottom: 5px solid red;
+  }
+
+  @include mod(--small){
+    font-size: 12px;
+    padding: 10px; 
+  }
+}

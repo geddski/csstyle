@@ -1,0 +1,8 @@
+.home .button{
+  // overrides any of the component level styling
+  border-bottom: 10px solid orange;
+
+  &[class~="--small"]{
+    padding: 5px;
+  }
+}

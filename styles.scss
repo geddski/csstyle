@@ -1,0 +1,14 @@
+// Import common mixins
+@import 'mixins/**/*';
+
+// 1. First import all components first
+// Uses BEM for components and their variations
+@import 'components/**/*';
+
+// 2. Second import all tweaks
+// Uses direct classes for one-off tweaks
+@import 'tweaks/**/*';
+
+// 3. Import all pages
+// Uses .<pageName> .<className> for page-specific styling
+@import 'pages/**/*';
