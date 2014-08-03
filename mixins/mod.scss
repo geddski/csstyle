@@ -1,5 +1,5 @@
-@mixin mod($name) {
-  &[class~="#{$name}"]{
+@mixin mod($name){
+  &.\--#{$name}{
     @content;
-  }  
+  }
 }

@@ -1,0 +1,17 @@
+@include location(home){
+  // can override anything for this location
+  h2{
+    background: green;
+  }
+
+  // can override component for this location
+  @include component(button){
+    border-bottom: 10px solid orange;
+
+    // can even override a component modifier for this location
+    @include mod(small){
+      font-size: 8px;
+      padding: 5px; 
+    }
+  }
+}

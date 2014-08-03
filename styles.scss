@@ -7,8 +7,9 @@
 
 // 2. Second import all tweaks
 // Uses direct classes for one-off tweaks
+// TODO: how will tweaks override modifiers (200)?
 @import 'tweaks/**/*';
 
 // 3. Import all pages
 // Uses .<pageName> .<className> for page-specific styling
-@import 'pages/**/*';
+@import 'locations/**/*';
