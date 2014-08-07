@@ -1,10 +1,10 @@
 // Use locations sparingly. It is usually better to add another
 // modifier to your component, or use a tweak.
-// Specificity: 0022 to 0031
+// Specificity: 0111 to 0120
 // Overrides: components, elements, modifiers, and tweaks
 @mixin location($name){
   // handle body with class applied as well as any descendent
-  body:only-of-type.#{$name}, body:only-of-type .#{$name}{
+  #slycss.#{$name}, #slycss .#{$name}{
     @content;
   }
 }

@@ -1,8 +1,7 @@
-// tweaks use body:only-of-type <.classname> 
-// to get a specificity of 0021
-// allowing them to override components, elements, and modifiers
+// Specificity: 0110
+// Overrides components, elements, and modifiers.
 @mixin tweak($name){
-  body:only-of-type .#{$name}{
+  #slycss .#{$name}{
     @content;
   }
 }
