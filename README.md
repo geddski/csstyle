@@ -10,12 +10,13 @@ specificity: 0010
 
 ### Modifiers
 specificity: 0020
+Modifiers used in combination with elements get a specificity of 0030
 
 ### Tweaks
-specificity: 0021
+specificity: 0110
 
 ### Locations
-specificity: 0022 to 0031
+specificity: 0111 to 0120
 
 ## benefits
 
@@ -30,6 +31,9 @@ specificity: 0022 to 0031
 
 - if you have two components with the same modifiers and you're using both those components on a single element it won't know which modifier to use. If only CSS had full on regexp selectors. Better not to use more than one component per element anyway.
 
+## Getting Started
+Add id="slycss" to your html or body element.
+Download the scss mixins
 
 ## Demo
 gem install sass
@@ -37,6 +41,8 @@ gem install sass-globbing
 sass -r sass-globbing --watch styles.scss --style expanded
 
 ## TODO
-- make pretty and host on gh-pages
+- make pretty demo and host on gh-pages
 - think of cool name
 - simple unit test for specificity
+- ship mixins as gem
+- update docs

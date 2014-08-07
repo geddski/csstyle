@@ -6,15 +6,36 @@
 
   @include elem(icon){
     background: blue;
-
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+  
+    // elements can also have their own mods
     @include mod(vertical){
       background: black;
+    }
+
+    // elements can react to the component's mods
+    // from inside an elem block
+    // generates .button.\--large .button__icon
+    // specificity: 0030
+    .button.\--large &{
+      outline: 10px solid green;
     }
   }
 
   @include mod(large){
     padding: 20px;
     font-size: 40px;
+
+    // elements can react to the component's mods
+    // from inside a mod block
+    // generates: .button.\--large .button__icon 
+    // specificity: 0030 
+    & .button__icon{
+      width: 30px;
+      height: 30px;
+    }
   }
 
   @include mod(critical){

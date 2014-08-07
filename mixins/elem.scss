@@ -1,6 +1,7 @@
 // Elements are children of components that
 // help make up the structure of the component.
-// Specificity: 0010
+// Specificity: 0010 when used by itself,
+// 0030 when used inside with a modifier
 @mixin elem($name){
   &__#{$name}{
     @content
