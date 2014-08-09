@@ -10,7 +10,7 @@ specificity: 0010
 
 ### Modifiers
 specificity: 0020
-Modifiers used in combination with elements get a specificity of 0030
+Modifiers used in combination with elements get a specificity of 00x0 depending on the amount of nesting. Nest to your heart's content.
 
 ### Tweaks
 specificity: 0110
@@ -46,3 +46,5 @@ sass -r sass-globbing --watch styles.scss --style expanded
 - simple unit test for specificity
 - ship mixins as gem
 - update docs
+- write about creating options/mods that call 
+- mixins for greater flexibility

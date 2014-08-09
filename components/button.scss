@@ -4,38 +4,9 @@
   color: #e2e2e2;
   border-radius: 5px;
 
-  @include elem(icon){
-    background: blue;
-    width: 15px;
-    height: 15px;
-    display: inline-block;
-  
-    // elements can also have their own mods
-    @include mod(vertical){
-      background: black;
-    }
-
-    // elements can react to the component's mods
-    // from inside an elem block
-    // generates .button.\--large .button__icon
-    // specificity: 0030
-    .button.\--large &{
-      outline: 10px solid green;
-    }
-  }
-
   @include mod(large){
     padding: 20px;
     font-size: 40px;
-
-    // elements can react to the component's mods
-    // from inside a mod block
-    // generates: .button.\--large .button__icon 
-    // specificity: 0030 
-    & .button__icon{
-      width: 30px;
-      height: 30px;
-    }
   }
 
   @include mod(critical){
@@ -47,5 +18,33 @@
   @include mod(small){
     font-size: 12px;
     padding: 10px; 
+  }
+
+  @include elem(icon){
+    background: blue;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+
+    // elements can also have their own mods
+    // specificity: 0020
+    // generates .button__icon.\--vertical {
+    @include mod(vertical){
+      background: black;
+    }
+
+    // elements can react to their containing component's mods as well. 
+
+    // generates .button.\--large .button__icon
+    @include whenParentOption(large, button){
+      box-shadow: 0 0 10px 5px yellow;
+      
+      // elements can react to component's mods AND elem's mods
+      //generates .button.\--large .button__icon.\--special
+      @include mod(special){
+        border: 5px solid red;
+      }
+
+    }
   }
 }

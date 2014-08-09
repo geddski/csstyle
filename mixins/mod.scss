@@ -3,3 +3,10 @@
     @content;
   }
 }
+
+// allow elements to respond to options on parents
+@mixin whenParentOption($optionName, $parentName){
+  .#{$parentName}.\--#{$optionName} &{
+    @content;
+  }
+}
