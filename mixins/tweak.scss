@@ -1,7 +1,0 @@
-// Specificity: 0110
-// Overrides components, options, and modifiers.
-@mixin tweak($name){
-  #slycss .#{$name}{
-    @content;
-  }
-}

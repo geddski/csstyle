@@ -1,8 +1,0 @@
-// parts are the pieces that make up the structure of a component.
-// Specificity: 0010 when used by itself,
-// 0030 when used inside with a modifier
-@mixin part($name){
-  &__#{$name}{
-    @content
-  }
-}

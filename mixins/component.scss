@@ -1,5 +1,0 @@
-@mixin component($name){
-  .#{$name}{
-    @content
-  }
-}
