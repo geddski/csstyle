@@ -1,7 +1,7 @@
 // Use locations sparingly. It is usually better to add another
-// modifier to your component, or use a tweak.
+// option to your component, or use a tweak.
 // Specificity: 0111 to 0120
-// Overrides: components, elements, modifiers, and tweaks
+// Overrides: components, parts, options, and tweaks
 @mixin location($name){
   // handle body with class applied as well as any descendent
   #slycss.#{$name}, #slycss .#{$name}{

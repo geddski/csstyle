@@ -1,10 +1,10 @@
-@mixin mod($name){
+@mixin option($name){
   &.\--#{$name}{
     @content;
   }
 }
 
-// allow elements to respond to options on parents
+// allow parts to respond to options on parents
 @mixin whenParentOption($optionName, $parentName){
   .#{$parentName}.\--#{$optionName} &{
     @content;

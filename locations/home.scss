@@ -9,7 +9,7 @@
     border-bottom: 10px solid orange;
 
     // can even override a component modifier for this location
-    @include mod(small){
+    @include option(small){
       font-size: 8px;
       padding: 5px; 
     }

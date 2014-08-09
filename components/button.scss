@@ -4,44 +4,44 @@
   color: #e2e2e2;
   border-radius: 5px;
 
-  @include mod(large){
+  @include option(large){
     padding: 20px;
     font-size: 40px;
   }
 
-  @include mod(critical){
+  @include option(critical){
     color: red;
     margin-left: 300px;
     border-bottom: 5px solid red;
   }
 
-  @include mod(small){
+  @include option(small){
     font-size: 12px;
     padding: 10px; 
   }
 
-  @include elem(icon){
+  @include part(icon){
     background: blue;
     width: 15px;
     height: 15px;
     display: inline-block;
 
-    // elements can also have their own mods
+    // partents can also have their own mods
     // specificity: 0020
     // generates .button__icon.\--vertical {
-    @include mod(vertical){
+    @include option(vertical){
       background: black;
     }
 
-    // elements can react to their containing component's mods as well. 
+    // partents can react to their containing component's mods as well. 
 
     // generates .button.\--large .button__icon
     @include whenParentOption(large, button){
       box-shadow: 0 0 10px 5px yellow;
       
-      // elements can react to component's mods AND elem's mods
+      // partents can react to component's mods AND part's mods
       //generates .button.\--large .button__icon.\--special
-      @include mod(special){
+      @include option(special){
         border: 5px solid red;
       }
 
