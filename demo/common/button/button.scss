@@ -26,21 +26,16 @@
     height: 15px;
     display: inline-block;
 
-    // partents can also have their own mods
-    // specificity: 0020
-    // generates .button__icon.\--vertical {
+    // parts can also have their own mods
     @include option(vertical){
       background: black;
     }
 
-    // partents can react to their containing component's mods as well. 
-
-    // generates .button.\--large .button__icon
-    @include whenParentOption(large, button){
+    // parts can react to their containing component's mods as well. 
+    @include whenParentOption(large, button, icon){
       box-shadow: 0 0 10px 5px yellow;
       
-      // partents can react to component's mods AND part's mods
-      //generates .button.\--large .button__icon.\--special
+      // parts can react to component's mods AND part's mods
       @include option(special){
         border: 5px solid red;
       }
