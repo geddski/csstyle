@@ -26,7 +26,7 @@
 // can use & in sassscript so we won't have to pass parent and part
 @mixin whenParentOption($option, $parent, $part){
   
-  @at-root .#{$parent}.\--#{$option} .#{$parent}__.#{$part} {
+  @at-root .#{$parent}.\--#{$option} .#{$parent}__#{$part} {
     @content;
   }
 
