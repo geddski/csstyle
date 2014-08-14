@@ -204,7 +204,7 @@ tweaks to promote more code reuse.
 
 ## Getting Started
 1. Add id="csstyle" to your html or body element. This is necessary so that components with their
-parts and option can nest indefinitely yet always be overridden by tweaks and locations.
+parts and options can nest indefinitely yet always be overridden by tweaks and locations.
 
 2. Download the scss mixins
 
