@@ -1,5 +1,5 @@
 # csstyle
-Simple, structured, computer science approach for styling the web like a genius.
+Simple, structured, computer science approach for styling the web.
 
 CSS is an unwieldy beast that, without strict discipline, will eventually destroy your soul.
 csstyle makes it fun and easy again by giving you five intuitive abstractions to work with, exercising that strict
@@ -168,14 +168,11 @@ any number of components and parts. Use the tweak mixin to define them:
 }
 ```
 
-Tweaks are applied by their class name:
+Tweaks are applied by their name surrounded by brackets:
 
 ```HTML
-<div class="button rounded glass-effect" />
+<div class="button [rounded] [glass-effect]" />
 ```
-
-TODO: maybe we should prefix tweak classes so they stand out.
-
 
 ### Locations
 The final abstraction in csstyle is locations, meant for overriding any previous
@@ -194,18 +191,22 @@ location mixin:
 }
 ```
 
-Locations correspond to a classname. For example it's common to put 
+Locations are used with an @ sign followed by the location name. It's common to put 
 a location class name on the body tag:
 
 ```html
-<body class="home">
+<body class="@home">
 ```
-Locations should be used sparingly. It's usually better to add new options or
-tweaks, but sometimes it makes sense to make a location specific style.
+Locations should be used for specific views, features, or pages in your project. 
+The CSS defined here is not reusable, so it's usually best to try to keep the styles
+here to a minimum, preferring to add new options or
+tweaks to promote more code reuse.
 
 ## Getting Started
-Add id="csstyle" to your html element.
-Download the scss mixins
+1. Add id="csstyle" to your html or body element. This is necessary so that components with their
+parts and option can nest indefinitely yet always be overridden by tweaks and locations.
+
+2. Download the scss mixins
 
 ## Demo
 gem install sass
@@ -217,6 +218,8 @@ sass -r sass-globbing --watch styles.scss --style expanded
 MIT
 
 ## TODO
-- make pretty demo and host on gh-pages
+- make pretty demo/docs site and host on gh-pages
 - simple unit test for specificity
 - ship mixins as gem
+- try sass functions instead of mixins
+- support stylus and less
