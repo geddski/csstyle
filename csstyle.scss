@@ -37,21 +37,17 @@
   // }
 }
 
-// Specificity: 0110
 // Overrides components, options, and modifiers.
 @mixin tweak($name){
-  #csstyle .#{$name}{
+  #csstyle .\[#{$name}\]{
     @content;
   }
 }
 
 
-// Use locations sparingly. It is usually better to add another
-// option to your component, or use a tweak.
-// Specificity: 0111 to 0120
 // Overrides: components, parts, options, and tweaks
 @mixin location($name){
-  #csstyle .#{$name}{
+  #csstyle .\@#{$name}{
     @content;
   }
 }
