@@ -32,7 +32,7 @@
     }
 
     // parts can react to their containing component's mods as well. 
-    @include whenParentOption(large, button, icon){
+    @include whenComponentOption(large){
       box-shadow: 0 0 10px 5px yellow;
       
       // parts can react to component's mods AND part's mods

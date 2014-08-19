@@ -24,17 +24,13 @@
 // allow parts to respond to options on parents
 // TODO: update this once sass 3.4.0 is released,
 // can use & in sassscript so we won't have to pass parent and part
-@mixin whenParentOption($option, $parent, $part){
-  
-  @at-root .#{$parent}.\--#{$option} .#{$parent}__#{$part} {
+@mixin whenComponentOption($option){
+  $index: str-index(#{&}, "__") - 1;
+  $component: str-slice(#{&}, 0, $index);
+
+  #{$component}.\--#{$option} & {
     @content;
   }
-
-  // future version
-  // $withParent: str-insert(#{&}, ".\--#{$option}", 8);
-  // @at-root #{$withParent} {
-  //   @content;
-  // }
 }
 
 // Overrides components, options, and modifiers.
