@@ -216,12 +216,15 @@ gem install sass-globbing
 cd demo
 sass -r sass-globbing --watch styles.scss --style expanded
 
+## Running the Tests
+`npm install -g jasmine-node` 
+`npm test`
+
 ## License
 MIT
 
 ## TODO
-- make pretty demo/docs site and host on gh-pages
 - simple unit test for specificity
 - ship mixins as gem
 - try sass functions instead of mixins
-- support stylus and less
+- support stylus and less once API is solid
