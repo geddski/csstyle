@@ -1,0 +1,9 @@
+@import '../../../csstyle';
+
+@include component(tweet){
+  background: #fff;
+
+  @include part(image){
+    float: left;
+  }
+}

@@ -1,0 +1,5 @@
+@import '../../../csstyle';
+
+@include location(home){
+  padding: 20px;
+}

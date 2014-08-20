@@ -1,0 +1,9 @@
+@import '../../../csstyle';
+
+@include component(tweet){
+  background: #fff;
+
+  @include option(promoted){
+    border-bottom: 1px solid yellow;
+  }
+}

@@ -9,7 +9,7 @@ module.exports = {
   getSelector: function(file, number){
     number = number || 0;
     var contents = fs.readFileSync(path.resolve(file)).toString();
-    var selector = contents.match(/.*\{/g)[0].split(' {')[0];
+    var selector = contents.match(/.*\{/g)[number].split(' {')[0];
     var score = specificity.calculate(selector)[0].specificity;
 
     return {

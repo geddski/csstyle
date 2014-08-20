@@ -1,0 +1,53 @@
+@import '../../../csstyle';
+
+@include component(tweet){
+  background: blue;
+
+  @include option(full){
+    padding: 0;
+
+    // tweet.\--full .tweet__content
+    @include part(content){
+      display: none;
+    }
+  }
+
+  // @include part(content){
+  //   width: 80%;
+
+  //   // respond to component options
+  //   @include whenComponentOption(full){
+  //     background: yellow;
+  //   }
+
+  //   // part within a part
+  //   @include part(message){
+  //     background: #ccc;
+
+  //     // nested parts can even have options
+  //     @include option(sensitive){
+  //       background: #ddd;
+
+  //       // nested part options AND component options
+  //       @include whenComponentOption(full){
+  //         border: 200px solid purple;
+  //       }
+  //     }
+  //   }
+
+  // }
+}
+
+// @include tweak(sweet){
+//   outline: 1px solid orange;
+// }
+
+// @include location(home){
+//   @include component(tweet){
+//     padding: 10px;
+
+//     @include part(content){
+//       background: blue;
+//     }
+//   }
+// }
