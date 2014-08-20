@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'Nexa-Light';
+  src: url('common/fonts/2BB4FD_0_0.eot');
+  src: url('common/fonts/2BB4FD_0_0.eot?#iefix') format('embedded-opentype'),url('common/fonts/2BB4FD_0_0.woff') format('woff'),url('common/fonts/2BB4FD_0_0.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: OpenSans-Light;
+  src: url(common/fonts/OpenSansLight.ttf);
+}
+
+body{
+  padding: 20px 10px;
+  font-size: 18px;
+  background: #F8F8F2;
+  color: $color-darkgrey;
+  font-family: "Nexa-Light";
+}
+
+body *{
+  box-sizing: border-box;
+}
+
+h1, p, pre {
+  margin-bottom: 10px;
+}
+
+section{
+  margin-bottom: 70px;
+}

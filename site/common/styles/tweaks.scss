@@ -1,0 +1,9 @@
+@include tweak(centered){
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@include tweak(highlight){
+  color: $color-salmon;
+  font-weight: bold;
+}

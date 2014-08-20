@@ -1,0 +1,27 @@
+@include component(logo){
+  color: $color-darkgrey;
+  position: relative;
+
+  @include option(small){
+    font-size: 25px;
+  }
+
+  @include option(large){
+    font-size: 100px;
+    // width: 500px;
+    width: 425px;
+  }
+
+  @include part(dashes){
+    position: relative;
+    top: 8px;
+
+    @include whenComponentOption(small){
+      top: 2px;
+    }
+  }
+
+  @include part(cs){
+    color: $color-salmon;
+  }
+}

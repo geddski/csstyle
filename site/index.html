@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html id="csstyle">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>csstyle - a clean & simple approach for styling the web.</title>
+  <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body class="@home">
+  
+  <div class="logo --large [centered]">
+    <span class="logo__dashes">--</span><span class="logo__cs">cs</span>style
+  </div>
+
+<div class="intro">
+  <span class="tagline [centered]" style="font-size: 40px">Clean, Simple Styling for the Web.</span>
+</div>
+
+<div class="content [centered]">
+<section>
+      
+  <p>With csstyle you organize your CSS as reusable <span class="[highlight]">components</span></p>
+<pre id="componentCSS" class="editor">
+@include component(button) {
+  background: #6BD9ED;
+  padding: 10px;
+}</pre>
+
+<pre id="componentHTML" class="editor">&lt;span class=&quot;button&quot;&gt;Neat!&lt;/span&gt;</pre>
+      
+<div class="result" id="componentR">
+  <style>
+    .button{
+      background: #6BD9ED;
+      padding: 10px;
+    }
+  </style>
+  <div class="visualization">
+    <span class="button">Neat!</span>
+  </div>
+</div>
+</section>
+
+
+
+
+<section>
+  <p>Make your components super flexible with <span class="[highlight]">options</span></p>
+
+<pre id="optionsCSS" class="editor">
+@include component(button) {
+  background: #6BD9ED;
+  padding: 10px;
+
+  @include option(action){
+    background: #A7E040;
+    border: 2px solid #626262;
+  }
+}</pre>
+
+<pre id="optionsHTML" class="editor">&lt;span class=&quot;button --action&quot;&gt;Neat!&lt;/span&gt;</pre>
+      
+<div class="result" id="optionsR">
+  <style>
+    .button{
+      background: #6BD9ED;
+      padding: 10px;
+    }
+
+    .button.\--action{
+      background: #A7E040;
+      border: 2px solid #626262;
+    }
+  </style>
+  <div class="visualization">
+    <span class="button --action">Neat!</span>
+  </div>
+</div>
+
+<p>Go ahead and try it! Add another option, for example "warning" or "confirm".</p>
+</section>
+
+<section>
+  <p>compose your components with <span class="[highlight]">parts</span></p>
+</section>
+
+<section>
+  <p>create generic style <span class="[highlight]">tweaks</span> that can be applied to anything</p>
+</section>
+
+<section>
+  <p>customize styles in specific <span class="[highlight]">locations</span></p>
+</section>
+
+    <!-- <section> -->
+      <!-- <p>Tips</p> -->
+      <!-- -if using lots of tweaks consider creating a component or location -->
+    <!-- </section> -->
+  </div>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+  <script src="home/home.js"></script>
+
+</body>
+</html>
