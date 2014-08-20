@@ -153,15 +153,15 @@ Tweaks are generic styles and effects that can be applied to
 any number of components and parts. Use the tweak mixin to define them:
 
 ```scss
-@tweak(hidden){
+@include tweak(hidden){
   display: none;
 }
 
-@tweak(rounded){
+@include tweak(rounded){
   border-radius: 10px;
 }
 
-@tweak(glass-effect){
+@include tweak(glass-effect){
   border: 1px solid rgba(255, 255, 255, .05);
   box-shadow: inset 0 0 10px rgba(0, 0, 0, .5);
   background: rgba(72, 78, 99, .4);
@@ -203,10 +203,12 @@ here to a minimum, preferring to add new options or
 tweaks to promote more code reuse.
 
 ## Getting Started
-1. Add id="csstyle" to your html or body element. This is necessary so that components with their
+1. csstyle uses the latest SASS (3.4). Older versions are not supported.
+
+2. Add id="csstyle" to your html or body element. This is necessary so that components with their
 parts and options can nest indefinitely yet always be overridden by tweaks and locations.
 
-2. Download the scss mixins
+3. Download the scss mixins
 
 ## Demo
 gem install sass
