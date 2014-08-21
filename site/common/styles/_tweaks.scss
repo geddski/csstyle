@@ -3,6 +3,10 @@
   margin-right: auto;
 }
 
+@include tweak(text-centered){
+  text-align: center;
+}
+
 @include tweak(highlight){
   color: $color-salmon;
   font-weight: bold;

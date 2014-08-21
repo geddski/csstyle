@@ -1,0 +1,8 @@
+@include component(tagline){
+  display: inline-block;
+  font-size: 32px;
+
+  // @media screen and (max-width: $break-small) {
+  //   font-size: 40px;
+  // }
+}

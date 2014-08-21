@@ -1,0 +1,5 @@
+body{
+  @include component(ace_editor){
+    font-size: 14px;
+  }
+}

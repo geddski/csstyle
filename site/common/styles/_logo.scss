@@ -1,0 +1,21 @@
+@include component(logo){
+  color: $color-darkgrey;
+  position: relative;
+  white-space: nowrap;
+  font-size: 70px;
+  margin-bottom: 10px;
+  
+  // @media screen and (max-width: $break-small) {
+  //   // for bigger...
+  //   font-size: 100px;
+  // }
+
+  @include part(dashes){
+    position: relative;
+    top: 8px;
+  }
+
+  @include part(cs){
+    color: $color-salmon;
+  }
+}
