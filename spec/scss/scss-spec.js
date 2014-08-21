@@ -23,9 +23,9 @@ describe("part", function(){
 });
 
 describe("tweak", function(){
-  it("defines a [class] after csstyle id", function(){
+  it("defines a +class after csstyle id", function(){
     var selector = getSelector('spec/scss/fixtures/tweak.css');
-    expect(selector.value).toBe("#csstyle .\\[rounded\\]");
+    expect(selector.value).toBe("#csstyle .\\+rounded");
     // waiting on https://github.com/keeganstreet/specificity/issues/10
     // expect(selector.score).toBe('0,1,1,0');
   });
