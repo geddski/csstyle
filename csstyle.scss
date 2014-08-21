@@ -35,7 +35,7 @@
 
 // Overrides components, options, and modifiers.
 @mixin tweak($name){
-  #csstyle .\[#{$name}\]{
+  #csstyle .\+#{$name}{
     @content;
   }
 }
