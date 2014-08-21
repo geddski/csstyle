@@ -24,10 +24,10 @@ componentCSS.selection.moveCursorLineEnd();
 
 function createEditor(selector, lang){
   var editor = ace.edit(selector);
-  editor.renderer.setPadding(15);
-  editor.renderer.setScrollMargin(15, 15);
+  editor.renderer.setPadding(10);
+  editor.renderer.setScrollMargin(10, 10);
   editor.setTheme("ace/theme/monokai");
-  editor.setFontSize(18);
+  // editor.setFontSize(18);
   editor.getSession().setMode("ace/mode/" + lang);
   editor.renderer.setShowGutter(false);
   editor.setShowPrintMargin(false);
