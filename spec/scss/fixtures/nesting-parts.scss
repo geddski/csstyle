@@ -3,14 +3,14 @@
 @include component(tweet){
   background: blue;
 
-  @include option(full){
-    padding: 0;
+  // @include option(full){
+  //   padding: 0;
 
-    // tweet.\--full .tweet__content
-    @include part(content){
-      display: none;
-    }
-  }
+  //   // tweet.\--full .tweet__content
+  //   @include part(content){
+  //     display: none;
+  //   }
+  // }
 
   // @include part(content){
   //   width: 80%;

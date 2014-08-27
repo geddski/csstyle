@@ -1,3 +1,4 @@
+// components
 @mixin component($name){
   .#{$name}{
     @content
@@ -5,16 +6,28 @@
 }
 
 
-// parts are the pieces that make up the structure of a component.
-// Specificity: 0010 when used by itself,
-// 0020 when used with options
+// parts are the pieces that make up the structure of a component
 @mixin part($name){
-    &__#{$name}{
-      @content
+    // check to see 
+    $index: str-index(#{&}, ".\\--");
+    $index: 0 !default;
+    $index: $index - 1;
+    $component: str-slice(#{&}, 0, $index);
+    
+    // part is nested in an option
+    @if $index > 0 {
+      & #{$component}__#{$name}{
+        @content;
+      }      
+    }
+    @else {
+      &__#{$name}{
+        @content
+      }
     }
 }
 
-
+// component options
 @mixin option($name){
   &.\--#{$name}{
     @content;
@@ -22,8 +35,6 @@
 }
 
 // allow parts to respond to options on parents
-// TODO: update this once sass 3.4.0 is released,
-// can use & in sassscript so we won't have to pass parent and part
 @mixin whenComponentOption($option){
   $index: str-index(#{&}, "__") - 1;
   $component: str-slice(#{&}, 0, $index);
@@ -33,7 +44,7 @@
   }
 }
 
-// Overrides components, options, and modifiers.
+// overrides components, options, and modifiers
 @mixin tweak($name){
   #csstyle .\+#{$name}{
     @content;
@@ -41,7 +52,7 @@
 }
 
 
-// Overrides: components, parts, options, and tweaks
+// overrides: components, parts, options, and tweaks
 @mixin location($name){
   #csstyle .\@#{$name}{
     @content;

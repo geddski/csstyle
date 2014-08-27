@@ -20,6 +20,14 @@ describe("part", function(){
     expect(selector.value).toBe(".tweet__image");
     expect(selector.score).toBe('0,0,1,0');
   });
+
+  describe("parts inside of options", function(){
+    it("responds correctly to component options", function(){
+      var selector = getSelector('spec/scss/fixtures/parts-in-options.css', 2);
+      expect(selector.value).toBe(".tweet.\\--promoted .tweet__img");
+      expect(selector.score).toBe("0,0,3,0");
+    });
+  });
 });
 
 describe("tweak", function(){
