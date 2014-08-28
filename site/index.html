@@ -1,54 +1,109 @@
 <!DOCTYPE html>
-<html id="csstyle">
+<html id="csstyle" ng-app="csstyle">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>csstyle - a clean & simple approach for styling the web.</title>
+  <title>csstyle - Clean, Simple Styling for the Web.</title>
   <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:300' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="site.css">
 </head>
 <body class="@home">
-  
-  <div class="logo +text-centered">
-    <span class="logo__dashes">--</span><span class="logo__cs">cs</span>style
-  </div>
+  <section class="section">
+    <div class="logo +text-center">
+      <span class="logo__dashes">--</span><span class="logo__cs">cs</span>style
+    </div>
 
-<div class="intro">
-  <span class="tagline +text-centered">Clean, Simple Styling for the Web.</span>
-</div>
+    <div>
+      <div class="tagline +content-center +text-center"><span class="+highlight">clean</span>, <span class="+highlight">simple</span> <span style="">styling</span> for the <span class="+highlight">web</span></div>
+      <p class="+content-center">csstyle is a modern approach for crafting <span class="+highlight">beautifully maintainable</span> stylesheets.
+        CSS is an unwieldy beast that, without strict discipline, will eventually destroy your soul.
+        csstyle makes it fun and easy again by giving you five intuitive abstractions to work with, exercising that strict
+        discipline so you don't have to.
+      </p>
+    </div>
+  </section>
 
-<div class="content +centered">
-<section>
-      
-  <p>With csstyle you organize your CSS as reusable <span class="+highlight">components</span></p>
-<pre id="componentCSS" class="editor">
-@include component(button) {
+<!-- components -->
+<section class="section --white">
+  <div class="+content-center">
+    <h1 class="section__title">Components</h1>
+    <p>With csstyle you organize your CSS as reusable <span class="+highlight">components</span></p>  
+
+<example id="components-example">
+
+<span class="section__label">HTML</span>
+<pre class="html"><span class="button">Neat!</span></pre>
+
+<span class="section__label">SCSS</span>
+<pre class="scss">@include component(button) {
   background: #6BD9ED;
   padding: 10px;
 }</pre>
 
-<pre id="componentHTML" class="editor">&lt;span class=&quot;button&quot;&gt;Neat!&lt;/span&gt;</pre>
-      
-<div class="result" id="componentR">
+
+<span class="section__label">RESULT</span>
+<div class="section__result">
   <style>
-    .button{
+    #components-example .button{
       background: #6BD9ED;
       padding: 10px;
     }
   </style>
-  <div class="visualization">
-    <span class="button">Neat!</span>
-  </div>
+  <div class="button">Neat!</div>
 </div>
+
+</example>
+  </div>
 </section>
 
 
 
+<!-- options -->
+<section class="section --darkgrey">
+  <div class="+content-center">
+    <h1 class="section__title">Options</h1>
+    <p>Make your components super flexible with <span class="+highlight">options</span></p>
+    
+  </div>
+<!-- <example id="options" type-scss-at-row="1" type-scss-at-col="20" type-html-at-col="19">
 
-<section>
-  <p>Make your components super flexible with <span class="+highlight">options</span></p>
+<div class="starting-css">
+  .button{
+    padding: 10px;
+    background: #6BD9ED;
+  }
+</div>
 
-<pre id="optionsCSS" class="editor">
+<div class="ending-css">
+  .button{
+    padding: 10px;  
+  }
+
+  .button.\--action {
+    background: limegreen;
+  }
+</div>
+
+<pre class="scss">@include option(action) {
+    background: red;
+}</pre>
+
+<pre class="type-scss">
+
+
+@include option(action) {
+background: limegreen;
+}</pre>
+
+<pre class="html"><span class="button">Neat!</span></pre>
+
+<pre class="type-html">
+<span class="button"> --action</span>
+</pre>
+
+</example> -->
+
+<!-- <pre id="optionsCSS" class="editor">
 @include component(button) {
   background: #6BD9ED;
   padding: 10px;
@@ -76,32 +131,37 @@
   <div class="visualization">
     <span class="button --action">Neat!</span>
   </div>
-</div>
+</div> -->
 
 <!-- <p>Go ahead and try it! Add another option, for example "warning" or "confirm".</p> -->
 </section>
 
 <section>
-  <p>compose your components with <span class="+highlight">parts</span></p>
+  <!-- <p>compose your components with <span class="+highlight">parts</span></p> -->
 </section>
 
 <section>
-  <p>create generic style <span class="+highlight">tweaks</span> that can be applied to anything</p>
+  <!-- <p>create generic style <span class="+highlight">tweaks</span> that can be applied to anything</p> -->
 </section>
 
 <section>
-  <p>customize styles in specific <span class="+highlight">locations</span></p>
+  <!-- <p>customize styles in specific <span class="+highlight">locations</span></p> -->
+</section>
+
+<section>
+  <!-- How to know which to use & when -->
 </section>
 
     <!-- <section> -->
       <!-- <p>Tips</p> -->
       <!-- -if using lots of tweaks consider creating a component or location -->
     <!-- </section> -->
-  </div>
-
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.18/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
-  <script src="home/home.js"></script>
-
+  <script> angular.module('csstyle', []); </script>
+  <script src="common/js/example.js"></script>
+  
 </body>
 </html>

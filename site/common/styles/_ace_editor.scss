@@ -1,5 +1,9 @@
 body{
   @include component(ace_editor){
     font-size: 14px;
+
+    @include when($break-medium){
+      font-size: 18px;
+    }
   }
 }

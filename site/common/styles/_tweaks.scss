@@ -1,13 +1,22 @@
-@include tweak(centered){
-  margin-left: auto;
-  margin-right: auto;
-}
-
-@include tweak(text-centered){
+@include tweak(text-center){
   text-align: center;
 }
 
+@include tweak(text-left){
+  text-align: left;
+}
+
 @include tweak(highlight){
-  color: $color-salmon;
-  font-weight: bold;
+  color: $color-lightblue;
+  color: $color-lightblue;
+  
+  // font-weight: bold;
+}
+
+@include tweak(content-center){
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $content-padding;
+  padding-right: $content-padding;
 }

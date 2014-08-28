@@ -10,11 +10,14 @@
 }
 
 body{
-  padding: 20px 10px;
-  font-size: 18px;
-  background: #F8F8F2;
+  font-size: 20px;
+  // background: #F8F8F2;
+  background: $color-darkestgrey;
   color: $color-darkgrey;
   font-family: "Nexa-Light";
+  letter-spacing: 1px;
+  display: inline-block;
+  width: 100%;
 }
 
 body *{
@@ -26,9 +29,5 @@ h1, p, pre {
 }
 
 p{
-  line-height: 22px;
-}
-
-section{
-  margin-bottom: 70px;
+  line-height: 28px;
 }
