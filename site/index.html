@@ -14,11 +14,10 @@
     </div>
 
     <div>
-      <div class="tagline +content-center +text-center"><span class="+highlight">clean</span>, <span class="+highlight">simple</span> <span style="">styling</span> for the <span class="+highlight">web</span></div>
-      <p class="+content-center">csstyle is a modern approach for crafting <span class="+highlight">beautifully maintainable</span> stylesheets.
-        CSS is an unwieldy beast that, without strict discipline, will eventually destroy your soul.
-        csstyle makes it fun and easy again by giving you five intuitive abstractions to work with, exercising that strict
-        discipline so you don't have to.
+      <div class="tagline +content-center +text-center"><span class="+highlight">clean</span> <span class="+highlight">simple</span> <span style="">styling</span> for the <span class="+highlight">web</span></div>
+      <p class="+content-center +text-center">csstyle is a modern approach for crafting <span class="+highlight">beautifully maintainable</span>, <span class="+highlight">readable</span>, <span class="+highlight">refactorable</span> stylesheets.
+        The provided high level SASS mixins codify the csstyle method, rendering specificity and loading order irrelevant, and making your project <span class="+highlight">refreshingly consistent</span>.
+
       </p>
     </div>
   </section>
@@ -27,7 +26,7 @@
 <section class="section --white">
   <div class="+content-center">
     <h1 class="section__title">Components</h1>
-    <p>With csstyle you organize your CSS as reusable <span class="+highlight">components</span></p>  
+    <p>With csstyle you organize your CSS as reusable <span class="+highlight">components</span>.</p>  
 
 <example id="components-example">
 
@@ -37,22 +36,26 @@
 <span class="section__label">SCSS</span>
 <pre class="scss">@include component(button) {
   background: #6BD9ED;
-  padding: 10px;
+  padding: 15px;
 }</pre>
-
 
 <span class="section__label">RESULT</span>
 <div class="section__result">
   <style>
     #components-example .button{
       background: #6BD9ED;
-      padding: 10px;
+      padding: 15px;
     }
   </style>
-  <div class="button">Neat!</div>
+  <span class="button">Neat!</span>
 </div>
 
 </example>
+  <p>Components are the primary building blocks of your project, the more you leverage them the better.</p>
+
+  <p>csstyle's focus on components make it a perfect match for
+  Web/Angular/Ember/React components.
+  </p>
   </div>
 </section>
 
@@ -62,82 +65,120 @@
 <section class="section --darkgrey">
   <div class="+content-center">
     <h1 class="section__title">Options</h1>
-    <p>Make your components super flexible with <span class="+highlight">options</span></p>
-    
-  </div>
-<!-- <example id="options" type-scss-at-row="1" type-scss-at-col="20" type-html-at-col="19">
+    <p>Make your components super flexible with <span class="+highlight">options</span>, 
+    passed as arguments to the component.</p>
+<example id="options-example">
 
-<div class="starting-css">
-  .button{
-    padding: 10px;
-    background: #6BD9ED;
-  }
-</div>
-
-<div class="ending-css">
-  .button{
-    padding: 10px;  
-  }
-
-  .button.\--action {
-    background: limegreen;
-  }
-</div>
-
-<pre class="scss">@include option(action) {
-    background: red;
-}</pre>
-
-<pre class="type-scss">
-
-
-@include option(action) {
-background: limegreen;
-}</pre>
-
-<pre class="html"><span class="button">Neat!</span></pre>
-
-<pre class="type-html">
-<span class="button"> --action</span>
+<span class="section__label">HTML</span>
+<pre class="html">
+<span class="button --action">
+  Register Now
+</span></pre>
 </pre>
 
-</example> -->
-
-<!-- <pre id="optionsCSS" class="editor">
-@include component(button) {
+<span class="section__label">SCSS</span>
+<pre class="scss">@include component(button) {
   background: #6BD9ED;
-  padding: 10px;
+  padding: 15px;
 
   @include option(action){
+    color: #1F1F1F;
     background: #A7E040;
-    border: 2px solid #626262;
   }
 }</pre>
 
-<pre id="optionsHTML" class="editor">&lt;span class=&quot;button --action&quot;&gt;Neat!&lt;/span&gt;</pre>
-      
-<div class="result" id="optionsR">
+<span class="section__label">RESULT</span>
+<div class="section__result">
   <style>
-    .button{
-      background: #6BD9ED;
-      padding: 10px;
-    }
-
-    .button.\--action{
+    #options-example .button{
       background: #A7E040;
-      border: 2px solid #626262;
+      padding: 15px;
+      color: #1F1F1F;
     }
   </style>
-  <div class="visualization">
-    <span class="button --action">Neat!</span>
-  </div>
-</div> -->
+  <span class="button">Register Now</span>
+</div>
 
+</example>
+  <p>Component options are a great way to organically grow your CSS over time. 
+  When you go to style something you can often just add a new option to an existing component. Code reuse FTW.</p>
+  </div>
 <!-- <p>Go ahead and try it! Add another option, for example "warning" or "confirm".</p> -->
 </section>
 
-<section>
-  <!-- <p>compose your components with <span class="+highlight">parts</span></p> -->
+
+
+<!-- parts -->
+<section class="section --pitch">
+  <div class="+content-center">
+    <h1 class="section__title">Parts</h1>
+    <p>Components are composed of <span class="+highlight">parts</span>, 
+    child elements of the component that can be styled. Parts can also 
+    have their own options for even greater flexibility.</p>
+<example id="parts-example">
+
+<span class="section__label">HTML</span>
+<pre class="html">
+<span class="button --action">
+  Register Now
+  <span class="button__icon --rocket"></span>
+</span></pre>
+
+<span class="section__label">SCSS</span>
+<pre class="scss">@include component(button) {
+  background: #6BD9ED;
+  padding: 15px;
+
+  @include option(action){
+    color: #1F1F1F;
+    background: #A7E040;
+    padding-top: 0;
+  }
+
+  @include part(icon){
+    font-size: 34px;
+    position: relative;
+    top: 10px;
+
+    @include option(rocket){
+      :before {
+        content: "\e600";
+      }
+    }
+  }
+}</pre>
+
+<span class="section__label">RESULT</span>
+<div class="section__result">
+  <style>
+    #parts-example .button{
+      background: #A7E040;
+      padding: 0 15px 15px 15px;
+      color: #1F1F1F;
+      position: relative;
+    }
+
+    #parts-example .button__icon{
+      font-size: 34px;
+      position: relative;
+      top: 10px;
+      font-family: 'icomoon';
+    }
+
+    #parts-example .button__icon.\--rocket:before {
+      content: "\e600";
+    }
+  </style>
+  <span class="button">
+    Register Now
+    <!-- <span class="button__icon icon-rocket"></span> -->
+    <span class="button__icon --rocket"></span>
+  </span>
+</div>
+
+</example>
+  <p>Parts make it easy to break complex components up into manageable chunks.</p>
+  </div>
 </section>
 
 <section>

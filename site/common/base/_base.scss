@@ -10,10 +10,9 @@
 }
 
 body{
-  font-size: 20px;
-  // background: #F8F8F2;
+  font-size: 18px;
   background: $color-darkestgrey;
-  color: $color-darkgrey;
+  color: $color-mediumgrey;
   font-family: "Nexa-Light";
   letter-spacing: 1px;
   display: inline-block;
@@ -30,4 +29,8 @@ h1, p, pre {
 
 p{
   line-height: 28px;
+}
+
+span{
+  display: inline-block;
 }

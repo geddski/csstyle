@@ -5,19 +5,24 @@
 
   @include option(white){
     background: #fff;
+    color: $color-darkgrey;
 
-    // @include part(title){
-    //   color: $color-lightblue;
-    // }
+    @include part(title){
+      color: $color-salmon;
+    }
   }
 
   @include option(darkgrey){
     background: $color-darkgrey;
     color: $color-lightgrey;
 
-    // @include part(title){
-    //   color: $color-salmon;
-    // }  
+    @include part(title){
+      color: $color-lime;
+    }  
+  }
+
+  @include option(pitch){
+    background: $color-pitch;
   }
 
   @include part(title){
@@ -33,5 +38,7 @@
     border: 1px dashed $color-lightgrey;
     padding: $content-padding;
     text-align: center;
+    border-radius: 4px;
+    margin-bottom: 20px;
   }
 }

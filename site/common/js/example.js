@@ -29,6 +29,11 @@ angular.module('csstyle').directive('example', function(){
     editor.renderer.setPadding(10);
     editor.renderer.setScrollMargin(10, 10);
     editor.setTheme("ace/theme/monokai");
+    // editor.setTheme("ace/theme/idle_fingers");
+    // editor.setTheme("ace/theme/katzenmilch");
+    // editor.setTheme("ace/theme/merbivore_soft");
+    // editor.setTheme("ace/theme/terminal");
+    editor.setHighlightActiveLine(false);
     editor.getSession().setMode("ace/mode/" + lang);
     editor.renderer.setShowGutter(false);
     editor.setShowPrintMargin(false);

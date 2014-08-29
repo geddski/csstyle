@@ -9,8 +9,7 @@
 @include tweak(highlight){
   color: $color-lightblue;
   color: $color-lightblue;
-  
-  // font-weight: bold;
+  font-weight: 700;
 }
 
 @include tweak(content-center){

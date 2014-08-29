@@ -1,7 +1,9 @@
 @include component(tagline){
   font-size: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  margin-top: 50px;
   line-height: 35px;
+  color: $color-deepgrey;
   
   @include when($break-medium){
     font-size: 35px;
