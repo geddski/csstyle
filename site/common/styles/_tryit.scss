@@ -1,0 +1,18 @@
+@include location(tryit){
+  @include component(button){
+    font-size:  26px;
+    margin: 20px;
+    background: $color-lightblue;
+    color: $color-pitch;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover{
+      color: $color-cream;
+    }
+
+    @include part(icon){
+      font-size: 40px;
+    }
+  } 
+}

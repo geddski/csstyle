@@ -31,6 +31,13 @@ p{
   line-height: 28px;
 }
 
-span{
+a, span{
   display: inline-block;
+}
+
+a{
+  color: $color-lime;
+  &:hover{
+    color: $color-cream;
+  }
 }

@@ -8,7 +8,11 @@
 
 @include tweak(highlight){
   color: $color-lightblue;
-  color: $color-lightblue;
+  font-weight: 700;
+}
+
+@include tweak(lowlight){
+  color: $color-salmon;
   font-weight: 700;
 }
 
