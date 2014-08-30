@@ -51,11 +51,13 @@ angular.module('csstyle').directive('example', function(){
     editor.renderer.setShowGutter(false);
     editor.setShowPrintMargin(false);
     editor.setOptions({
-      maxLines: 30,
+      maxLines: 100,
+      autoScrollEditorIntoView: true,
       fontFamily: "Source Code Pro"
     });
     editor.setBehavioursEnabled(false);
     editor.renderer.$cursorLayer.element.style.opacity=0;
+    editor.resize(true);
     return editor;
   }
 

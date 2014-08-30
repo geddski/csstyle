@@ -41,3 +41,8 @@ a{
     color: $color-cream;
   }
 }
+
+// fix for ace mobile scroll bug
+.ace_scrollbar{
+  height: 100% !important;
+}
