@@ -1,5 +1,5 @@
 # [csstyle](http://csstyle.io)
-![csstyle](https://raw.githubusercontent.com/geddski/csstyle/master/site/common/images/csstyle.png)
+![csstyle](https://github.com/geddski/csstyle/blob/master/site/common/images/csstyle.png)
 Clean, simple, for styling the web.
 
 Check out the docs and examples on [csstyle.io](http://csstyle.io)
