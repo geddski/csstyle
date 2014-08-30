@@ -16,7 +16,7 @@
     <div>
       <div class="tagline +content-center +text-center"><span class="+highlight">clean</span> <span class="+highlight">simple</span> <span style="">styling</span> for the <span class="+highlight">web</span></div>
       <p class="+content-center +text-center">csstyle is a modern approach for crafting <span class="+highlight">beautifully maintainable</span>, <span class="+highlight">readable</span>, <span class="+highlight">refactorable</span> stylesheets.
-        The provided high level SASS mixins codify the csstyle method, rendering specificity and loading order irrelevant, and making your project <span class="+highlight">refreshingly consistent</span>.
+        The provided high level SASS mixins codify the csstyle method, rendering specificity and loading order irrelevant, and making your project <span class="+highlight">refreshingly consistent</span>
 
       </p>
     </div>
@@ -54,7 +54,7 @@
   <p>Components are the primary building blocks of your project, the more you leverage them the better.</p>
 
   <p>csstyle's focus on components make it a perfect match for
-  Web/Angular/Ember/React components.
+  Web/Angular/Ember/React components. Tip: create a separate file for each component to make them easy to find & edit.
   </p>
   </div>
 </section>
@@ -66,7 +66,7 @@
   <div class="+content-center">
     <h1 class="section__title">Options</h1>
     <p>Make your components super flexible with <span class="+highlight">options</span>, 
-    passed as arguments to the component.</p>
+    passed as arguments to the component. Options override the component's default styling.</p>
 <example id="options-example">
 
 <span class="section__label">HTML</span>
@@ -114,7 +114,8 @@
     <h1 class="section__title">Parts</h1>
     <p>Components are composed of <span class="+highlight">parts</span>, 
     child elements of the component that can be styled. Parts can also 
-    have their own options for even greater flexibility.</p>
+    have their own options for even greater flexibility. Parts are applied using
+    the component name followed by __ and the part name.</p>
 <example id="parts-example">
 
 <span class="section__label">HTML</span>
@@ -171,7 +172,6 @@
   </style>
   <span class="button">
     Register Now
-    <!-- <span class="button__icon icon-rocket"></span> -->
     <span class="button__icon --rocket"></span>
   </span>
 </div>
@@ -181,22 +181,156 @@
   </div>
 </section>
 
-<section>
-  <!-- <p>create generic style <span class="+highlight">tweaks</span> that can be applied to anything</p> -->
+
+
+
+<!-- tweaks -->
+<section class="section --white">
+  <div class="+content-center">
+    <h1 class="section__title">Tweaks</h1>
+    <p>Create generic style <span class="+highlight">tweaks</span> 
+    that can be applied to any component instance or element.
+    Tweaks are applied using a + sign followed by the tweak name.
+    Tweaks automatically override the styling of components, options, and parts.</p>
+<example id="tweaks-example">
+
+<span class="section__label">HTML</span>
+<pre class="html">
+<span class="button --action +rounded +glass">
+  Register Now
+  <span class="button__icon --rocket"></span>
+</span></pre>
+
+<span class="section__label">SCSS</span>
+<pre class="scss">@include tweak(rounded) {
+  border-radius: 10px;
+}
+
+@include tweak(glass) {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, .8), 
+              inset 0 9px 1px rgba(0, 0, 0, .1);
+}</pre>
+
+<span class="section__label">RESULT</span>
+<div class="section__result">
+  <style>
+    #tweaks-example .button{
+      background: #A7E040;
+      padding: 0 15px 15px 15px;
+      color: #1F1F1F;
+      position: relative;
+    }
+
+    #tweaks-example .button__icon{
+      font-size: 34px;
+      position: relative;
+      top: 10px;
+      font-family: 'icomoon';
+    }
+
+    #tweaks-example .button__icon.\--rocket:before {
+      content: "\e600";
+    }
+
+    .\+rounded{
+      border-radius: 10px;
+    }
+
+    .\+glass {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, .8), 
+                  inset 0 9px 1px rgba(0, 0, 0, .1);
+    }
+
+  </style>
+  <span class="button --action +rounded +glass">
+    Register Now
+    <span class="button__icon --rocket"></span>
+  </span>
+</div>
+
+</example>
+  <p>Tweaks further promote clean organization and style reuse. Refactor common/duplicate styles out of
+  components and into tweaks. Tweaks should generally produce a single effect.</p>
+  </div>
 </section>
 
-<section>
-  <!-- <p>customize styles in specific <span class="+highlight">locations</span></p> -->
+
+
+
+
+<!-- locations -->
+<section class="section --darkgrey">
+  <div class="+content-center">
+    <h1 class="section__title">Locations</h1>
+    <p>Projects occasionally need to override styles in specific <span class="+highlight">locations</span> 
+    e.g. just on the home page or just when viewing in fullscreen.
+    Locations are applied using an @ sign followed by the location name.
+    Locations automatically override the styling of components, options, parts and tweaks.</p>
+<example id="locations-example">
+
+<span class="section__label">HTML</span>
+<pre class="html">
+<span class="@home">
+  <span class="button --action +rounded +glass">
+    Register Now
+    <span class="button__icon --rocket"></span>
+  </span>
+</span></pre>
+
+<span class="section__label">SCSS</span>
+<pre class="scss">@include location(home) {
+  color: #6BD9ED;
+  background: #1F1F1F;
+}</pre>
+
+<span class="section__label">RESULT</span>
+<div class="section__result">
+  <style>
+    #locations-example .button{
+      background: #A7E040;
+      padding: 0 15px 15px 15px;
+      color: #1F1F1F;
+      position: relative;
+    }
+
+    #locations-example .button__icon{
+      font-size: 34px;
+      position: relative;
+      top: 10px;
+      font-family: 'icomoon';
+    }
+
+    #locations-example .button__icon.\--rocket:before {
+      content: "\e600";
+    }
+
+    .\+rounded{
+      border-radius: 10px;
+    }
+
+    .\@glass {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, .8), 
+                  inset 0 9px 1px rgba(0, 0, 0, .1);
+    }
+
+    .\@home #locations-example .button {
+      color: #6BD9ED;
+      background: #1F1F1F;
+    }
+
+  </style>
+  <span class="button --action +rounded +glass">
+    Register Now
+    <span class="button__icon --rocket"></span>
+  </span>
+</div>
+
+</example>
+  <p>Generally it is better to create new reusable component options, 
+  but sometimes location-specific overrides make a lot of sense.</p>
+  </div>
 </section>
 
-<section>
-  <!-- How to know which to use & when -->
-</section>
-
-    <!-- <section> -->
-      <!-- <p>Tips</p> -->
-      <!-- -if using lots of tweaks consider creating a component or location -->
-    <!-- </section> -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.18/angular.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>

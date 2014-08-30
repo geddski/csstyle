@@ -14,7 +14,7 @@
 
   @include option(darkgrey){
     background: $color-darkgrey;
-    color: $color-lightgrey;
+    color: $color-greyhighlight;
 
     @include part(title){
       color: $color-lime;
