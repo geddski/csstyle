@@ -1,9 +1,12 @@
 @include location(tryit){
   @include component(button){
     font-size:  26px;
-    margin: 20px;
-    background: $color-lightblue;
-    color: $color-pitch;
+    margin: 30px 10px 40px;
+    // background: $color-lightblue;
+    // background: $color-lightgrey;
+    background: $color-deepgrey;
+    // color: $color-pitch;
+    color: $color-lightblue;
     cursor: pointer;
     text-decoration: none;
 

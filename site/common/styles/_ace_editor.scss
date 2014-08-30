@@ -1,4 +1,4 @@
-body{
+@include location(home){
   @include component(ace_editor){
     background: $color-deepgrey;
     font-size: 14px;
@@ -6,6 +6,10 @@ body{
 
     @include when($break-medium){
       font-size: 18px;
+    }
+
+    .ace_active-line {
+      background: rgba(#fff, 0.2);
     }
   }
 }

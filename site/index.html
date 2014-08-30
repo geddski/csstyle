@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>csstyle - Clean, Simple Styling for the Web.</title>
+  <title>csstyle - Clean, Simple Styling for the Web</title>
   <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:300' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="site.css">
 </head>
 <body class="@home">
-  <section class="section">
+  <section class="section --pitch">
     <div class="logo +text-center">
       <span class="logo__dashes">--</span><span class="logo__cs">cs</span>style
     </div>
 
     <div>
-      <div class="tagline +content-center +text-center"><span class="+highlight">clean</span> <span class="+highlight">simple</span> <span style="">styling</span> for the <span class="+highlight">web</span></div>
-      <p class="+content-center +text-center">csstyle is a modern approach for crafting <span class="+highlight">beautifully maintainable</span>, <span class="+highlight">readable</span>, <span class="+highlight">refactorable</span> stylesheets.
-        The provided high level SASS mixins codify the csstyle method, rendering specificity and loading order irrelevant, and making your project <span class="+highlight">refreshingly consistent</span>
+      <div class="tagline +content-center +text-center"><span class="+highlight">clean</span>, <span class="+highlight">simple</span> <span style="">styling</span> for the <span class="+highlight">web</span></div>
+      <p class="+content-center +text-center">csstyle is a modern approach for crafting <span class="+highlight">maintainable</span>, <span class="+highlight">readable</span>, <span class="+highlight">refactorable</span> stylesheets.
+        The provided high level SASS mixins codify the csstyle method, render specificity and loading order irrelevant, and make your entire project's styling <span class="+highlight">refreshingly consistent</span>
 
       </p>
     </div>
@@ -31,22 +31,17 @@
 <example id="components-example">
 
 <span class="section__label">HTML</span>
-<pre class="html"><span class="button">Neat!</span></pre>
+<pre class="html" highlight="0,13,0,19"><span class="button">Neat!</span></pre>
 
 <span class="section__label">SCSS</span>
-<pre class="scss">@include component(button) {
+<pre class="scss" highlight="0,9,0,26">@include component(button) {
   background: #6BD9ED;
   padding: 15px;
 }</pre>
 
 <span class="section__label">RESULT</span>
 <div class="section__result">
-  <style>
-    #components-example .button{
-      background: #6BD9ED;
-      padding: 15px;
-    }
-  </style>
+  <style></style>
   <span class="button">Neat!</span>
 </div>
 
@@ -70,14 +65,14 @@
 <example id="options-example">
 
 <span class="section__label">HTML</span>
-<pre class="html">
+<pre class="html" highlight="0,20,0,28">
 <span class="button --action">
   Register Now
 </span></pre>
 </pre>
 
 <span class="section__label">SCSS</span>
-<pre class="scss">@include component(button) {
+<pre class="scss" highlight="4,11,4,25">@include component(button) {
   background: #6BD9ED;
   padding: 15px;
 
@@ -91,12 +86,10 @@
 <div class="section__result">
   <style>
     #options-example .button{
-      background: #A7E040;
       padding: 15px;
-      color: #1F1F1F;
     }
   </style>
-  <span class="button">Register Now</span>
+  <span class="button --action">Register Now</span>
 </div>
 
 </example>
@@ -112,21 +105,21 @@
 <section class="section --pitch">
   <div class="+content-center">
     <h1 class="section__title">Parts</h1>
-    <p>Components are composed of <span class="+highlight">parts</span>, 
-    child elements of the component that can be styled. Parts can also 
-    have their own options for even greater flexibility. Parts are applied using
-    the component name followed by __ and the part name.</p>
+    <p>Components are composed of <span class="+highlight">parts</span>
+    &mdash; child elements of the component that can be styled. Parts are very flexible. They can 
+    nest in other parts, react to component options, or even have their own dedicated options. 
+    Parts are applied using the component name followed by __ and the part name.</p>
 <example id="parts-example">
 
 <span class="section__label">HTML</span>
-<pre class="html">
+<pre class="html" highlight="2,15,2,36">
 <span class="button --action">
   Register Now
   <span class="button__icon --rocket"></span>
 </span></pre>
 
 <span class="section__label">SCSS</span>
-<pre class="scss">@include component(button) {
+<pre class="scss" highlight="10,11,10,21 15,13,15,27">@include component(button) {
   background: #6BD9ED;
   padding: 15px;
 
@@ -151,26 +144,8 @@
 
 <span class="section__label">RESULT</span>
 <div class="section__result">
-  <style>
-    #parts-example .button{
-      background: #A7E040;
-      padding: 0 15px 15px 15px;
-      color: #1F1F1F;
-      position: relative;
-    }
-
-    #parts-example .button__icon{
-      font-size: 34px;
-      position: relative;
-      top: 10px;
-      font-family: 'icomoon';
-    }
-
-    #parts-example .button__icon.\--rocket:before {
-      content: "\e600";
-    }
-  </style>
-  <span class="button">
+  <style></style>
+  <span class="button --action">
     Register Now
     <span class="button__icon --rocket"></span>
   </span>
@@ -189,59 +164,31 @@
   <div class="+content-center">
     <h1 class="section__title">Tweaks</h1>
     <p>Create generic style <span class="+highlight">tweaks</span> 
-    that can be applied to any component instance or element.
+    that can be applied to any component instance, part, element, etc.
     Tweaks are applied using a + sign followed by the tweak name.
     Tweaks automatically override the styling of components, options, and parts.</p>
 <example id="tweaks-example">
 
 <span class="section__label">HTML</span>
-<pre class="html">
+<pre class="html" highlight="0,29,0,37 0,38,0,44">
 <span class="button --action +rounded +glass">
   Register Now
   <span class="button__icon --rocket"></span>
 </span></pre>
 
 <span class="section__label">SCSS</span>
-<pre class="scss">@include tweak(rounded) {
+<pre class="scss" highlight="0,9,0,23 4,9,4,21">@include tweak(rounded) {
   border-radius: 10px;
 }
 
 @include tweak(glass) {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, .8), 
-              inset 0 9px 1px rgba(0, 0, 0, .1);
+  box-shadow: inset 0 0 6px rgba(0,0,0,.8), 
+              inset 0 9px 1px rgba(0,0,0,.1);
 }</pre>
 
 <span class="section__label">RESULT</span>
 <div class="section__result">
-  <style>
-    #tweaks-example .button{
-      background: #A7E040;
-      padding: 0 15px 15px 15px;
-      color: #1F1F1F;
-      position: relative;
-    }
-
-    #tweaks-example .button__icon{
-      font-size: 34px;
-      position: relative;
-      top: 10px;
-      font-family: 'icomoon';
-    }
-
-    #tweaks-example .button__icon.\--rocket:before {
-      content: "\e600";
-    }
-
-    .\+rounded{
-      border-radius: 10px;
-    }
-
-    .\+glass {
-      box-shadow: inset 0 0 6px rgba(0, 0, 0, .8), 
-                  inset 0 9px 1px rgba(0, 0, 0, .1);
-    }
-
-  </style>
+  <style></style>
   <span class="button --action +rounded +glass">
     Register Now
     <span class="button__icon --rocket"></span>
@@ -250,7 +197,7 @@
 
 </example>
   <p>Tweaks further promote clean organization and style reuse. Refactor common/duplicate styles out of
-  components and into tweaks. Tweaks should generally produce a single effect.</p>
+  components and into tweaks. A tweak should generally produce a single, composable effect.</p>
   </div>
 </section>
 
@@ -263,13 +210,14 @@
   <div class="+content-center">
     <h1 class="section__title">Locations</h1>
     <p>Projects occasionally need to override styles in specific <span class="+highlight">locations</span> 
-    e.g. just on the home page or just when viewing in fullscreen.
+    e.g. just on the home page or just in the chat feature.
     Locations are applied using an @ sign followed by the location name.
-    Locations automatically override the styling of components, options, parts and tweaks.</p>
+    Locations automatically override the styling of components, options, parts and tweaks
+    so you never have to add extra nesting or use the dreaded !important flag just to apply a style exception.</p>
 <example id="locations-example">
 
 <span class="section__label">HTML</span>
-<pre class="html">
+<pre class="html" highlight="0,13,0,18">
 <span class="@home">
   <span class="button --action +rounded +glass">
     Register Now
@@ -278,46 +226,20 @@
 </span></pre>
 
 <span class="section__label">SCSS</span>
-<pre class="scss">@include location(home) {
-  color: #6BD9ED;
-  background: #1F1F1F;
+<pre class="scss" highlight="0,9,0,23">@include location(home) {
+  @include component(button){
+    color: #6BD9ED;
+    background: #1F1F1F;
+  }
 }</pre>
 
 <span class="section__label">RESULT</span>
 <div class="section__result">
   <style>
-    #locations-example .button{
-      background: #A7E040;
-      padding: 0 15px 15px 15px;
-      color: #1F1F1F;
-      position: relative;
-    }
-
-    #locations-example .button__icon{
-      font-size: 34px;
-      position: relative;
-      top: 10px;
-      font-family: 'icomoon';
-    }
-
-    #locations-example .button__icon.\--rocket:before {
-      content: "\e600";
-    }
-
-    .\+rounded{
-      border-radius: 10px;
-    }
-
-    .\@glass {
-      box-shadow: inset 0 0 6px rgba(0, 0, 0, .8), 
-                  inset 0 9px 1px rgba(0, 0, 0, .1);
-    }
-
     .\@home #locations-example .button {
       color: #6BD9ED;
       background: #1F1F1F;
     }
-
   </style>
   <span class="button --action +rounded +glass">
     Register Now
@@ -327,7 +249,7 @@
 
 </example>
   <p>Generally it is better to create new reusable component options, 
-  but sometimes location-specific overrides make a lot of sense.</p>
+  but in certain cases location-specific overrides make sense.</p>
   </div>
 </section>
 
@@ -335,20 +257,24 @@
 <section class="@tryit section --pitch">
   <div class="+content-center">
     <h1 class="section__title">Try It!</h1>
-    <p>That's it! You'll be pleasantly suprised how much better these simple building blocks make writing CSS. Have fun!</p>
+    <p>To get started just import the csstyle mixins, add an <span class="+highlight">id="csstyle"</span> to your
+     body tag (used for automatic specificity handling), and you're set. 
+     You'll be pleasantly suprised how much better these simple building blocks make writing CSS. Happy styling!</p>
 
-    <a class="button --action +rounded +glass" download href="https://raw.githubusercontent.com/geddski/csstyle/master/csstyle.scss">
-      download csstyle
-      <span class="button__icon --download"></span>
-    </a>
-    
-    <a href="https://github.com/geddski/csstyle">
-      contribute on github
-    </a>
+    <div class="+text-center">
+      <a class="button --action +rounded +glass" download href="https://raw.githubusercontent.com/geddski/csstyle/master/csstyle.scss">
+        download csstyle
+        <span class="button__icon --download"></span>
+      </a>
+      
+      <a href="https://github.com/geddski/csstyle">
+        contribute on github
+      </a>
 
-    <p>Many thanks to <a href="http://www.divshot.com/">Divshot</a> for the sweet hosting.</p>
+      <p>Many thanks to <a href="http://www.divshot.com/">Divshot</a> for the sweet hosting.</p>
 
-    <p>Crafted with <span class="+lowlight"><3</span> by Dave Geddes <a href="https://twitter.com/geddski">@geddski</a></p>
+      <p>Crafted with <span class="+lowlight"><3</span> by Dave Geddes <a href="https://twitter.com/geddski">@geddski</a></p>
+    </div>
   </div>
 </section>
 

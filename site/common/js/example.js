@@ -1,3 +1,4 @@
+var Range = ace.require('ace/range').Range;
 var mixins = "@mixin component($name){.#{$name}{@content } }";
 // var mixins = "@mixin component($name){.#{$name}{@content } } @mixin part($name){& &__#{$name}{@content } } @mixin option($name){&.\--#{$name}{@content; } } @mixin whenComponentOption($option, $parent, $part){@at-root .#{$parent}.\--#{$option} .#{$parent}__#{$part} {@content; } } @mixin tweak($name){#csstyle .\[#{$name}\]{@content; } } @mixin location($name){#csstyle .\@#{$name}{@content; } }";
 
@@ -14,11 +15,26 @@ angular.module('csstyle').directive('example', function(){
       var scssEditor = createEditor(scss[0], 'scss');
       var htmlEditor = createEditor(html[0], 'html');
 
-      function displayResult(css){
-        result.find('.view').html(htmlEditor.getValue());
-        // insert example id so the examples are isolated
-        console.log('#' + attrs.id + ' ' + css);
-        result.find('style').text('#' + attrs.id + ' ' + css);
+      highlight(htmlEditor, html.attr('highlight'));
+      highlight(scssEditor, scss.attr('highlight'));
+
+      // will use this once editing is enabled 
+      // function displayResult(css){
+      //   result.find('.view').html(htmlEditor.getValue());
+      //   // insert example id so the examples are isolated
+      //   console.log('#' + attrs.id + ' ' + css);
+      //   result.find('style').text('#' + attrs.id + ' ' + css);
+      // }
+
+      // get selection range from attribute
+      function highlight(editor, rangeStr){
+        if (!rangeStr) return;
+        var ranges = rangeStr.split(' ');
+        for (var i = 0; i < ranges.length; i++){
+          var rangeArr = ranges[i].split(',');
+          var range = new Range(rangeArr[0],rangeArr[1],rangeArr[2],rangeArr[3]);
+          editor.session.addMarker(range, "ace_active-line", "letter");
+        }
       }
 
     }
@@ -39,6 +55,7 @@ angular.module('csstyle').directive('example', function(){
       fontFamily: "Source Code Pro"
     });
     editor.setBehavioursEnabled(false);
+    editor.renderer.$cursorLayer.element.style.opacity=0;
     return editor;
   }
 
