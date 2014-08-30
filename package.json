@@ -1,15 +1,15 @@
 {
   "name": "csstyle",
-  "version": "1.0.0",
-  "description": "Clean, simple styling for styling the web.",
+  "version": "1.0.1",
+  "description": "clean, simple styling for styling the web.",
   "directories": {
     "test": "test"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "specificity": "~0.1.4",
     "shelljs": "~0.3.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "jasmine-node spec"
   },
@@ -20,14 +20,18 @@
   "keywords": [
     "css",
     "sass",
+    "scss",
     "web",
+    "components",
     "styling",
-    "method"
+    "mixins",
+    "method",
+    "approach"
   ],
   "author": "Dave Geddes",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/geddski/csstyle/issues"
   },
-  "homepage": "https://github.com/geddski/csstyle"
+  "homepage": "http://www.csstyle.io"
 }
