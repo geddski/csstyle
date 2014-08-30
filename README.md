@@ -14,6 +14,10 @@ parts and options can nest indefinitely yet always be overridden by tweaks and l
 
 3. Download the csstyle mixins and `@import` them into your sass file.
 
+```
+npm install csstyle
+```
+
 Now you can start creating components with options & parts, adding in tweaks and locations as needed.
 
 
