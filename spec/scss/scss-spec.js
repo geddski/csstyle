@@ -21,11 +21,41 @@ describe("part", function(){
     expect(selector.score).toBe('0,0,1,0');
   });
 
+  describe("parts nested in parts", function(){
+    it("creates a single class with both part names ", function(){
+      var selector = getSelector('spec/scss/fixtures/parts-in-parts.css', 2);
+      expect(selector.value).toBe(".tweet__message__title");
+      expect(selector.score).toBe('0,0,1,0');
+    });
+
+    describe("with own options", function(){
+      it("should append the option to the part class", function(){
+        var selector = getSelector('spec/scss/fixtures/parts-in-parts.css', 3);
+        expect(selector.value).toBe(".tweet__message__title.\\--special");
+        expect(selector.score).toBe('0,0,2,0'); 
+      });
+    });
+  });
+
   describe("parts inside of options", function(){
     it("responds correctly to component options", function(){
       var selector = getSelector('spec/scss/fixtures/parts-in-options.css', 2);
-      expect(selector.value).toBe(".tweet.\\--promoted .tweet__img");
+      expect(selector.value).toBe(".tweet.\\--promoted .tweet__profile");
       expect(selector.score).toBe("0,0,3,0");
+    });
+
+    describe("nested parts inside of options", function(){
+      it("should concat the part names and preserve the component option", function(){
+        var selector = getSelector('spec/scss/fixtures/parts-in-options.css', 3);        
+        expect(selector.value).toBe(".tweet.\\--promoted .tweet__profile__img");
+      });
+
+      describe("even nested n levels deep", function(){
+        it("should work the same", function(){
+          var selector = getSelector('spec/scss/fixtures/parts-in-options.css', 4);        
+          expect(selector.value).toBe(".tweet.\\--promoted .tweet__profile__img__header");
+        });        
+      });
     });
   });
 });

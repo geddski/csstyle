@@ -1,0 +1,17 @@
+@import '../../../csstyle';
+
+@include component(tweet){
+  background: #fff;
+
+  @include part(message){
+    float: left;
+
+    @include part(title){
+      font-size: 20px;
+
+      @include option(special){
+        color: orange;
+      }
+    }
+  }
+}

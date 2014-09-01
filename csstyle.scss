@@ -12,29 +12,8 @@
   }
 }
 
-
-// parts are the pieces that make up the structure of a component
-@mixin part($name){
-    // check to see 
-    $index: str-index(#{&}, ".\\--");
-    $index: 0 !default;
-    $index: $index - 1;
-    $component: str-slice(#{&}, 0, $index);
-    
-    // part is nested in an option
-    @if $index > 0 {
-      & #{$component}__#{$name}{
-        @content;
-      }      
-    }
-    @else {
-      &__#{$name}{
-        @content
-      }
-    }
-}
-
-// component options
+// options
+// override components
 @mixin option($name){
   &.\--#{$name}{
     @content;
@@ -51,7 +30,45 @@
   }
 }
 
-// overrides components, options, and modifiers
+// parts 
+// make up the structure of a component
+// override components
+@mixin part($name){
+    // check if nested in an option
+    $optionIndex: str-index(#{&}, ".\\--");
+    $optionIndex: 0 !default;
+    $optionIndex: $optionIndex - 1;
+
+    // check if nested in another part
+    $partIndex: str-index(#{&}, "__");
+    $partIndex: 0 !default;
+    $partIndex: $partIndex - 1;
+
+    $component: str-slice(#{&}, 0, $optionIndex);
+    
+    // part is nested in an option
+    @if $optionIndex > 0 {
+      // part is also nested in another part
+      @if ($partIndex > 0){
+        &__#{$name}{
+          @content;
+        }
+      }
+      @else{
+        & #{$component}__#{$name}{
+          @content;
+        }
+      }
+    }
+    @else {
+      &__#{$name}{
+        @content
+      }
+    }
+}
+
+// tweaks
+// override components, options, and modifiers
 @mixin tweak($name){
   #csstyle .\+#{$name}{
     @content;
@@ -59,7 +76,8 @@
 }
 
 
-// overrides: components, parts, options, and tweaks
+// locations
+// override components, parts, options, and tweaks
 @mixin location($name){
   #csstyle .\@#{$name}{
     @content;
