@@ -20,11 +20,6 @@ npm install csstyle
 
 Now you can start creating components with options & parts, adding in tweaks and locations as needed.
 
-
-## Running the Unit Tests
-`npm install -g jasmine-node` 
-`npm test`
-
 ## License
 MIT
 
