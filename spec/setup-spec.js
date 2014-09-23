@@ -1,8 +1,11 @@
 require('shelljs/global');
 var specificity = require('specificity');
 
-// compile fixtures
+// compile sass fixtures
 exec('sass --update spec/scss/fixtures --style expanded --sourcemap=none');
+
+// compile stylus fixtures
+exec('stylus spec/stylus/fixtures');
 
 var customMatchers = {
   toBeMoreSpecificThan: function(util, customEqualityTesters) {

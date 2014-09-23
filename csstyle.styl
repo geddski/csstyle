@@ -1,0 +1,46 @@
+// csstyle v1.1.0
+// Clean, Simple Styling for the Web
+// http://www.csstyle.io
+// Copyright (c) 2014 Dave Geddes
+// https://twitter.com/geddski
+// https://github.com/geddski
+
+// components
+component(name){
+  .{name} {
+    {block}
+  }
+}
+
+// options
+// override components
+option(name){
+  {selector()}.\\--{name} {
+    {block}
+  }
+}
+
+// parts 
+// make up the structure of a component
+// override components
+part(name){
+  {selector()}__{name}{
+    {block}
+  }
+}
+
+// tweaks
+// override components, options, and modifiers
+tweak(name){
+  #csstyle .\\+{name}{
+    {block}
+  }
+}
+
+// locations
+// override components, parts, options, and tweaks
+location(name){
+  #csstyle .\\@{name}{
+    {block}
+  }
+}
