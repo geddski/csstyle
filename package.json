@@ -7,8 +7,12 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "glob": "^4.3.5",
+    "postcss": "^4.0.4",
+    "postcss-nested": "^0.2.1",
+    "shelljs": "~0.3.0",
     "specificity": "~0.1.4",
-    "shelljs": "~0.3.0"
+    "fs-extra": "^0.16.3"
   },
   "scripts": {
     "test": "jasmine-node spec"
