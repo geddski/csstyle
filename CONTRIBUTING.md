@@ -8,6 +8,6 @@ Required: node and ruby
 
 `$ gem install sass`
 
-`$ npm install -g jasmine-node`
+`$ npm install -g jasmine-node stylus`
 
 `$ npm test`
