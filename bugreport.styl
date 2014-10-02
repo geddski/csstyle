@@ -1,0 +1,17 @@
+aBlockMixin(name){
+  outerSel = selector();
+
+  & .{name} {
+    {block}
+    sel: selector()
+    outerSel: outerSel
+  }
+}
+
++aBlockMixin(joe){
+  color: blue;
+
+  +aBlockMixin(bob){
+    color: green;
+  }
+}

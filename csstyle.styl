@@ -5,6 +5,9 @@
 // https://twitter.com/geddski
 // https://github.com/geddski
 
+use('./plugins/stylus/indexOf.js');
+use('./plugins/stylus/temp.js');
+
 // components
 component(name){
   .{name} {
@@ -24,8 +27,20 @@ option(name){
 // make up the structure of a component
 // override components
 part(name){
-  {selector()}__{name}{
+  // component = getPath();
+  // path = {&};
+  // optionIndex = indexOf(path, ".\\--");
+  
+
+  // {selector()}__{name} {
+  // &.woot {
+  // &[0] {
+  .cry {
+    sel = selector();
     {block}
+    // background: optionIndex;  
+    // background: called-from;  
+    background: selector();
   }
 }
 

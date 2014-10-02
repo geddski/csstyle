@@ -38,25 +38,40 @@ describe("part", function(){
 
   describe("parts nested in parts", function(){
     it("creates a single class with both part names ", function(){
-      var selector = getSelector('spec/scss/fixtures/parts-in-parts.css', 2);
-      expect(selector.value).toBe(".tweet__message__title");
-      expect(selector.score).toBe('0,0,1,0');
+      [
+        getSelector('spec/scss/fixtures/parts-in-parts.css', 2),
+        getSelector('spec/stylus/fixtures/parts-in-parts.css', 2)
+      ]
+      .forEach(function(selector){
+        expect(selector.value).toBe(".tweet__message__title");
+        expect(selector.score).toBe('0,0,1,0');
+      })
     });
 
     describe("with own options", function(){
       it("should append the option to the part class", function(){
-        var selector = getSelector('spec/scss/fixtures/parts-in-parts.css', 3);
-        expect(selector.value).toBe(".tweet__message__title.\\--special");
-        expect(selector.score).toBe('0,0,2,0'); 
+        [
+          getSelector('spec/scss/fixtures/parts-in-parts.css', 3),
+          getSelector('spec/stylus/fixtures/parts-in-parts.css', 3)
+        ]
+        .forEach(function(selector){
+          expect(selector.value).toBe(".tweet__message__title.\\--special");
+          expect(selector.score).toBe('0,0,2,0'); 
+        })
       });
     });
   });
 
   describe("parts inside of options", function(){
-    it("responds correctly to component options", function(){
-      var selector = getSelector('spec/scss/fixtures/parts-in-options.css', 2);
-      expect(selector.value).toBe(".tweet.\\--promoted .tweet__profile");
-      expect(selector.score).toBe("0,0,3,0");
+    iit("responds correctly to component options", function(){
+      [
+        getSelector('spec/scss/fixtures/parts-in-options.css', 2),
+        getSelector('spec/stylus/fixtures/parts-in-options.css', 2)
+      ]
+      .forEach(function(selector){
+        expect(selector.value).toBe(".tweet.\\--promoted .tweet__profile");
+        expect(selector.score).toBe("0,0,3,0");
+      })
     });
 
     describe("nested parts inside of options", function(){
