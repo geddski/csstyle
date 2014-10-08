@@ -36,7 +36,7 @@
 <example id="components-example">
 
 <span class="section__label">HTML</span>
-<pre class="html" highlight="0,13,0,19"><span class="button">Neat!</span></pre>
+<pre class="html" highlight="0,10,0,16"><a class="button">Neat!</a></pre>
 
 <span class="section__label">SCSS</span>
 <pre class="scss" highlight="0,9,0,26">@include component(button) {
@@ -47,7 +47,7 @@
 <span class="section__label">RESULT</span>
 <div class="section__result">
   <style></style>
-  <span class="button">Neat!</span>
+  <a class="button">Neat!</a>
 </div>
 
 </example>
@@ -70,10 +70,10 @@
 <example id="options-example">
 
 <span class="section__label">HTML</span>
-<pre class="html" highlight="0,20,0,28">
-<span class="button --action">
+<pre class="html" highlight="0,17,0,25">
+<a class="button --action">
   Register Now
-</span></pre>
+</a></pre>
 </pre>
 
 <span class="section__label">SCSS</span>
@@ -94,7 +94,7 @@
       padding: 15px;
     }
   </style>
-  <span class="button --action">Register Now</span>
+  <a class="button --action">Register Now</a>
 </div>
 
 </example>
@@ -117,11 +117,11 @@
 <example id="parts-example">
 
 <span class="section__label">HTML</span>
-<pre class="html" highlight="2,15,2,36">
-<span class="button --action">
+<pre class="html" highlight="2,15,2,27 2,28,2,36">
+<a class="button --action">
   Register Now
   <span class="button__icon --rocket"></span>
-</span></pre>
+</a></pre>
 
 <span class="section__label">SCSS</span>
 <pre class="scss" highlight="10,11,10,21 15,13,15,27">@include component(button) {
@@ -150,10 +150,10 @@
 <span class="section__label">RESULT</span>
 <div class="section__result">
   <style></style>
-  <span class="button --action">
+  <a class="button --action">
     Register Now
     <span class="button__icon --rocket"></span>
-  </span>
+  </a>
 </div>
 
 </example>
@@ -175,11 +175,11 @@
 <example id="tweaks-example">
 
 <span class="section__label">HTML</span>
-<pre class="html" highlight="0,29,0,37 0,38,0,44">
-<span class="button --action +rounded +glass">
+<pre class="html" highlight="0,26,0,34 0,35,0,41">
+<a class="button --action +rounded +glass">
   Register Now
   <span class="button__icon --rocket"></span>
-</span></pre>
+</a></pre>
 
 <span class="section__label">SCSS</span>
 <pre class="scss" highlight="0,9,0,23 4,9,4,21">@include tweak(rounded) {
@@ -194,10 +194,10 @@
 <span class="section__label">RESULT</span>
 <div class="section__result">
   <style></style>
-  <span class="button --action +rounded +glass">
+  <a class="button --action +rounded +glass">
     Register Now
     <span class="button__icon --rocket"></span>
-  </span>
+  </a>
 </div>
 
 </example>
@@ -224,10 +224,10 @@
 <span class="section__label">HTML</span>
 <pre class="html" highlight="0,13,0,18">
 <span class="@home">
-  <span class="button --action +rounded +glass">
+  <a class="button --action +rounded +glass">
     Register Now
     <span class="button__icon --rocket"></span>
-  </span>
+  </a>
 </span></pre>
 
 <span class="section__label">SCSS</span>
@@ -246,10 +246,10 @@
       background: #1F1F1F;
     }
   </style>
-  <span class="button --action +rounded +glass">
+  <a class="button --action +rounded +glass">
     Register Now
     <span class="button__icon --rocket"></span>
-  </span>
+  </a>
 </div>
 
 </example>
