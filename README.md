@@ -20,6 +20,24 @@ npm install csstyle
 
 Now you can start creating components with options & parts, adding in tweaks and locations as needed.
 
+## FAQ
+
+### How do parts react to component states like hover?
+In Sass you can append a `&` to a selector or pseudo-selector to have it applied to the parent context. So for example to have a `part` react when the `component` gets hovered:
+
+```scss
+@include component(capacitor){
+  background: red;
+  
+  @include part(flux){
+    background: orange;
+    :hover & {
+      background: blue;
+    }
+  }
+}
+``` 
+
 ## License
 MIT
 
