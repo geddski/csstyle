@@ -12,19 +12,18 @@ Check out the docs and examples on [csstyle.io](http://csstyle.io)
 2. Add `id="csstyle"` to your html or body element. This is necessary so that components with their
 parts and options can nest indefinitely yet always be overridden by tweaks and locations.
 
-3. Download the csstyle mixins and `@import` them into your sass file.
+3. Download the csstyle mixins from npm:
 
-    You can download the mixins from npm
     ```
-    npm install csstyle
-    ```
-
-    or from bower
-    ```
-    bower install csstyle
+    npm install csstyle --save
     ```
 
-Now you can start creating components with options & parts, adding in tweaks and locations as needed.
+    or from bower:
+    ```
+    bower install csstyle --save
+    ```
+
+Now you can start creating components with options & parts, adding in tweaks and locations as needed. Enjoy!
 
 ## FAQ
 
