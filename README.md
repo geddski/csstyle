@@ -36,7 +36,10 @@ In Sass you can append a `&` to a selector or pseudo-selector to have it applied
     }
   }
 }
-``` 
+```
+
+### Can I configure the styling convention?
+You can configure which symbol is used to denote `parts` by changing the `$csstyle-part-symbol` variable. The default is `__` but you can set it to `-` or whatever suits your style.
 
 ## License
 MIT

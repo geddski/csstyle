@@ -5,6 +5,8 @@
 // https://twitter.com/geddski
 // https://github.com/geddski
 
+$csstyle-part-symbol: '__' !default;
+
 // components
 @mixin component($name){
   .#{$name}{
@@ -22,7 +24,7 @@
 
 // allow parts to respond to options on parents
 @mixin whenComponentOption($option){
-  $index: str-index(#{&}, "__") - 1;
+  $index: str-index(#{&}, $csstyle-part-symbol) - 1;
   $component: str-slice(#{&}, 0, $index);
 
   #{$component}.\--#{$option} & {
@@ -40,7 +42,7 @@
     $optionIndex: $optionIndex - 1;
 
     // check if nested in another part
-    $partIndex: str-index(#{&}, "__");
+    $partIndex: str-index(#{&}, $csstyle-part-symbol);
     $partIndex: 0 !default;
     $partIndex: $partIndex - 1;
 
@@ -50,18 +52,18 @@
     @if $optionIndex > 0 {
       // part is also nested in another part
       @if ($partIndex > 0){
-        &__#{$name}{
+        &#{$csstyle-part-symbol}#{$name}{
           @content;
         }
       }
       @else{
-        & #{$component}__#{$name}{
+        & #{$component}#{$csstyle-part-symbol}#{$name}{
           @content;
         }
       }
     }
     @else {
-      &__#{$name}{
+      &#{$csstyle-part-symbol}#{$name}{
         @content
       }
     }
@@ -74,7 +76,6 @@
     @content;
   }
 }
-
 
 // locations
 // override components, parts, options, and tweaks
