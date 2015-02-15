@@ -1,6 +1,8 @@
 require('shelljs/global');
 var specificity = require('specificity');
 
+// delete previous css
+exec('rm -rf spec/scss/fixtures/*.css');
 // compile fixtures
 exec('sass --update spec/scss/fixtures --style expanded --sourcemap=none');
 
