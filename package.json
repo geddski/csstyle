@@ -17,6 +17,7 @@
     "shelljs": "~0.3.0",
     "specificity": "~0.1.4"
   },
+  "main": "csstyle.js",
   "scripts": {
     "test": "jasmine-node spec"
   },
