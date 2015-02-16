@@ -9,12 +9,13 @@
     "lodash": "^3.2.0"
   },
   "devDependencies": {
+    "fs-extra": "^0.16.3",
     "glob": "^4.3.5",
     "postcss": "^4.0.4",
     "postcss-nested": "^0.2.1",
+    "postcss-simple-vars": "^0.2.3",
     "shelljs": "~0.3.0",
-    "specificity": "~0.1.4",
-    "fs-extra": "^0.16.3"
+    "specificity": "~0.1.4"
   },
   "scripts": {
     "test": "jasmine-node spec"
