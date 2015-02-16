@@ -5,7 +5,9 @@
   "directories": {
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^3.2.0"
+  },
   "devDependencies": {
     "glob": "^4.3.5",
     "postcss": "^4.0.4",
