@@ -31,7 +31,7 @@ parts and options can nest indefinitely yet always be overridden by tweaks and l
 
 If you're using postcss, add csstyle as a plugin:
 ```js
-postcss([require('postcss-nested'), require('../csstyle')]);
+postcss([require('postcss-nested'), require('csstyle')]);
 ```
 Be sure to include postcss-nested and csstyle in that order. 
 
