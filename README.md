@@ -55,7 +55,7 @@ In Sass you can append a `&` to a selector or pseudo-selector to have it applied
   
   @include part(flux){
     background: orange;
-    :hover & {
+    &:hover & {
       background: blue;
     }
   }
