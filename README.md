@@ -41,7 +41,7 @@ Now you're set and can start creating components with options & parts, adding in
 
 ### Can I use this with Libsass?
 People using webpack or similar often want to load Sass via libsass.
-Unfortunately libsass is quite behind the ruby Sass and some things are [still missingl](https://sass-compatibility.github.io/)
+Unfortunately libsass is quite behind the ruby Sass and some things are [still missing](https://sass-compatibility.github.io/)
 before it will work with csstyle. As a workaround while we wait for libsass you
 can load your Sass files with the [ruby Sass loader](https://github.com/ddelbondio/ruby-sass-loader) and it will work just fine, it just
 won't be as fast as libsass.
