@@ -5,7 +5,11 @@
 // https://twitter.com/geddski
 // https://github.com/geddski
 
+$csstyle-option-symbol: '--' !default;
 $csstyle-part-symbol: '__' !default;
+$csstyle-tweak-symbol: '+' !default;
+$csstyle-location-symbol: '@' !default;
+$csstyle-root-id: 'csstyle' !default;
 
 // components
 @mixin component($name){
@@ -17,7 +21,7 @@ $csstyle-part-symbol: '__' !default;
 // options
 // override components
 @mixin option($name){
-  &.\--#{$name}{
+  &.\#{$csstyle-option-symbol}#{$name}{
     @content;
   }
 }
@@ -27,17 +31,17 @@ $csstyle-part-symbol: '__' !default;
   $index: str-index(#{&}, $csstyle-part-symbol) - 1;
   $component: str-slice(#{&}, 0, $index);
 
-  #{$component}.\--#{$option} & {
+  #{$component}.\#{$csstyle-option-symbol}#{$option} & {
     @content;
   }
 }
 
-// parts 
+// parts
 // make up the structure of a component
 // override components
 @mixin part($name){
     // check if nested in an option
-    $optionIndex: str-index(#{&}, ".\\--");
+    $optionIndex: str-index(#{&}, ".\\" . $csstyle-option-symbol);
     $optionIndex: 0 !default;
     $optionIndex: $optionIndex - 1;
 
@@ -72,7 +76,7 @@ $csstyle-part-symbol: '__' !default;
 // tweaks
 // override components, options, and modifiers
 @mixin tweak($name){
-  #csstyle .\+#{$name}{
+  ##{$csstyle-root-id} .\#{$csstyle-tweak-symbol}#{$name}{
     @content;
   }
 }
@@ -80,7 +84,7 @@ $csstyle-part-symbol: '__' !default;
 // locations
 // override components, parts, options, and tweaks
 @mixin location($name){
-  #csstyle .\@#{$name}{
+  ##{$csstyle-root-id} .\#{$csstyle-location-symbol}#{$name}{
     @content;
   }
 }
