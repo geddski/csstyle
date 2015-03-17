@@ -41,7 +41,7 @@ $csstyle-root-id: 'csstyle' !default;
 // override components
 @mixin part($name){
     // check if nested in an option
-    $optionIndex: str-index(#{&}, "." . $csstyle-option-symbol);
+    $optionIndex: str-index(#{&}, ".${csstyle-option-symbol}");
     $optionIndex: 0 !default;
     $optionIndex: $optionIndex - 1;
 
