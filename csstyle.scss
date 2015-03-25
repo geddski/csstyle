@@ -5,39 +5,48 @@
 // https://twitter.com/geddski
 // https://github.com/geddski
 
+$csstyle-option-symbol: '\\--' !default;
 $csstyle-part-symbol: '__' !default;
+$csstyle-tweak-symbol: '\\+' !default;
+$csstyle-location-symbol: '\\@' !default;
+$csstyle-root-id: 'csstyle' !default;
+
+// build selectors
+@function _build_selector($prefix, $names){
+    $selector: "";
+    
+    @for $i from 1 through length($names){
+      $selector: $selector + $prefix + nth($names, $i);
+      
+      @if($i != length($names)){
+        $selector: $selector + ",";
+      }
+    }
+    
+    @return $selector;
+}
 
 // components
-@mixin component($name){
-  .#{$name}{
+@mixin component($names...){
+  #{_build_selector(".", $names)}{
     @content
   }
 }
 
 // options
 // override components
-@mixin option($name){
-  &.\--#{$name}{
+@mixin option($names...){
+  #{_build_selector("&." + $csstyle-option-symbol, $names)}{
     @content;
   }
 }
 
-// allow parts to respond to options on parents
-@mixin whenComponentOption($option){
-  $index: str-index(#{&}, $csstyle-part-symbol) - 1;
-  $component: str-slice(#{&}, 0, $index);
-
-  #{$component}.\--#{$option} & {
-    @content;
-  }
-}
-
-// parts 
+// parts
 // make up the structure of a component
 // override components
-@mixin part($name){
+@mixin part($names...){
     // check if nested in an option
-    $optionIndex: str-index(#{&}, ".\\--");
+    $optionIndex: str-index(#{&}, "." + $csstyle-option-symbol);
     $optionIndex: 0 !default;
     $optionIndex: $optionIndex - 1;
 
@@ -52,12 +61,12 @@ $csstyle-part-symbol: '__' !default;
     @if $optionIndex > 0 {
       // part is also nested in another part
       @if ($partIndex > 0){
-        &#{$csstyle-part-symbol}#{$name}{
+        #{_build_selector("&" + $csstyle-part-symbol, $names)}{
           @content;
         }
       }
       @else{
-        & #{$component}#{$csstyle-part-symbol}#{$name}{
+        #{_build_selector("& " + $component + $csstyle-part-symbol, $names)}{
           @content;
         }
       }
@@ -66,21 +75,24 @@ $csstyle-part-symbol: '__' !default;
       &#{$csstyle-part-symbol}#{$name}{
         @content
       }
+      #{_build_selector("&" + $csstyle-part-symbol, $names)}{
+        @content;
+      }
     }
 }
 
 // tweaks
 // override components, options, and modifiers
-@mixin tweak($name){
-  #csstyle .\+#{$name}{
+@mixin tweak($names...){
+  #{_build_selector("#" + $csstyle-root-id + " ." + $csstyle-tweak-symbol, $names)}{
     @content;
   }
 }
 
 // locations
 // override components, parts, options, and tweaks
-@mixin location($name){
-  #csstyle .\@#{$name}{
+@mixin location($names...){
+  #{_build_selector("#" + $csstyle-root-id + " ." + $csstyle-location-symbol, $names)}{
     @content;
   }
 }
