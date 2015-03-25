@@ -10,7 +10,7 @@ $csstyle-part-symbol: '__' !default;
 // components
 @mixin component($name){
   .#{$name}{
-    @content
+    @content;
   }
 }
 
@@ -64,7 +64,7 @@ $csstyle-part-symbol: '__' !default;
     }
     @else {
       &#{$csstyle-part-symbol}#{$name}{
-        @content
+        @content;
       }
     }
 }
