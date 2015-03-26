@@ -72,9 +72,6 @@ $csstyle-root-id: 'csstyle' !default;
       }
     }
     @else {
-      &#{$csstyle-part-symbol}#{$name}{
-        @content
-      }
       #{_build_selector("&" + $csstyle-part-symbol, $names)}{
         @content;
       }
