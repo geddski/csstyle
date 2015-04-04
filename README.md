@@ -73,8 +73,6 @@ There are a few settings you can change. You can set these to whatever suits you
  - The style to denote `tweaks` by changing the `$csstyle-tweak-symbol` variable. The default is `+`.
  - The style to denote `locations` by changing the `$csstyle-location-symbol` variable. The default is `@`.
 
-**All characters besides `_` need to be escaped!** However, if you are using dashes, only _the first one_ needs to be escaped.
-
 In adition to that, you can also change your app's root `id` on the html or body element by changing the `$csstyle-root-id` variable. The default is `csstyle`.
 
 ## License
