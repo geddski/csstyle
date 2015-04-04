@@ -72,15 +72,29 @@ $csstyle-part-symbol: '__' !default;
 // tweaks
 // override components, options, and modifiers
 @mixin tweak($name){
-  #csstyle .\+#{$name}{
-    @content;
+  @if & {
+    @at-root #csstyle &.\+#{$name}{
+      @content;
+    }
+  }
+  @else {
+    #csstyle .\+#{$name}{
+      @content;
+    }
   }
 }
 
 // locations
 // override components, parts, options, and tweaks
 @mixin location($name){
-  #csstyle .\@#{$name}{
-    @content;
+  @if & {
+    @at-root #csstyle .\@#{$name} &{
+      @content;
+    }
+  }
+  @else {
+    #csstyle .\@#{$name}{
+      @content;
+    }
   }
 }
