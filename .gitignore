@@ -2,5 +2,6 @@
 *.css.map
 .sass-cache
 node_modules
+npm-debug.log
 .divshot-cache
 site/divshot.json
