@@ -1,6 +1,6 @@
 {
   "name": "csstyle",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "clean, simple styling for styling the web.",
   "directories": {
     "test": "test"
