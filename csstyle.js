@@ -1,4 +1,4 @@
-// csstyle v1.3.1 for postcss
+// csstyle for postcss
 // Clean, Simple Styling for the Web
 // http://www.csstyle.io
 // This is the postcss version (https://github.com/postcss/postcss)
