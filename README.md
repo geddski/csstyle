@@ -75,7 +75,7 @@ Example:
   require('../csstyle')({optionSymbol: '\\-', partSymbol: '\\/', rootId: 'app'})
 ```
 
-**IMPORTANT NOTE** All characters besides `_` need to be escaped! However, if you are using dashes, only _the first one_ needs to be escaped. Use two backslashes to properly escape in SASS. For example to use a forward slash to separate parts, set $csstyle-part-symbol to `\\/`.
+**IMPORTANT NOTE** All characters besides `_` need to be escaped! However, if you are using dashes, only _the first one_ needs to be escaped. Use two backslashes to properly escape. For example to use a forward slash to separate parts, set $csstyle-part-symbol to `\\/`. The generated CSS classes will then be escaped with a single backslash.
 
 
 ## FAQ
