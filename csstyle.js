@@ -34,7 +34,7 @@ module.exports = function csstyle(css){
   });
   
   return css;
-}
+};
 
 /**
 * Find the matching csstyle abstractions if any.
@@ -55,7 +55,7 @@ function getAbstraction(selector){
     return {
       type: type,
       match: selector.match(regexp)
-    }
+    };
   })
   // get first match
   .filter(function(potential){
@@ -70,5 +70,5 @@ function getAbstraction(selector){
     type: res.type,
     name: res.match[2],
     prefix: types[res.type]
-  }
+  };
 }
