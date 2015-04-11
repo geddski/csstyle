@@ -110,4 +110,4 @@ In Sass you can append a `&` to a selector or pseudo-selector to have it applied
 MIT
 
 ## TODO
-- make postcss version configurable too
+- try out SASS verion on libsass https://github.com/sass/libsass/releases/tag/3.2.0-beta.5
