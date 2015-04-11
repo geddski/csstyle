@@ -65,7 +65,7 @@ In Sass you can append a `&` to a selector or pseudo-selector to have it applied
 }
 ```
 
-### Can I configure the styling convention?
+### Can I configure the styling convention (SASS)?
 There are a few settings you can change. You can set these to whatever suits your style.
 
  - The style to denote `options` by changing the `$csstyle-option-symbol` variable. The default is `\--`.
@@ -73,7 +73,7 @@ There are a few settings you can change. You can set these to whatever suits you
  - The style to denote `tweaks` by changing the `$csstyle-tweak-symbol` variable. The default is `\+`.
  - The style to denote `locations` by changing the `$csstyle-location-symbol` variable. The default is `\@`.
 
-**All characters besides `_` need to be escaped!** However, if you are using dashes, only _the first one_ needs to be escaped.
+**All characters besides `_` need to be escaped!** However, if you are using dashes, only _the first one_ needs to be escaped. Use two backslashes to properly escape in SASS. For example to use a forward slash to separate parts, set $csstyle-part-symbol to `\\/`.
 
 In adition to that, you can also change your app's root `id` on the html or body element by changing the `$csstyle-root-id` variable. The default is `csstyle`.
 
