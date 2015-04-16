@@ -12,7 +12,6 @@ $csstyle-tweak-symbol: '\\+' !default;
 $csstyle-location-symbol: '\\@' !default;
 $csstyle-root-id: 'csstyle' !default;
 
-
 // build selectors
 @function _build_selector($prefix, $names){
     $selector: "";
