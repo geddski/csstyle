@@ -5,11 +5,13 @@
 // https://twitter.com/geddski
 // https://github.com/geddski
 
+$csstyle-verbose-options: false !default;
 $csstyle-option-symbol: '\\--' !default;
 $csstyle-part-symbol: '__' !default;
 $csstyle-tweak-symbol: '\\+' !default;
 $csstyle-location-symbol: '\\@' !default;
 $csstyle-root-id: 'csstyle' !default;
+
 
 // build selectors
 @function _build_selector($prefix, $names){
@@ -36,8 +38,15 @@ $csstyle-root-id: 'csstyle' !default;
 // options
 // override components
 @mixin option($names...){
-  #{_build_selector("&." + $csstyle-option-symbol, $names)}{
-    @content;
+  @if($csstyle-verbose-options){
+    &#{$csstyle-option-symbol + $names}{
+      @content;
+    }
+  }
+  @else {
+    #{_build_selector("&." + $csstyle-option-symbol, $names)}{
+      @content;
+    }
   }
 }
 
