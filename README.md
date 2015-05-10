@@ -83,12 +83,6 @@ Example:
 ### Can I use this with Libsass?
 Yes. Libsass version 3.2.0 or greater fully supports csstyle.
 
-People using webpack or similar often want to load Sass via libsass.
-Unfortunately libsass is quite behind the ruby Sass and some things are [still missing](https://sass-compatibility.github.io/)
-before it will work with csstyle. As a workaround while we wait for libsass you
-can load your Sass files with the [ruby Sass loader](https://github.com/ddelbondio/ruby-sass-loader) and it will work just fine, it just
-won't be as fast as libsass.
-
 ### How do parts react to component states like hover?
 In Sass you can append a `&` to a selector or pseudo-selector to have it applied to the parent context. So for example to have a `part` react when the `component` gets hovered:
 
