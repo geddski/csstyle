@@ -24,6 +24,19 @@ describe("option", function(){
   });
 });
 
+describe("verbose option", function(){
+  it("creates a class with the option .component--option", function(){
+    [
+      getSelector('spec/scss/fixtures/option-verbose.css', 1)
+      //getSelector('spec/postcss/fixtures/option-verbose.css', 1)
+    ]
+        .forEach(function(selector){
+          expect(selector.value).toBe(".tweet\\--promoted");
+          expect(selector.score).toBe('0,0,1,0');
+        })
+  });
+});
+
 describe("part", function(){
   it("appends a __class to the component", function(){
     [
