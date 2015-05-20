@@ -29,7 +29,7 @@ $csstyle-root-id: 'csstyle' !default;
 // components
 @mixin component($names...){
   #{_build_selector(".", $names)}{
-    @content
+    @content;
   }
 }
 
