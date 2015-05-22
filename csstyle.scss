@@ -14,7 +14,7 @@ $csstyle-root-id: 'csstyle' !default;
 
 
 // Escape characters
-// More info @ http://sassmeister.com/gist/b9f5d59c158dcc820afb
+// More info @ http://sassmeister.com/gist/6f21559db1fa50d48972
 @function escape_symbols($symbol, $is_partial: false){
     $allowed: '-','_','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9';
     $not_allowed_as_first: '_','0','1','2','3','4','5','6','7','8','9';
@@ -66,7 +66,7 @@ $csstyle-root-id: 'csstyle' !default;
 // components
 @mixin component($names...){
   #{_build_selector(".", $names)}{
-    @content
+    @content;
   }
 }
 
@@ -86,12 +86,12 @@ $csstyle-root-id: 'csstyle' !default;
     $optionIndex: str-index(#{&}, "." + $csstyle-option-symbol);
     $optionIndex: 0 !default;
     $optionIndex: $optionIndex - 1;
-
+    
     // check if nested in another part
     $partIndex: str-index(#{&}, $csstyle-part-symbol);
     $partIndex: 0 !default;
     $partIndex: $partIndex - 1;
-
+    
     $component: str-slice(#{&}, 0, $optionIndex);
     
     // part is nested in an option
