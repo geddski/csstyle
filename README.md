@@ -37,14 +37,51 @@ Be sure to include postcss-nested and csstyle in that order.
 
 Now you're set and can start creating components with options & parts, adding in tweaks and locations as needed. Enjoy!
 
+## Customizing Styling Conventions
+csstyle lets you change the style conventions to whatever suits your style.
+
+### Default Symbols
+- `options`: `--`
+- `parts`: `__`
+- `tweaks`: `+`
+- `locations`: `@`
+- `rootId`: `csstyle`
+
+### With SASS
+Override the defaults using SASS variables.
+- `options`: `$csstyle-option-symbol`
+- `parts`: `$csstyle-part-symbol`
+- `tweaks`: `$csstyle-tweak-symbol`
+- `locations`: `$csstyle-location-symbol`
+- `rootId`: `$csstyle-root-id`
+
+Example:
+```scss
+  $csstyle-part-symbol: '/';
+  $csstyle-root-id: 'app';
+```
+
+### With Postcss
+Override the defaults by calling the cssytle function with an options object.
+- `options`: `optionSymbol`
+- `parts`: `partSymbol`
+- `tweaks`: `tweakSymbol`
+- `locations`: `locationSymbol`
+- `rootId`: `rootId`
+
+Example:
+
+```js
+  require('../csstyle')({optionSymbol: '\\-', partSymbol: '\\/', rootId: 'app'})
+```
+
+**IMPORTANT NOTE** All characters besides `_` need to be escaped! However, if you are using dashes, only _the first one_ needs to be escaped. Use two backslashes to properly escape. For example to use a forward slash to separate parts, set $csstyle-part-symbol to `\\/`. The generated CSS classes will then be escaped with a single backslash.
+
+
 ## FAQ
 
 ### Can I use this with Libsass?
-People using webpack or similar often want to load Sass via libsass.
-Unfortunately libsass is quite behind the ruby Sass and some things are [still missing](https://sass-compatibility.github.io/)
-before it will work with csstyle. As a workaround while we wait for libsass you
-can load your Sass files with the [ruby Sass loader](https://github.com/ddelbondio/ruby-sass-loader) and it will work just fine, it just
-won't be as fast as libsass.
+Yes. Libsass version 3.2.0 or greater fully supports csstyle.
 
 ### How do parts react to component states like hover?
 In Sass you can append a `&` to a selector or pseudo-selector to have it applied to the parent context. So for example to have a `part` react when the `component` gets hovered:
@@ -65,18 +102,5 @@ In Sass you can append a `&` to a selector or pseudo-selector to have it applied
 }
 ```
 
-### Can I configure the styling convention?
-There are a few settings you can change. You can set these to whatever suits your style.
-
- - The style to denote `options` by changing the `$csstyle-option-symbol` variable. The default is `--`.
- - The style to denote `parts` by changing the `$csstyle-part-symbol` variable. The default is `__`.
- - The style to denote `tweaks` by changing the `$csstyle-tweak-symbol` variable. The default is `+`.
- - The style to denote `locations` by changing the `$csstyle-location-symbol` variable. The default is `@`.
-
-In adition to that, you can also change your app's root `id` on the html or body element by changing the `$csstyle-root-id` variable. The default is `csstyle`.
-
 ## License
 MIT
-
-## TODO
-- make postcss version configurable too
