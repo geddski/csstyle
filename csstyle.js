@@ -32,11 +32,10 @@ module.exports = function (opts){
         if(selector.type === 'part' && previous.type === 'option'){
           var component = _.findLast(selectors, {type: 'component'});
           spacing = ' ';
-          output += spacing + component.prefix + component.name + selector.prefix + selector.name;  
+          output += spacing + component.prefix + component.name + component.pseudo + selector.prefix + selector.name + selector.pseudo;  
           return;
         }
-        
-        output += spacing + selector.prefix + selector.name;
+        output += spacing + selector.prefix + selector.name + selector.pseudo;
       });
       
       node.selector = output;
@@ -59,7 +58,8 @@ module.exports = function (opts){
     };
     
     var res = Object.keys(types).map(function(type){
-      var regexp = new RegExp('('+type+'\\(([^)]*)\\))');
+      var regexp = new RegExp('('+type+'\\(([^)]*)\\)(\\:.+)?)');
+      // (component\\(([^)]*)\\)(\\:.+)?)
       // var match = selector.match(/(component\(([^)]*)\))/);
       return {
         type: type,
@@ -78,6 +78,7 @@ module.exports = function (opts){
     return {
       type: res.type,
       name: res.match[2],
+      pseudo: (res.match[3] != null) ? res.match[3] : '',
       prefix: types[res.type]
     };
   }
