@@ -32,10 +32,10 @@ module.exports = function (opts){
         if(selector.type === 'part' && previous.type === 'option'){
           var component = _.findLast(selectors, {type: 'component'});
           spacing = ' ';
-          output += spacing + component.prefix + component.name + component.pseudo + selector.prefix + selector.name + selector.pseudo;  
+          output += spacing + joinSelectorProps(component) + joinSelectorProps(selector);  
           return;
         }
-        output += spacing + selector.prefix + selector.name + selector.pseudo;
+        output += spacing + joinSelectorProps(selector);
       });
       
       node.selector = output;
@@ -43,6 +43,13 @@ module.exports = function (opts){
     
     return css;
   };
+
+  /**
+   * Join selecor data into a single string
+   */
+  function joinSelectorProps(selector) {
+    return selector.prefix + selector.name + selector.pseudo;
+  }
   
   /**
   * Find the matching csstyle abstractions if any.
@@ -59,8 +66,7 @@ module.exports = function (opts){
     
     var res = Object.keys(types).map(function(type){
       var regexp = new RegExp('('+type+'\\(([^)]*)\\)(\\:.+)?)');
-      // (component\\(([^)]*)\\)(\\:.+)?)
-      // var match = selector.match(/(component\(([^)]*)\))/);
+      // var match = selector.match(/component\(([^)]*)\)(\:.+)?/);
       return {
         type: type,
         match: selector.match(regexp)
