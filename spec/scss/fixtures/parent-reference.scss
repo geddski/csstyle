@@ -1,0 +1,7 @@
+@import '../../../csstyle';
+
+@include component(card) {
+  &:hover {
+    color: blue;
+  }
+}

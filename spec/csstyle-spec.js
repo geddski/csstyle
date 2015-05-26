@@ -126,3 +126,27 @@ describe("location", function(){
     })
   });
 });
+
+describe("parent reference", function() {
+  it("allows the parent to be referenced in a component", function(){
+    [
+      getSelector('spec/scss/fixtures/parent-reference.css'),
+      getSelector('spec/postcss/fixtures/parent-reference.css')
+    ]
+    .forEach(function(selector) {
+      expect(selector.value).toBe(".card:hover");
+    })
+  });
+});
+
+describe("part parent reference", function() {
+  it("allows the parent to be referenced in a part", function(){
+    [
+      getSelector('spec/scss/fixtures/part-parent-reference.css'),
+      getSelector('spec/postcss/fixtures/part-parent-reference.css')
+    ]
+    .forEach(function(selector) {
+      expect(selector.value).toBe(".card:hover .card__picture");
+    })
+  });
+});
