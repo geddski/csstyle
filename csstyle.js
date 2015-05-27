@@ -56,7 +56,10 @@ module.exports = function (opts){
    * - pseudo-classes or pseudo-elements require explicit request
    */
   function joinSelectorProps(selector, usePseudoSelector) {
-    return selector.prefix + selector.name + (usePseudoSelector ? selector.pseudo : '');
+    return selector.prefix + 
+           selector.name +
+           (usePseudoSelector ? selector.pseudo : '') +
+           selector.comma;
   }
   
   /**
@@ -73,7 +76,7 @@ module.exports = function (opts){
     };
     
     var res = Object.keys(types).map(function(type){
-      var regexp = new RegExp('('+type+'\\(([^)]*)\\)(\\:.+)?)');
+      var regexp = new RegExp('('+type+'\\(([^)]*)\\)(\\:.+)?(\\,)?)');
       // var match = selector.match(/component\(([^)]*)\)(\:.+)?/);
       return {
         type: type,
@@ -93,6 +96,7 @@ module.exports = function (opts){
       type: res.type,
       name: res.match[2],
       pseudo: (res.match[3] != null) ? res.match[3] : '',
+      comma: (res.match[4] != null) ? res.match[4] + ' ' : '',
       prefix: types[res.type]
     };
   }
