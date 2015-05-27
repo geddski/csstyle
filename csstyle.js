@@ -23,7 +23,14 @@ module.exports = function (opts){
       var selectors = node.selector.split(' ').map(getAbstraction);
       selectors.forEach(function(selector, index){
         var previous = selectors[index - 1] || {};
+        var next = selectors[index + 1] || {};
         var spacing = '';
+        // spacing required after pseudo-selectors
+        if (selector.pseudo) {
+          spacing = ' ';
+          output += joinSelectorProps(selector, true) + spacing;
+          return;
+        }
         // regular spacing before and after non-csstyle selectors
         if(selector.type === 'other' || previous.type === 'other'){
           spacing = ' ';
@@ -32,7 +39,7 @@ module.exports = function (opts){
         if(selector.type === 'part' && previous.type === 'option'){
           var component = _.findLast(selectors, {type: 'component'});
           spacing = ' ';
-          output += spacing + joinSelectorProps(component) + joinSelectorProps(selector);  
+          output += spacing + joinSelectorProps(component) + joinSelectorProps(selector);
           return;
         }
         output += spacing + joinSelectorProps(selector);
@@ -46,9 +53,10 @@ module.exports = function (opts){
 
   /**
    * Join selecor data into a single string
+   * - pseudo-classes or pseudo-elements require explicit request
    */
-  function joinSelectorProps(selector) {
-    return selector.prefix + selector.name + selector.pseudo;
+  function joinSelectorProps(selector, usePseudoSelector) {
+    return selector.prefix + selector.name + (usePseudoSelector ? selector.pseudo : '');
   }
   
   /**
