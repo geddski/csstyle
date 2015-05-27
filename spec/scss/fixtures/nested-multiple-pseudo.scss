@@ -1,0 +1,7 @@
+@import '../../../csstyle';
+
+@include component(frame) {
+  &:hover, &:focus {
+    color: yellow;
+  }
+}

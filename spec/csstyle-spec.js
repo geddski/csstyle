@@ -127,7 +127,8 @@ describe("location", function(){
   });
 });
 
-describe("parent reference", function() {
+describe("parent references", function() {
+
   it("allows the parent to be referenced in a component", function(){
     [
       getSelector('spec/scss/fixtures/parent-reference.css'),
@@ -137,10 +138,8 @@ describe("parent reference", function() {
       expect(selector.value).toBe(".card:hover");
     })
   });
-});
 
-describe("part parent reference", function() {
-  it("allows the parent to be referenced in a part", function(){
+  it("allows the parent to be referenced in a part in a component that targets a part", function(){
     [
       getSelector('spec/scss/fixtures/part-parent-reference.css'),
       getSelector('spec/postcss/fixtures/part-parent-reference.css')
@@ -149,4 +148,26 @@ describe("part parent reference", function() {
       expect(selector.value).toBe(".card:hover .card__picture");
     })
   });
+
+  it("can handle multiple pseudoclasses on a selector/parent reference", function() {
+    [
+      getSelector('spec/scss/fixtures/nested-multiple-pseudo.css'),
+      getSelector('spec/postcss/fixtures/nested-multiple-pseudo.css')
+    ]
+    .forEach(function(selector) {
+      expect(selector.value).toBe(".frame:hover, .frame:focus");
+    })
+  });
+
+  it("can handle multiple pseudoclasses on a component parent reference that targets a part", function() {
+    [
+      getSelector('spec/scss/fixtures/part-nested-multiple-pseudo.css'),
+      getSelector('spec/postcss/fixtures/part-nested-multiple-pseudo.css')
+    ]
+    .forEach(function(selector) {
+      expect(selector.value).toBe(".frame:hover .frame__img, .frame:focus .frame__img");
+    })
+  });
+
 });
+
