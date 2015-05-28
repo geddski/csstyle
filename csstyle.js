@@ -59,7 +59,7 @@ module.exports = function (opts){
     return selector.prefix + 
            selector.name +
            (usePseudoSelector ? selector.pseudo : '') +
-           selector.comma;
+           (selector.comma ? selector.comma : '');
   }
   
   /**

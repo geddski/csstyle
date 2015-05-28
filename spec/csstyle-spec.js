@@ -171,3 +171,15 @@ describe("parent references", function() {
 
 });
 
+describe("regular css", function() {
+  it("leaves regular selectors untouched", function() {
+    [
+      getSelector('spec/scss/fixtures/untouched.css'),
+      getSelector('spec/postcss/fixtures/untouched.css')
+    ]
+    .forEach(function(selector) {
+      expect(selector.value).toBe(".test");
+    })
+  });
+})
+
