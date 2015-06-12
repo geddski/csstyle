@@ -11,6 +11,7 @@ var _ = require('lodash');
 module.exports = function (opts){
   // symbols are configurable
   opts = opts || {};
+  opts.componentSymbol = opts.componentSymbol || '';
   opts.optionSymbol = opts.optionSymbol || '\\--';
   opts.partSymbol = opts.partSymbol || '__';
   opts.tweakSymbol = opts.tweakSymbol || '\\+';
@@ -68,7 +69,7 @@ module.exports = function (opts){
   */
   function getAbstraction(selector){
     var types = { 
-      component: '.',
+      component: '.' + opts.componentSymbol,
       part: opts.partSymbol, 
       option: '.' + opts.optionSymbol,
       tweak: '#' + opts.rootId + ' .' + opts.tweakSymbol,

@@ -5,6 +5,7 @@
 // https://twitter.com/geddski
 // https://github.com/geddski
 
+$csstyle-component-symbol: '' !default;
 $csstyle-option-symbol: '\\--' !default;
 $csstyle-part-symbol: '__' !default;
 $csstyle-tweak-symbol: '\\+' !default;
@@ -28,7 +29,7 @@ $csstyle-root-id: 'csstyle' !default;
 
 // components
 @mixin component($names...){
-  #{_build_selector(".", $names)}{
+  #{_build_selector("." + $csstyle-component-symbol, $names)}{
     @content
   }
 }

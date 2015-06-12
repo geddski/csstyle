@@ -183,3 +183,13 @@ describe("regular css", function() {
   });
 })
 
+describe("custom symbols", function(){
+  it("allows projects to customize their styling conventions", function(){
+    [
+      getSelector('spec/scss/fixtures/custom-symbols.css')
+    ]
+    .forEach(function(selector){
+      expect(selector.value).toBe(".\\$tweet");
+    })
+  });
+});
