@@ -22,7 +22,8 @@
   },
   "main": "csstyle.js",
   "scripts": {
-    "test": "jasmine-node spec"
+    "test": "jasmine-node spec",
+    "sitecss": "sass -r sass-globbing ./site/site.scss > ./site/site.css"
   },
   "repository": {
     "type": "git",
