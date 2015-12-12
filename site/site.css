@@ -1,0 +1,241 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+@font-face {
+  font-family: 'Nexa-Light';
+  src: url("common/fonts/2BB4FD_0_0.eot");
+  src: url("common/fonts/2BB4FD_0_0.eot?#iefix") format("embedded-opentype"), url("common/fonts/2BB4FD_0_0.woff") format("woff"), url("common/fonts/2BB4FD_0_0.ttf") format("truetype"); }
+@font-face {
+  font-family: OpenSans-Light;
+  src: url(common/fonts/OpenSansLight.ttf); }
+body {
+  font-size: 18px;
+  background: #404040;
+  color: #9B9B9B;
+  font-family: "Nexa-Light";
+  letter-spacing: 1px;
+  display: inline-block;
+  width: 100%; }
+
+body * {
+  box-sizing: border-box; }
+
+h1, p, pre {
+  margin-bottom: 10px; }
+
+p {
+  line-height: 28px; }
+
+a, span {
+  display: inline-block; }
+
+a {
+  color: #A7E040; }
+  a:hover {
+    color: #F8F8F2; }
+
+.ace_scrollbar {
+  height: 100% !important; }
+
+@font-face {
+  font-family: 'icomoon';
+  src: url("/common/fonts/icomoon.eot?xaeel3");
+  src: url("/common/fonts/icomoon.eot?#iefixxaeel3") format("embedded-opentype"), url("/common/fonts/icomoon.woff?xaeel3") format("woff"), url("/common/fonts/icomoon.ttf?xaeel3") format("truetype"), url("/common/fonts/icomoon.svg?xaeel3#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+.icon-rocket:before {
+  content: "\e600"; }
+
+.icon-arrow-down:before {
+  content: "\e601"; }
+
+#csstyle .\@home .ace_editor {
+  background: #262626;
+  font-size: 14px;
+  border-radius: 4px; }
+  @media screen and (min-width: 700px) {
+    #csstyle .\@home .ace_editor {
+      font-size: 18px; } }
+  #csstyle .\@home .ace_editor .ace_active-line {
+    background: rgba(255, 255, 255, 0.2); }
+
+.button {
+  background: #6BD9ED;
+  padding: 15px; }
+  .button.\--action {
+    color: #1F1F1F;
+    background: #A7E040;
+    padding-top: 0; }
+  .button__icon {
+    font-size: 34px;
+    position: relative;
+    top: 10px;
+    font-family: 'icomoon'; }
+    .button__icon.\--rocket:before {
+      content: "\e600"; }
+    .button__icon.\--download:before {
+      content: "\e601"; }
+
+.css {
+  display: none; }
+
+.logo {
+  position: relative;
+  white-space: nowrap;
+  font-size: 70px;
+  margin-bottom: 30px;
+  margin-top: 30px; }
+  @media screen and (min-width: 500px) {
+    .logo {
+      font-size: 100px; } }
+  @media screen and (min-width: 600px) {
+    .logo {
+      font-size: 120px; } }
+  @media screen and (min-width: 700px) {
+    .logo {
+      font-size: 140px; } }
+  .logo__dashes {
+    position: relative;
+    top: 4px; }
+  .logo__cs {
+    color: #6BD9ED; }
+
+.section {
+  padding-top: 30px;
+  padding-bottom: 60px;
+  border-top: 1px solid #EDEDED; }
+  .section.\--white {
+    background: #fff;
+    color: #626262; }
+    .section.\--white .section__title {
+      color: #f92672; }
+  .section.\--darkgrey {
+    background: #626262;
+    color: #EDEDED; }
+    .section.\--darkgrey .section__title {
+      color: #A7E040; }
+  .section.\--pitch {
+    background: #1F1F1F; }
+  .section__title {
+    font-size: 40px;
+    color: #6BD9ED; }
+  .section__label {
+    font-size: 12px; }
+  .section__result {
+    border: 1px dashed #C2C2C2;
+    padding: 20px;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 20px; }
+    .section__result a {
+      color: #000; }
+
+.tagline {
+  font-size: 30px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  line-height: 50 px; }
+  @media screen and (min-width: 700px) {
+    .tagline {
+      font-size: 35px; } }
+  @media screen and (min-width: 700px) {
+    .tagline {
+      font-size: 46px; } }
+
+#csstyle .\@tryit .button {
+  font-size: 22px;
+  margin: 30px 0 40px;
+  background: #262626;
+  color: #6BD9ED;
+  cursor: pointer;
+  text-decoration: none; }
+  #csstyle .\@tryit .button:hover {
+    color: #F8F8F2; }
+  #csstyle .\@tryit .button__icon {
+    font-size: 40px; }
+
+#csstyle .\+text-center {
+  text-align: center; }
+
+#csstyle .\+text-left {
+  text-align: left; }
+
+#csstyle .\+highlight {
+  color: #6BD9ED;
+  font-weight: 700; }
+
+#csstyle .\+lowlight {
+  color: #f92672;
+  font-weight: 700; }
+
+#csstyle .\+content-center {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px; }
+
+#csstyle .\+space-medium {
+  margin: 20px; }
+
+#csstyle .\+glass {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.8), inset 0 9px 1px rgba(0, 0, 0, 0.1); }
+
+#csstyle .\+rounded {
+  border-radius: 10px; }

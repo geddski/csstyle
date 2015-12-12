@@ -90,6 +90,8 @@ $csstyle-root-id: 'csstyle' !default;
 // locations
 // override components, parts, options, and tweaks
 @mixin location($names...){
+  @warn "locations will be deprecated soon. Please use components instead.";
+  
   #{_build_selector("#" + $csstyle-root-id + " ." + $csstyle-location-symbol, $names)}{
     @content;
   }
