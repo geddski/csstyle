@@ -21,28 +21,16 @@ $csstyle-root-id: 'csstyle' !default;
     $escaped: '';
     
     @for $i from 1 through str-length($symbol){
-        @if(index($allowed, str-slice($symbol, $i, $i)) == null){
-            $escaped: $escaped + '\\' + str-slice($symbol, $i, $i);
-        }@else if($is_partial == false){
-            @if($i == 1){
-                @if(index($not_allowed_as_first, str-slice($symbol, $i, $i)) != null){
-                    $escaped: $escaped + '\\' + str-slice($symbol, $i, $i);
-                }@else{
-                    $escaped: $escaped + str-slice($symbol, $i, $i);
-                }
-            }@else{
-                $escaped: $escaped + str-slice($symbol, $i, $i);
-            }
-        }@else{
+        @if (index($allowed, str-slice($symbol, $i, $i)) == null or ($is_partial == false and $i == 1 and index($not_allowed_as_first, str-slice($symbol, $i, $i)) != null)) {
+            $escaped: $escaped + ('\\' + str-slice($symbol, $i, $i));
+        } @else {
             $escaped: $escaped + str-slice($symbol, $i, $i);
         }
     }
     
     // handle special -- case
-    @if($is_partial == false){
-        @if(str-slice($symbol, 1, 2) == '--'){
-            $escaped: '\\' + $escaped;
-        }
+    @if($is_partial == false and str-slice($symbol, 1, 2) == '--'){
+        $escaped: '\\' + $escaped;
     }
     
     @return $escaped;
@@ -50,14 +38,14 @@ $csstyle-root-id: 'csstyle' !default;
 
 // build selectors
 @function _build_selector($prefix, $names){
-    $selector: "";
+    $selector: '';
     
     @for $i from 1 through length($names){
-      $selector: $selector + $prefix + nth($names, $i);
-      
-      @if($i != length($names)){
-        $selector: $selector + ",";
-      }
+        $selector: $selector + $prefix + nth($names, $i);
+        
+        @if($i != length($names)){
+            $selector: $selector + ', ';
+        }
     }
     
     @return $selector;
@@ -65,17 +53,17 @@ $csstyle-root-id: 'csstyle' !default;
 
 // components
 @mixin component($names...){
-  #{_build_selector(".", $names)}{
-    @content;
-  }
+    #{_build_selector(".", $names)}{
+        @content;
+    }
 }
 
 // options
 // override components
 @mixin option($names...){
-  #{_build_selector("&." + escape_symbols($csstyle-option-symbol), $names)}{
-    @content;
-  }
+    #{_build_selector("&." + escape_symbols($csstyle-option-symbol), $names)}{
+        @content;
+    }
 }
 
 // parts
@@ -83,50 +71,41 @@ $csstyle-root-id: 'csstyle' !default;
 // override components
 @mixin part($names...){
     // check if nested in an option
-    $optionIndex: str-index(#{&}, "." + $csstyle-option-symbol);
+    $optionIndex: str-index("#{&}", "." + $csstyle-option-symbol);
     $optionIndex: 0 !default;
     $optionIndex: $optionIndex - 1;
     
     // check if nested in another part
-    $partIndex: str-index(#{&}, $csstyle-part-symbol);
+    $partIndex: str-index("#{&}", $csstyle-part-symbol);
     $partIndex: 0 !default;
     $partIndex: $partIndex - 1;
     
     $component: str-slice(#{&}, 0, $optionIndex);
     
-    // part is nested in an option
-    @if $optionIndex > 0 {
-      // part is also nested in another part
-      @if ($partIndex > 0){
-        #{_build_selector("&" + escape_symbols($csstyle-part-symbol, true), $names)}{
-          @content;
+    // part is nested in an option and not nested in another part within that option
+    @if ($optionIndex > 0 and $partIndex < $optionIndex) {
+        #{_build_selector($component + escape_symbols($csstyle-part-symbol), $names)}{
+            @content;
         }
-      }
-      @else{
-        #{_build_selector("& " + $component + escape_symbols($csstyle-part-symbol, true), $names)}{
-          @content;
+    } @else {
+        #{_build_selector("&" + escape_symbols($csstyle-part-symbol), $names)}{
+            @content;
         }
-      }
-    }
-    @else {
-      #{_build_selector("&" + escape_symbols($csstyle-part-symbol, true), $names)}{
-        @content;
-      }
     }
 }
 
 // tweaks
 // override components, options, and modifiers
 @mixin tweak($names...){
-  #{_build_selector("#" + $csstyle-root-id + " ." + escape_symbols($csstyle-tweak-symbol), $names)}{
-    @content;
-  }
+    #{_build_selector("#" + $csstyle-root-id + " ." + escape_symbols($csstyle-tweak-symbol), $names)}{
+        @content;
+    }
 }
 
 // locations
 // override components, parts, options, and tweaks
 @mixin location($names...){
-  #{_build_selector("#" + $csstyle-root-id + " ." + escape_symbols($csstyle-location-symbol), $names)}{
-    @content;
-  }
+    #{_build_selector("#" + $csstyle-root-id + " ." + escape_symbols($csstyle-location-symbol), $names)}{
+        @content;
+    }
 }
