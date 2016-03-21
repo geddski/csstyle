@@ -2,7 +2,8 @@ describe("component", function(){
   it("creates a class", function(){
     [
       getSelector('spec/scss/fixtures/component.css'),
-      getSelector('spec/postcss/fixtures/component.css')
+      getSelector('spec/postcss/fixtures/component.css'),
+      getSelector('spec/stylus/fixtures/component.css'),
     ]
     .forEach(function(selector){
       expect(selector.value).toBe('.tweet');
@@ -15,7 +16,8 @@ describe("option", function(){
   it("appends a --class to the component", function(){
     [
       getSelector('spec/scss/fixtures/option.css', 1),
-      getSelector('spec/postcss/fixtures/option.css', 1)      
+      getSelector('spec/postcss/fixtures/option.css', 1),
+      getSelector('spec/stylus/fixtures/option.css', 1),
     ]
     .forEach(function(selector){
       expect(selector.value).toBe(".tweet.\\--promoted");
@@ -28,7 +30,8 @@ describe("part", function(){
   it("appends a __class to the component", function(){
     [
       getSelector('spec/scss/fixtures/part.css', 1),
-      getSelector('spec/postcss/fixtures/part.css', 1)      
+      getSelector('spec/postcss/fixtures/part.css', 1),
+      getSelector('spec/stylus/fixtures/part.css', 1),
     ]
     .forEach(function(selector){
       expect(selector.value).toBe(".tweet__image");
@@ -40,7 +43,8 @@ describe("part", function(){
     it("creates a single class with both part names ", function(){
       [
         getSelector('spec/scss/fixtures/parts-in-parts.css', 2),
-        getSelector('spec/postcss/fixtures/parts-in-parts.css', 2)
+        getSelector('spec/postcss/fixtures/parts-in-parts.css', 2),
+        getSelector('spec/stylus/fixtures/parts-in-parts.css', 2),
       ]
       .forEach(function(selector){
         expect(selector.value).toBe(".tweet__message__title");
@@ -52,11 +56,12 @@ describe("part", function(){
       it("should append the option to the part class", function(){
         [
           getSelector('spec/scss/fixtures/parts-in-parts.css', 3),
-          getSelector('spec/postcss/fixtures/parts-in-parts.css', 3)
+          getSelector('spec/postcss/fixtures/parts-in-parts.css', 3),
+          getSelector('spec/stylus/fixtures/parts-in-parts.css', 3),
         ]
         .forEach(function(selector){
           expect(selector.value).toBe(".tweet__message__title.\\--special");
-          expect(selector.score).toBe('0,0,2,0'); 
+          expect(selector.score).toBe('0,0,2,0');
         });
       });
     });
@@ -66,7 +71,8 @@ describe("part", function(){
     it("responds correctly to component options", function(){
       [
         getSelector('spec/scss/fixtures/parts-in-options.css', 2),
-        getSelector('spec/postcss/fixtures/parts-in-options.css', 2)
+        getSelector('spec/postcss/fixtures/parts-in-options.css', 2),
+        getSelector('spec/stylus/fixtures/parts-in-options.css', 2),
       ]
       .forEach(function(selector){
         expect(selector.value).toBe(".tweet.\\--promoted .tweet__profile");
@@ -78,7 +84,8 @@ describe("part", function(){
       it("should concat the part names and preserve the component option", function(){
         [
           getSelector('spec/scss/fixtures/parts-in-options.css', 3),
-          getSelector('spec/postcss/fixtures/parts-in-options.css', 3)
+          getSelector('spec/postcss/fixtures/parts-in-options.css', 3),
+          getSelector('spec/stylus/fixtures/parts-in-options.css', 3),
         ]
         .forEach(function(selector){
           expect(selector.value).toBe(".tweet.\\--promoted .tweet__profile__img");
@@ -89,12 +96,13 @@ describe("part", function(){
         it("should work the same", function(){
           [
             getSelector('spec/scss/fixtures/parts-in-options.css', 4),
-            getSelector('spec/postcss/fixtures/parts-in-options.css', 4)
+            getSelector('spec/postcss/fixtures/parts-in-options.css', 4),
+            getSelector('spec/stylus/fixtures/parts-in-options.css', 4),
           ]
           .forEach(function(selector){
             expect(selector.value).toBe(".tweet.\\--promoted .tweet__profile__img__header");
           });
-        });        
+        });
       });
     });
   });
@@ -104,7 +112,8 @@ describe("tweak", function(){
   it("defines a +class after csstyle id", function(){
     [
       getSelector('spec/scss/fixtures/tweak.css'),
-      getSelector('spec/postcss/fixtures/tweak.css')      
+      getSelector('spec/postcss/fixtures/tweak.css'),
+      getSelector('spec/stylus/fixtures/tweak.css'),
     ]
     .forEach(function(selector){
       // waiting on https://github.com/keeganstreet/specificity/issues/10
@@ -118,7 +127,8 @@ describe("location", function(){
   it("defines a @class after csstyle id", function(){
     [
       getSelector('spec/scss/fixtures/location.css'),
-      getSelector('spec/postcss/fixtures/location.css')      
+      getSelector('spec/postcss/fixtures/location.css'),
+      getSelector('spec/stylus/fixtures/location.css'),
     ]
     .forEach(function(selector){
       expect(selector.value).toBe("#csstyle .\\@home");
@@ -132,7 +142,8 @@ describe("parent references", function() {
   it("allows the parent to be referenced in a component", function(){
     [
       getSelector('spec/scss/fixtures/parent-reference.css'),
-      getSelector('spec/postcss/fixtures/parent-reference.css')
+      getSelector('spec/postcss/fixtures/parent-reference.css'),
+      getSelector('spec/stylus/fixtures/parent-reference.css'),
     ]
     .forEach(function(selector) {
       expect(selector.value).toBe(".card:hover");
@@ -142,7 +153,8 @@ describe("parent references", function() {
   it("allows the parent to be referenced in a part in a component that targets a part", function(){
     [
       getSelector('spec/scss/fixtures/part-parent-reference.css'),
-      getSelector('spec/postcss/fixtures/part-parent-reference.css')
+      getSelector('spec/postcss/fixtures/part-parent-reference.css'),
+      getSelector('spec/stylus/fixtures/part-parent-reference.css'),
     ]
     .forEach(function(selector) {
       expect(selector.value).toBe(".card:hover .card__picture");
@@ -152,20 +164,22 @@ describe("parent references", function() {
   it("can handle multiple pseudoclasses on a selector/parent reference", function() {
     [
       getSelector('spec/scss/fixtures/nested-multiple-pseudo.css'),
-      getSelector('spec/postcss/fixtures/nested-multiple-pseudo.css')
+      getSelector('spec/postcss/fixtures/nested-multiple-pseudo.css'),
+      getSelector('spec/stylus/fixtures/nested-multiple-pseudo.css'),
     ]
     .forEach(function(selector) {
-      expect(selector.value).toBe(".frame:hover, .frame:focus");
+      expect(selector.value).toMatch(/\.frame\:hover,\n?\s?\.frame\:focus/);
     })
   });
 
   it("can handle multiple pseudoclasses on a component parent reference that targets a part", function() {
     [
       getSelector('spec/scss/fixtures/part-nested-multiple-pseudo.css'),
-      getSelector('spec/postcss/fixtures/part-nested-multiple-pseudo.css')
+      getSelector('spec/postcss/fixtures/part-nested-multiple-pseudo.css'),
+      getSelector('spec/stylus/fixtures/part-nested-multiple-pseudo.css'),
     ]
     .forEach(function(selector) {
-      expect(selector.value).toBe(".frame:hover .frame__img, .frame:focus .frame__img");
+      expect(selector.value).toMatch(/\.frame\:hover\s\.frame__img,\n?\s?\.frame\:focus\s\.frame__img/);
     })
   });
 
@@ -175,7 +189,8 @@ describe("regular css", function() {
   it("leaves regular selectors untouched", function() {
     [
       getSelector('spec/scss/fixtures/untouched.css'),
-      getSelector('spec/postcss/fixtures/untouched.css')
+      getSelector('spec/postcss/fixtures/untouched.css'),
+      getSelector('spec/stylus/fixtures/untouched.css'),
     ]
     .forEach(function(selector) {
       expect(selector.value).toBe(".test");
@@ -186,7 +201,8 @@ describe("regular css", function() {
 describe("custom symbols", function(){
   it("allows projects to customize their styling conventions", function(){
     [
-      getSelector('spec/scss/fixtures/custom-symbols.css')
+      getSelector('spec/scss/fixtures/custom-symbols.css'),
+      getSelector('spec/stylus/fixtures/custom-symbols.css')
     ]
     .forEach(function(selector){
       expect(selector.value).toBe(".\\$tweet");
