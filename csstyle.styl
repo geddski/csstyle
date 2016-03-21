@@ -1,0 +1,94 @@
+// csstyle for Stylus
+// Clean, Simple Styling for the Web
+// http://www.csstyle.io
+// Copyright (c) 2016 Dave Geddes
+// https://twitter.com/geddski
+// https://github.com/geddski
+
+$csstyle-component-symbol ?= ''
+$csstyle-option-symbol ?= '\--'
+$csstyle-part-symbol ?= '__'
+$csstyle-tweak-symbol ?= '\+'
+$csstyle-location-symbol ?= '\@'
+$csstyle-root-id ?= 'csstyle'
+
+_build_component($symbol, $names)
+    $selector = ''
+
+    for $name, $i in $names
+        $selector += '.' + $symbol + $name
+
+        if ($i + 1) != length($names)
+            $selector += + ','
+
+    return $selector
+
+_build_option($symbol, $names)
+    $selector = ''
+
+    for $name, $i in $names
+        $selector += '&.' + $symbol + $name
+
+        if ($i + 1) != length($names)
+            $selector += ','
+
+    return $selector
+
+_build_part($symbol, $names)
+    $selector = ''
+
+    for $name, $i in $names
+        $pattern = '&' + $symbol + $name
+
+        if called-from[0] == 'part' and called-from[1] == 'option'
+            $pattern = '& ^[0]' + $symbol + $name
+
+        $selector += $pattern
+
+        if ($i + 1) != length($names)
+            $selector += ','
+
+    return $selector
+
+_build_location($symbol, $names)
+    $selector = ''
+
+    for $name, $i in $names
+        $selector += '#' + $csstyle-root-id + ' .' + $csstyle-location-symbol + $name
+
+        if ($i + 1) != length($names)
+            $selector += ','
+
+    return $selector
+
+_build_tweak($symbol, $names)
+    $selector = ''
+
+    for $name, $i in $names
+        $selector += '#' + $csstyle-root-id + ' .' + $csstyle-tweak-symbol + $name
+
+        if ($i + 1) != length($names)
+            $selector += ','
+
+    return $selector
+
+component($names...)
+    {_build_component($csstyle-component-symbol, $names)}
+        {block}
+
+option($names...)
+    {_build_option($csstyle-option-symbol, $names)}
+        {block}
+
+part($names...)
+    {_build_part($csstyle-part-symbol, $names)}
+        {block}
+
+location($names...)
+    warn('Locations will be deprecated soon. Please use components instead.')
+    {_build_location($csstyle-location-symbol, $names)}
+        {block}
+
+tweak($names...)
+    {_build_tweak($csstyle-tweak-symbol, $names)}
+        {block}
