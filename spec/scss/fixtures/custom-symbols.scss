@@ -1,0 +1,9 @@
+@import '../../../csstyle';
+$csstyle-component-symbol: '\\$';
+
+@include component(tweet){
+  background: #fff;
+}
+
+// reset symbols for the rest of the tests
+$csstyle-component-symbol: '';

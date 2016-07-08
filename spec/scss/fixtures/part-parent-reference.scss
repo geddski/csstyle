@@ -1,0 +1,13 @@
+@import '../../../csstyle';
+
+@include component(card) {
+
+  &:hover & {
+
+    @include part(picture) {
+      color: blue;
+    }
+    
+  }
+
+}

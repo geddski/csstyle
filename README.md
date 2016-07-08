@@ -11,7 +11,7 @@ You can use csstyle with either [Sass](http://sass-lang.com/) or [postcss](https
 1. Setup your project with either Sass or Postcss. If you're using Sass make sure you have the latest stable SASS (3.4).
 
 2. Add `id="csstyle"` to your html or body element. This is necessary so that components with their
-parts and options can nest indefinitely yet always be overridden by tweaks and locations.
+parts and options can nest indefinitely yet always be overridden by tweaks.
 
 3. Download csstyle from npm:
 
@@ -35,7 +35,7 @@ postcss([require('postcss-nested'), require('csstyle')]);
 ```
 Be sure to include postcss-nested and csstyle in that order.
 
-Now you're set and can start creating components with options & parts, adding in tweaks and locations as needed. Enjoy!
+Now you're set and can start creating components with options & parts, adding in tweaks as needed. Enjoy!
 
 ## Customizing Styling Conventions
 csstyle lets you change the style conventions to whatever suits your style.
@@ -52,7 +52,6 @@ Override the defaults using SASS variables.
 - `options`: `$csstyle-option-symbol`
 - `parts`: `$csstyle-part-symbol`
 - `tweaks`: `$csstyle-tweak-symbol`
-- `locations`: `$csstyle-location-symbol`
 - `rootId`: `$csstyle-root-id`
 
 Example:
@@ -66,7 +65,6 @@ Override the defaults by calling the cssytle function with an options object.
 - `options`: `optionSymbol`
 - `parts`: `partSymbol`
 - `tweaks`: `tweakSymbol`
-- `locations`: `locationSymbol`
 - `rootId`: `rootId`
 
 Example:

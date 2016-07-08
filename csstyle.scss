@@ -6,6 +6,7 @@
 // https://github.com/geddski
 // Example & test: http://sassmeister.com/gist/a2de6b407b2a97addb0b
 
+$csstyle-component-symbol: '' !default;
 $csstyle-option-symbol: '--' !default;
 $csstyle-part-symbol: '__' !default;
 $csstyle-tweak-symbol: '+' !default;
@@ -47,13 +48,13 @@ $csstyle-root-id: 'csstyle' !default;
             $selector: $selector + ', ';
         }
     }
-    
+
     @return $selector;
 }
 
 // components
 @mixin component($names...){
-    #{_build_selector(".", $names)}{
+    #{_build_selector("." + escape_symbols($csstyle-component-symbol), $names)}{
         @content;
     }
 }
@@ -71,12 +72,12 @@ $csstyle-root-id: 'csstyle' !default;
 // override components
 @mixin part($names...){
     // check if nested in an option
-    $optionIndex: str-index("#{&}", "." + $csstyle-option-symbol);
+    $optionIndex: str-index("#{&}", "." + escape_symbols($csstyle-option-symbol));
     $optionIndex: 0 !default;
     $optionIndex: $optionIndex - 1;
     
     // check if nested in another part
-    $partIndex: str-index("#{&}", $csstyle-part-symbol);
+    $partIndex: str-index("#{&}", escape_symbols($csstyle-part-symbol));
     $partIndex: 0 !default;
     $partIndex: $partIndex - 1;
     
@@ -97,15 +98,27 @@ $csstyle-root-id: 'csstyle' !default;
 // tweaks
 // override components, options, and modifiers
 @mixin tweak($names...){
-    #{_build_selector("#" + $csstyle-root-id + " ." + escape_symbols($csstyle-tweak-symbol), $names)}{
-        @content;
+    @at-root {
+        $parent: '';
+        
+        @if(& != null) {
+            $parent: " " + &;
+        }
+        
+        #{_build_selector("#" + $csstyle-root-id + $parent + " ." + escape_symbols($csstyle-tweak-symbol), $names)}{
+            @content;
+        }
     }
 }
 
 // locations
 // override components, parts, options, and tweaks
 @mixin location($names...){
-    #{_build_selector("#" + $csstyle-root-id + " ." + escape_symbols($csstyle-location-symbol), $names)}{
-        @content;
+    @warn "locations will be deprecated soon. Please use components instead.";
+    
+    @at-root {
+        #{_build_selector("#" + $csstyle-root-id + " ." + escape_symbols($csstyle-location-symbol), $names)}{
+            @content;
+        }
     }
 }

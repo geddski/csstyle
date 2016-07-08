@@ -126,3 +126,70 @@ describe("location", function(){
     })
   });
 });
+
+describe("parent references", function() {
+
+  it("allows the parent to be referenced in a component", function(){
+    [
+      getSelector('spec/scss/fixtures/parent-reference.css'),
+      getSelector('spec/postcss/fixtures/parent-reference.css')
+    ]
+    .forEach(function(selector) {
+      expect(selector.value).toBe(".card:hover");
+    })
+  });
+
+  it("allows the parent to be referenced in a part in a component that targets a part", function(){
+    [
+      getSelector('spec/scss/fixtures/part-parent-reference.css'),
+      getSelector('spec/postcss/fixtures/part-parent-reference.css')
+    ]
+    .forEach(function(selector) {
+      expect(selector.value).toBe(".card:hover .card__picture");
+    })
+  });
+
+  it("can handle multiple pseudoclasses on a selector/parent reference", function() {
+    [
+      getSelector('spec/scss/fixtures/nested-multiple-pseudo.css'),
+      getSelector('spec/postcss/fixtures/nested-multiple-pseudo.css')
+    ]
+    .forEach(function(selector) {
+      expect(selector.value).toBe(".frame:hover, .frame:focus");
+    })
+  });
+
+  it("can handle multiple pseudoclasses on a component parent reference that targets a part", function() {
+    [
+      getSelector('spec/scss/fixtures/part-nested-multiple-pseudo.css'),
+      getSelector('spec/postcss/fixtures/part-nested-multiple-pseudo.css')
+    ]
+    .forEach(function(selector) {
+      expect(selector.value).toBe(".frame:hover .frame__img, .frame:focus .frame__img");
+    })
+  });
+
+});
+
+describe("regular css", function() {
+  it("leaves regular selectors untouched", function() {
+    [
+      getSelector('spec/scss/fixtures/untouched.css'),
+      getSelector('spec/postcss/fixtures/untouched.css')
+    ]
+    .forEach(function(selector) {
+      expect(selector.value).toBe(".test");
+    })
+  });
+})
+
+describe("custom symbols", function(){
+  it("allows projects to customize their styling conventions", function(){
+    [
+      getSelector('spec/scss/fixtures/custom-symbols.css')
+    ]
+    .forEach(function(selector){
+      expect(selector.value).toBe(".\\$tweet");
+    })
+  });
+});

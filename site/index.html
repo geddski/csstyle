@@ -206,59 +206,6 @@
   </div>
 </section>
 
-
-
-
-
-<!-- locations -->
-<section class="section --darkgrey">
-  <div class="+content-center">
-    <h1 class="section__title">Locations</h1>
-    <p>Projects occasionally need to override styles in specific <span class="+highlight">locations</span> 
-    e.g. just on the home page or just in the chat feature.
-    Locations are applied using an @ sign followed by the location name.
-    Locations automatically override the styling of components, options, parts and tweaks
-    so you never have to add extra nesting or use the dreaded !important flag just to apply a style exception.</p>
-<example id="locations-example">
-
-<span class="section__label">HTML</span>
-<pre class="html" highlight="0,13,0,18">
-<span class="@home">
-  <a class="button --action +rounded +glass">
-    Register Now
-    <span class="button__icon --rocket"></span>
-  </a>
-</span></pre>
-
-<span class="section__label">SCSS</span>
-<pre class="scss" highlight="0,9,0,23">@include location(home) {
-  @include component(button){
-    color: #6BD9ED;
-    background: #1F1F1F;
-  }
-}</pre>
-
-<span class="section__label">RESULT</span>
-<div class="section__result">
-  <style>
-    .\@home #locations-example .button {
-      color: #6BD9ED;
-      background: #1F1F1F;
-    }
-  </style>
-  <a class="button --action +rounded +glass">
-    Register Now
-    <span class="button__icon --rocket"></span>
-  </a>
-</div>
-
-</example>
-  <p>Generally it is better to create new reusable component options, 
-  but in certain cases location-specific overrides make sense.</p>
-  </div>
-</section>
-
-
 <section class="@tryit section --pitch">
   <div class="+content-center">
     <h1 class="section__title">Try It!</h1>
