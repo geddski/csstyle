@@ -1,12 +1,13 @@
 {
   "name": "csstyle",
-  "version": "1.5.0",
-  "homepage": "http://www.csstyle.io",
-  "authors": [
-    "Dave Geddes <davidcgeddes@gmail.com>"
-  ],
+  "version": "2.0.0",
   "description": "clean, simple styling for styling the web.",
-  "main": "csstyle.scss",
+  "main": "src/csstyle.scss",
+  "authors": [
+    "Dave Geddes <davidcgeddes@gmail.com>",
+    "Sven Wittevrongel <sven@cupoftea.io>"
+  ],
+  "license": "MIT",
   "keywords": [
     "css",
     "sass",
@@ -18,9 +19,11 @@
     "method",
     "approach"
   ],
-  "license": "MIT",
+  "homepage": "http://www.csstyle.io",
   "ignore": [
+    "**/.*",
     "node_modules",
+    "bower_components",
     "spec",
     "site"
   ]

@@ -1,4 +1,5 @@
-@import '../../../csstyle';
+@import 'csstyle';
+
 $csstyle-component-symbol: '\\$';
 
 @include component(tweet){

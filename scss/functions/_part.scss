@@ -1,0 +1,47 @@
+@function _csstyle_start_part($parts) {
+  $current: nth($_csstyle_rules, length($_csstyle_rules));
+  
+  @if length(map-get($current, 'options')) > 0 {
+    $new: (
+      'component': map-get($current, 'component'),
+      'parts': map-get($current, 'parts'),
+      'options': (),
+    );
+    
+    $current: $new;
+    $_csstyle_rules: append($_csstyle_rules, $new) !global;
+  }
+  
+  $current_parts: map-get($current, 'parts');
+  
+  $parts: append($current_parts, $parts);
+  $current: map-merge($current, ('parts': $parts));
+  
+  $_csstyle_rules: set-nth($_csstyle_rules, length($_csstyle_rules), $current) !global;
+  
+  @return $_csstyle_rules;
+}
+
+@function _csstyle_stop_part() {
+  $current: nth($_csstyle_rules, length($_csstyle_rules));
+  
+  $parts: map-get($current, 'parts');
+  $options: map-get($current, 'options');
+  
+  $parts: remove-nth($parts, length($parts));
+  $current: map-merge($current, ('parts': $parts));
+  
+  @if length($_csstyle_rules) > 1 {
+    $prev: nth($_csstyle_rules, length($_csstyle_rules) - 1);
+    
+    @if (map-get($prev, 'component') == map-get($current, 'component')) and (map-get($prev, 'parts') == map-get($current, 'parts')) {
+      $_csstyle_rules: remove-nth($_csstyle_rules, length($_csstyle_rules)) !global;
+      
+      @return $_csstyle_rules;
+    }
+  }
+  
+  $_csstyle_rules: set-nth($_csstyle_rules, length($_csstyle_rules), $current) !global;
+  
+  @return $_csstyle_rules;
+}

@@ -1,0 +1,15 @@
+@function _csstyle_start_component($components) {
+  $_csstyle_rules: append($_csstyle_rules, (
+    'component': $components,
+    'parts': (),
+    'options': (),
+  )) !global;
+  
+  @return $_csstyle_rules;
+}
+
+@function _csstyle_stop_component() {
+  $_csstyle_rules: remove-nth($_csstyle_rules, length($_csstyle_rules)) !global;
+  
+  @return $_csstyle_rules;
+}

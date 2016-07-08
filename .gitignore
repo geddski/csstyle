@@ -1,8 +1,4 @@
-*.css
-*.css.map
-!site.css
 .sass-cache
 node_modules
 npm-debug.log
-.divshot-cache
-site/divshot.json
+tests/fixtures

@@ -1,0 +1,134 @@
+// build selectors
+@function _build_selector($prefix, $names){
+  $selector: '';
+  
+  @each $name in $names {
+    $selector: $selector + $prefix + $name;
+    
+    @if $name != last($names) {
+      $selector: $selector + ', ';
+    }
+  }
+  
+  @return $selector;
+}
+
+@function _csstyle_compile_options($option_rules) {
+  $options: ();
+  
+  @each $alternatives in $option_rules {
+    @if length($options) > 0 {
+      $new_options: ();
+      
+      @each $option in $options {
+        @each $alt in $alternatives {
+          $new_options: append($new_options, $option + '.' + $_csstyle_option_symbol + $alt)
+        }
+      }
+      
+      $options: $new_options;
+    } @else {
+      @each $alt in $alternatives {
+        $options: append($options, '.' + $_csstyle_option_symbol + $alt)
+      }
+    }
+  }
+  
+  @return $options;
+}
+
+@function _csstyle_compile_parts($part_rules) {
+  $parts: ();
+  
+  @each $alternatives in $part_rules {
+    @if length($parts) > 0 {
+      $new_parts: ();
+      
+      @each $part in $parts {
+        @each $alt in $alternatives {
+          $new_parts: append($new_parts, $part + $_csstyle_part_symbol + $alt);
+        }
+      }
+      
+      $parts: $new_parts;
+    } @else {
+      @each $alt in $alternatives {
+        $parts: append($parts, $_csstyle_part_symbol + $alt)
+      }
+    }
+  }
+  
+  @return $parts;
+}
+
+@function _csstyle_compile_component($component, $parts, $options) {
+  $selector: '';
+  $component: '.' + $component;
+  $parts: _csstyle_compile_parts($parts);
+  $options: _csstyle_compile_options($options);
+  
+  @each $part in $parts {
+    @each $option in $options {
+      $selector: $selector + $component + $part + $option;
+      
+      @if $option != last($options) {
+        $selector: $selector + ', ';
+      }
+    }
+    
+    @if length($options) == 0 {
+      $selector: $selector + $component + $part;
+    }
+    
+    @if $part != last($parts) {
+      $selector: $selector + ', ';
+    }
+  }
+  
+  @if length($parts) == 0 {
+    @each $option in $options {
+      $selector: $selector + $component + $option;
+      
+      @if $option != last($options) {
+        $selector: $selector + ', ';
+      }
+    }
+    
+    @if length($options) == 0 {
+      @return $component;
+    }
+  }
+  
+  @return $selector;
+}
+
+@function _csstyle_compile_rule($csstyle_rule) {
+  $selector: '';
+  $components: map-get($csstyle_rule, 'component');
+  $parts: map-get($csstyle_rule, 'parts');
+  $options: map-get($csstyle_rule, 'options');
+  
+  @each $component in $components {
+    $selector: $selector + _csstyle_compile_component($component, $parts, $options);
+    
+    @if $component != last($components) {
+      $selector: $selector + ', ';
+    }
+  }
+  
+  @return $selector;
+}
+
+@function _csstyle_compile() {
+  $selector: '';
+  
+  @each $rule in $_csstyle_rules {
+    $selector: $selector + _csstyle_compile_rule($rule);
+    
+    @if $rule != last($_csstyle_rules) {
+      $selector: $selector + ' ';
+    }
+  }
+  
+  @return $selector;
+}

@@ -1,0 +1,102 @@
+// csstyle v2.0.0-dev for sass
+// Clean, Simple Styling for the Web
+// http://www.csstyle.io
+// Copyright (c) 2016 Dave Geddes & Sven Wittevrongel
+// https://twitter.com/geddski
+// https://github.com/geddski
+// https://twitter.com/CupOfTea696
+// https://github.com/CupOfTea696
+// Example & test: TODO
+
+/*!
+ * csstyle v2.0.0-dev for sass (http://www.csstyle.io)
+ * Copyright (c) 2014-2016 Dave Geddes & Sven Wittevrongel
+ * Licensed under MIT (https://github.com/geddski/csstyle/blob/master/LICENSE)
+ */
+
+@import "functions/helpers";
+@import "functions/csstyle";
+
+$csstyle-option-symbol: '--' !default;
+$csstyle-part-symbol: '/' !default;
+$csstyle-tweak-symbol: '+' !default;
+$csstyle-location-symbol: '@' !default;
+$csstyle-root-id: 'app' !default;
+
+$_csstyle_rules: ();
+$_csstyle_option_symbol: escape_symbols($csstyle-option-symbol);
+$_csstyle_part_symbol: escape_symbols($csstyle-part-symbol, true);
+$_csstyle_tweak_symbol: escape_symbols($csstyle-tweak-symbol);
+$_csstyle_location_symbol: escape_symbols($csstyle-location-symbol);
+
+// components
+@import "functions/component";
+
+@mixin component($names...){
+  $c: _csstyle_start_component($names);
+  
+  #{_csstyle_compile()} {
+    @content;
+  }
+  
+  $c: _csstyle_stop_component();
+}
+
+// options
+// override components and parts
+@import "functions/option";
+
+@mixin option($names...){
+  $o: _csstyle_start_option($names);
+  
+  @at-root {
+    #{_csstyle_compile()} {
+      @content;
+    }
+  }
+  
+  $o: _csstyle_stop_option();
+}
+
+// parts
+// make up the structure of a component
+// override components
+@import "functions/part";
+
+@mixin part($names...){
+  $p: _csstyle_start_part($names);
+  
+  @at-root {
+    #{_csstyle_compile()} {
+      @content;
+    }
+  }
+  
+  $p: _csstyle_stop_part();
+}
+
+// tweaks
+// override components, options, and parts
+@mixin tweak($names...){
+  @at-root {
+    $parent: '';
+    
+    @if(& != null) {
+      $parent: " " + &;
+    }
+    
+    #{_build_selector("#" + $csstyle-root-id + $parent + " ." + escape_symbols($csstyle-tweak-symbol), $names)}{
+      @content;
+    }
+  }
+}
+
+// locations
+// override components, parts, options, and tweaks
+@mixin location($names...){
+  @at-root {
+    #{_build_selector("#" + $csstyle-root-id + " ." + escape_symbols($csstyle-location-symbol), $names)}{
+      @content;
+    }
+  }
+}

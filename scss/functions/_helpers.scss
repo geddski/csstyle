@@ -1,0 +1,61 @@
+@function first($list) {
+  @return nth($list, 1);
+}
+
+@function last($list) {
+  @return nth($list, length($list));
+}
+
+// Remove items from lists by index
+// See http://hugogiraudel.com/2013/08/08/advanced-sass-list-functions/#removing-values-from-list
+@function remove-nth($list, $index) {
+  $result: null;
+  
+  @if type-of($index) != number {
+    @warn "$index: #{quote($index)} is not a number for `remove-nth`.";
+  }
+  
+  @else if $index == 0 {
+    @warn "List index 0 must be a non-zero integer for `remove-nth`.";
+  }
+  
+  @else if abs($index) > length($list) {
+    @warn "List index is #{$index} but list is only #{length($list)} item long for `remove-nth`.";
+  }
+  
+  @else {
+    $result: ();
+    $index: if($index < 0, length($list) + $index + 1, $index);  
+    
+    @for $i from 1 through length($list) {
+      @if $i != $index {
+        $result: append($result, nth($list, $i));
+      }
+    }
+  }
+  
+  @return $result;
+}
+
+// Escape characters
+// More info @ http://sassmeister.com/gist/6f21559db1fa50d48972
+@function escape_symbols($symbol, $is_partial: false) {
+  $allowed: '-','_','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9';
+  $not_allowed_as_first: '_','0','1','2','3','4','5','6','7','8','9';
+  $escaped: '';
+  
+  @for $i from 1 through str-length($symbol) {
+    @if (index($allowed, str-slice($symbol, $i, $i)) == null or ($is_partial == false and $i == 1 and index($not_allowed_as_first, str-slice($symbol, $i, $i)) != null)) {
+      $escaped: $escaped + ('\\' + str-slice($symbol, $i, $i));
+    } @else {
+      $escaped: $escaped + str-slice($symbol, $i, $i);
+    }
+  }
+  
+  // handle special -- case
+  @if ($is_partial == false and str-slice($symbol, 1, 2) == '--') {
+    $escaped: '\\' + $escaped;
+  }
+  
+  @return $escaped;
+}

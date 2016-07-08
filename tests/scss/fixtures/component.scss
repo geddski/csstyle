@@ -3,3 +3,7 @@
 @include component(c1) {
   top: 0;
 }
+
+@include component(c1, c2) {
+  top: 0;
+}
