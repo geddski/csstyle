@@ -33,11 +33,18 @@ $_csstyle_location_symbol: escape_symbols($csstyle-location-symbol);
 @import "functions/component";
 
 @mixin component($names...){
+  $parent: _csstyle_compile();
   $c: _csstyle_start_component($names);
   
-  @at-root {
-    #{_csstyle_compile()} {
+  @if (& != null) and (selector-parse($parent) != selector-parse(&)) {
+    #{_csstyle_compile_rule(last($_csstyle_rules))} {
       @content;
+    }
+  } @else {
+    @at-root {
+      #{_csstyle_compile()} {
+        @content;
+      }
     }
   }
   
@@ -49,6 +56,7 @@ $_csstyle_location_symbol: escape_symbols($csstyle-location-symbol);
 @import "functions/option";
 
 @mixin option($names...){
+  $parent: _csstyle_compile();
   $o: _csstyle_start_option($names);
   
   @at-root {
@@ -66,11 +74,18 @@ $_csstyle_location_symbol: escape_symbols($csstyle-location-symbol);
 @import "functions/part";
 
 @mixin part($names...){
+  $parent: _csstyle_compile();
   $p: _csstyle_start_part($names);
   
-  @at-root {
-    #{_csstyle_compile()} {
+  @if (& != null) and (selector-parse($parent) != selector-parse(&)) {
+    #{_csstyle_compile_rule(last($_csstyle_rules))} {
       @content;
+    }
+  } @else {
+    @at-root {
+      #{_csstyle_compile()} {
+        @content;
+      }
     }
   }
   
