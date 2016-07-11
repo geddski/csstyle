@@ -35,8 +35,10 @@ $_csstyle_location_symbol: escape_symbols($csstyle-location-symbol);
 @mixin component($names...){
   $c: _csstyle_start_component($names);
   
-  #{_csstyle_compile()} {
-    @content;
+  @at-root {
+    #{_csstyle_compile()} {
+      @content;
+    }
   }
   
   $c: _csstyle_stop_component();
