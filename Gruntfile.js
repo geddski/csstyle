@@ -124,7 +124,7 @@ module.exports = function(grunt) {
   grunt.registerTask('test', [
     'sass:test',
     'mochacli',
-    //'clean:fixtures',
+    'clean:fixtures',
     'notify:test'
   ]);
   
