@@ -114,7 +114,6 @@ module.exports = function(grunt) {
     }
   });
   
-  
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-mocha-cli');
   grunt.loadNpmTasks('grunt-notify');
@@ -132,5 +131,4 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'test'
   ]);
-  
 };

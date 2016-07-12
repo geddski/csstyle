@@ -1,0 +1,31 @@
+@import 'csstyle';
+
+@include component(c1) {
+  &:hover {
+    top: 0;
+  }
+}
+
+@include component(c1) {
+  &.class {
+    @include option(o1) {
+      top: 0;
+    }
+  }
+  
+  .class {
+    @include option(o1) {
+      top: 0;
+    }
+  }
+}
+
+@include component(c1) {
+  @include part(p1) {
+    &.class {
+      @include option(o1) {
+        top: 0;
+      }
+    }
+  }
+}

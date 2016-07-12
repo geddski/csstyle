@@ -1,5 +1,17 @@
 @function _csstyle_start_component($components) {
+  $location: null;
+  $tweak: null;
+  
+//  @if length($_csstyle_rules) > 0 {
+//    $current: nth($_csstyle_rules, length($_csstyle_rules));
+//    
+//    $location: map-get($current, 'location');
+//    $tweak: map-get($current, 'tweak');
+//  }
+  
   $_csstyle_rules: append($_csstyle_rules, (
+    'location': $location,
+    'tweak': $tweak,
     'component': $components,
     'parts': (),
     'options': (),

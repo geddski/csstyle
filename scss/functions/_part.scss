@@ -1,8 +1,14 @@
 @function _csstyle_start_part($parts) {
   $current: nth($_csstyle_rules, length($_csstyle_rules));
   
+  @if map-get($current, 'component') == null {
+    @warn 'Parts can only be nested inside tweaks';
+  }
+  
   @if length(map-get($current, 'options')) > 0 {
     $new: (
+      'location': null,
+      'tweak': null,
       'component': map-get($current, 'component'),
       'parts': map-get($current, 'parts'),
       'options': (),
@@ -24,6 +30,10 @@
 
 @function _csstyle_stop_part() {
   $current: nth($_csstyle_rules, length($_csstyle_rules));
+  
+  @if map-get($current, 'component') == null {
+    @return $_csstyle_rules;
+  }
   
   $parts: map-get($current, 'parts');
   $options: map-get($current, 'options');

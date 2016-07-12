@@ -1,0 +1,19 @@
+@import 'csstyle';
+
+@include location(l1) {
+  top: 0;
+}
+
+@include location(l1, l2) {
+  top: 0;
+}
+
+@include location(l1) {
+  @include component(c1, c2) {
+    @include part(p1) {
+      @include option(o1) {
+        top: 0;
+      }
+    }
+  }
+}

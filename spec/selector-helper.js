@@ -11,7 +11,7 @@ module.exports = {
     var contents = fs.readFileSync(path.resolve(file)).toString();
     var selector = contents.match(/.*\{/g)[number].split('{')[0].trim();
     var score = specificity.calculate(selector)[0].specificity;
-
+    
     return {
       value: selector,
       score: score

@@ -1,0 +1,27 @@
+@function _csstyle_start_location($locations) {
+  @if length($_csstyle_rules) > 0 {
+    $_csstyle_rules: join((
+      'location': $locations,
+      'tweak': null,
+      'component': null,
+      'parts': (),
+      'options': (),
+    ), $_csstyle_rules) !global;
+  } @else {
+    $_csstyle_rules: ((
+      'location': $locations,
+      'tweak': null,
+      'component': null,
+      'parts': (),
+      'options': (),
+    ),) !global;
+  }
+  
+  @return $_csstyle_rules;
+}
+
+@function _csstyle_stop_location() {
+  $_csstyle_rules: remove-nth($_csstyle_rules, 1) !global;
+  
+  @return $_csstyle_rules;
+}

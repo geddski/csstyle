@@ -1,0 +1,19 @@
+@import 'csstyle';
+
+@include tweak(t1) {
+  top: 0;
+}
+
+@include tweak(t1, t2) {
+  top: 0;
+}
+
+@include tweak(t1) {
+  @include component(c1, c2) {
+    @include part(p1) {
+      @include option(o1) {
+        top: 0;
+      }
+    }
+  }
+}

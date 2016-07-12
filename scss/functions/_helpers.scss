@@ -37,6 +37,26 @@
   @return $result;
 }
 
+// Convert list to string
+// See http://hugogiraudel.com/2013/08/08/advanced-sass-list-functions/#miscellaneous
+@function to-string($list, $glue: '', $is-nested: false) {
+  $result: null;
+  
+  @for $i from 1 through length($list) {
+    $e: nth($list, $i);
+    
+    @if type-of($e) == list {
+      $result: $result#{to-string($e, $glue, true)};
+    }
+    
+    @else {
+      $result: if($i != length($list) or $is-nested, $result#{$e}#{$glue}, $result#{$e});
+    }
+  }
+  
+  @return $result;
+}
+
 // Escape characters
 // More info @ http://sassmeister.com/gist/6f21559db1fa50d48972
 @function escape_symbols($symbol, $is_partial: false) {

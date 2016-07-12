@@ -1,0 +1,17 @@
+@function _csstyle_start_tweak($tweaks) {
+  $_csstyle_rules: append($_csstyle_rules, (
+    'location': null,
+    'tweak': $tweaks,
+    'component': null,
+    'parts': (),
+    'options': (),
+  )) !global;
+  
+  @return $_csstyle_rules;
+}
+
+@function _csstyle_stop_tweak() {
+  $_csstyle_rules: remove-nth($_csstyle_rules, length($_csstyle_rules)) !global;
+  
+  @return $_csstyle_rules;
+}

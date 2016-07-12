@@ -1,37 +1,37 @@
 @import 'csstyle';
 
 @include component(c1) {
-  @include option(o1) {
+  @include part(p1) {
     top: 0;
   }
 }
 
 @include component(c1) {
-  @include option(o1, o2) {
+  @include part(p1, p2) {
     top: 0;
   }
 }
 
 @include component(c1, c2) {
-  @include option(o1) {
+  @include part(p1) {
     top: 0;
   }
 }
 
 @include component(c1, c2) {
-  @include option(o1, o2) {
+  @include part(p1, p2) {
     top: 0;
   }
 }
 
 @include tweak(t1) {
-  @include option(o1) {
+  @include part(p1) {
     top: 0;
   }
 }
 
 @include location(l1) {
-  @include option(o1) {
+  @include part(p1) {
     top: 0;
   }
 }

@@ -1,0 +1,63 @@
+@import 'csstyle';
+
+@include component(c1) {
+  @include part(p1) {
+    @include part(ps1) {
+      top: 0;
+    }
+  }
+}
+
+@include component(c1) {
+  @include part(p1) {
+    @include part(ps1) {
+      @include option(o1) {
+        top: 0;
+      }
+    }
+  }
+}
+
+@include component(c1) {
+  @include option(o1) {
+    @include part(p1) {
+      top: 0;
+    }
+  }
+}
+
+@include component(c1) {
+  @include part(p1) {
+    @include option(o1) {
+      @include part(ps1) {
+        top: 0;
+      }
+    }
+  }
+}
+
+@include component(c1) {
+  @include component(c2, c3) {
+    top: 0;
+  }
+}
+
+@include component(c1) {
+  @include part(p1) {
+    @include component(c2) {
+      top: 0;
+    }
+  }
+}
+
+@include component(c1) {
+  @include tweak(t1) {
+    top: 0;
+  }
+}
+
+@include component(c1) {
+  @include location(l1) {
+    top: 0;
+  }
+}
