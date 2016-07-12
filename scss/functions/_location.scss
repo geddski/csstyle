@@ -1,3 +1,7 @@
+@function location($name) {
+  @return '.' + escape-symbols($csstyle-location-symbol + $name);
+}
+
 @function _csstyle_start_location($locations) {
   @if length($_csstyle_rules) > 0 {
     $_csstyle_rules: join((

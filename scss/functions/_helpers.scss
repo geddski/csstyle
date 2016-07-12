@@ -59,21 +59,25 @@
 
 // Escape characters
 // More info @ http://sassmeister.com/gist/6f21559db1fa50d48972
-@function escape_symbols($symbol, $is_partial: false) {
+@function escape_symbols($str, $is_partial: false) {
+  @if str-length($str) == 0 {
+    @return $str;
+  }
+  
   $allowed: '-','_','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9';
   $not_allowed_as_first: '_','0','1','2','3','4','5','6','7','8','9';
   $escaped: '';
   
-  @for $i from 1 through str-length($symbol) {
-    @if (index($allowed, str-slice($symbol, $i, $i)) == null or ($is_partial == false and $i == 1 and index($not_allowed_as_first, str-slice($symbol, $i, $i)) != null)) {
-      $escaped: $escaped + ('\\' + str-slice($symbol, $i, $i));
+  @for $i from 1 through str-length($str) {
+    @if (index($allowed, str-slice($str, $i, $i)) == null or ($is_partial == false and $i == 1 and index($not_allowed_as_first, str-slice($str, $i, $i)) != null)) {
+      $escaped: $escaped + ('\\' + str-slice($str, $i, $i));
     } @else {
-      $escaped: $escaped + str-slice($symbol, $i, $i);
+      $escaped: $escaped + str-slice($str, $i, $i);
     }
   }
   
   // handle special -- case
-  @if ($is_partial == false and str-slice($symbol, 1, 2) == '--') {
+  @if ($is_partial == false and str-slice($str, 1, 2) == '--') {
     $escaped: '\\' + $escaped;
   }
   

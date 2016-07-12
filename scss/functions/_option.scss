@@ -1,3 +1,7 @@
+@function option($name) {
+  @return '.' + escape-symbols($csstyle-option-symbol + $name);
+}
+
 @function _csstyle_start_option($options) {
   $current: nth($_csstyle_rules, length($_csstyle_rules));
   $current_options: map-get($current, 'options');

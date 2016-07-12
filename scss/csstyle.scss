@@ -17,6 +17,7 @@
 @import "functions/helpers";
 @import "functions/csstyle";
 
+$csstyle-component-symbol: '' !default;
 $csstyle-option-symbol: '--' !default;
 $csstyle-part-symbol: '/' !default;
 $csstyle-tweak-symbol: '+' !default;
@@ -24,10 +25,6 @@ $csstyle-location-symbol: '@' !default;
 $csstyle-root-id: 'app' !default;
 
 $_csstyle_rules: ();
-$_csstyle_option_symbol: escape_symbols($csstyle-option-symbol);
-$_csstyle_part_symbol: escape_symbols($csstyle-part-symbol, true);
-$_csstyle_tweak_symbol: escape_symbols($csstyle-tweak-symbol);
-$_csstyle_location_symbol: escape_symbols($csstyle-location-symbol);
 
 // components
 @import "functions/component";

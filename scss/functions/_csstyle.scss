@@ -1,18 +1,21 @@
 $_csstyle_has_root_id: false;
 
-// build selectors
-@function _build_selector($prefix, $names){
-  $selector: '';
+@function reset_csstyle() {
+  $csstyle-component-symbol: '' !global;
+  $csstyle-option-symbol: '--' !global;
+  $csstyle-part-symbol: '/' !global;
+  $csstyle-tweak-symbol: '+' !global;
+  $csstyle-location-symbol: '@' !global;
+  $csstyle-root-id: 'app' !global;
   
-  @each $name in $names {
-    $selector: $selector + $prefix + $name;
-    
-    @if $name != last($names) {
-      $selector: $selector + ', ';
-    }
-  }
-  
-  @return $selector;
+  @return (
+    id: $csstyle-root-id,
+    component: $csstyle-component-symbol,
+    option: $csstyle-option-symbol,
+    part: $csstyle-part-symbol,
+    tweak: $csstyle-tweak-symbol,
+    location: $csstyle-location-symbol,
+  );
 }
 
 @function _csstyle_compile_options($option_rules) {
@@ -24,14 +27,14 @@ $_csstyle_has_root_id: false;
       
       @each $option in $options {
         @each $alt in $alternatives {
-          $new_options: append($new_options, $option + '.' + $_csstyle_option_symbol + $alt)
+          $new_options: append($new_options, $option + option($alt))
         }
       }
       
       $options: $new_options;
     } @else {
       @each $alt in $alternatives {
-        $options: append($options, '.' + $_csstyle_option_symbol + $alt)
+        $options: append($options, option($alt))
       }
     }
   }
@@ -90,14 +93,14 @@ $_csstyle_has_root_id: false;
       
       @each $part in $parts {
         @each $alt in $alternatives {
-          $new_parts: append($new_parts, $part + $_csstyle_part_symbol + $alt);
+          $new_parts: append($new_parts, $part + part($alt));
         }
       }
       
       $parts: $new_parts;
     } @else {
       @each $alt in $alternatives {
-        $parts: append($parts, $_csstyle_part_symbol + $alt)
+        $parts: append($parts, part($alt))
       }
     }
   }
@@ -107,7 +110,7 @@ $_csstyle_has_root_id: false;
 
 @function _csstyle_compile_component($component, $parts, $options) {
   $selector: '';
-  $component: '.' + $component;
+  $component: component($component);
   $parts: _csstyle_compile_parts($parts);
   $options: _csstyle_compile_options($options);
   
@@ -149,7 +152,7 @@ $_csstyle_has_root_id: false;
 @function _csstyle_compile_tweak($tweak, $options) {
   $_csstyle_has_root_id: true !global;
   $selector: '';
-  $tweak: '.' + $_csstyle_tweak_symbol + $tweak;
+  $tweak: tweak($tweak);
   $options: _csstyle_compile_options($options);
   
   @if length($options) == 0 {
@@ -170,7 +173,7 @@ $_csstyle_has_root_id: false;
 @function _csstyle_compile_location($location, $options) {
   $_csstyle_has_root_id: true !global;
   $selector: '';
-  $location: '.' + $_csstyle_location_symbol + $location;
+  $location: location($location);
   $options: _csstyle_compile_options($options);
   
   @if length($options) == 0 {

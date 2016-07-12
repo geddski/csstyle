@@ -1,3 +1,7 @@
+@function part($name) {
+  @return escape-symbols($csstyle-part-symbol + $name, true);
+}
+
 @function _csstyle_start_part($parts) {
   $current: nth($_csstyle_rules, length($_csstyle_rules));
   

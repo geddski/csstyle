@@ -1,0 +1,47 @@
+$csstyle-component-symbol: '=';
+$csstyle-option-symbol: '~';
+$csstyle-part-symbol: '][';
+$csstyle-tweak-symbol: '!';
+$csstyle-location-symbol: '*';
+
+@import 'csstyle';
+
+@include component(c1) {
+  top: 0;
+  
+  @include part(p1) {
+    top: 0;
+  }
+  
+  @include option(o1) {
+    top: 0;
+  }
+}
+
+@include tweak(t1) {
+  top: 0;
+}
+
+@include location(l1) {
+  top: 0;
+}
+
+$csstyle-root-id: 'website';
+
+@include tweak(t1) {
+  top: 0;
+}
+
+$reset: reset-csstyle();
+
+@include component(c1) {
+  top: 0;
+}
+
+$csstyle-part-symbol: '.';
+
+@include component(c1) {
+  @include part(p1) {
+    top: 0;
+  }
+}

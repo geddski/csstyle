@@ -227,73 +227,53 @@ describe('Nesting non-csstyle selectors', function() {
   });
 });
 
-/*
-
-
-describe("parent references", function() {
-
-  it("allows the parent to be referenced in a component", function(){
-    [
-      getSelector('spec/scss/fixtures/parent-reference.css'),
-      getSelector('spec/postcss/fixtures/parent-reference.css')
-    ]
-    .forEach(function(selector) {
-      expect(selector.value).toBe(".card:hover");
-    })
+describe('Customize Symbols', function() {
+  var selectors = Selector.getAll('tests/fixtures/customize.css');
+  
+  it('allows a custom component symbol', function() {
+    expect(selectors[0].value).to.be.ok();
+    expect(selectors[0].value).to.be('.\\=c1');
+    expect(selectors[0].score).to.be('0,0,1,0');
   });
-
-  it("allows the parent to be referenced in a part in a component that targets a part", function(){
-    [
-      getSelector('spec/scss/fixtures/part-parent-reference.css'),
-      getSelector('spec/postcss/fixtures/part-parent-reference.css')
-    ]
-    .forEach(function(selector) {
-      expect(selector.value).toBe(".card:hover .card__picture");
-    })
+  
+  it('allows a custom part symbol', function() {
+    expect(selectors[1].value).to.be.ok();
+    expect(selectors[1].value).to.be('.\\=c1\\]\\[p1');
+    expect(selectors[1].score).to.be('0,0,1,0');
   });
-
-  it("can handle multiple pseudoclasses on a selector/parent reference", function() {
-    [
-      getSelector('spec/scss/fixtures/nested-multiple-pseudo.css'),
-      getSelector('spec/postcss/fixtures/nested-multiple-pseudo.css')
-    ]
-    .forEach(function(selector) {
-      expect(selector.value).toBe(".frame:hover, .frame:focus");
-    })
+  
+  it('allows a custom option symbol', function() {
+    expect(selectors[2].value).to.be.ok();
+    expect(selectors[2].value).to.be('.\\=c1.\\~o1');
+    expect(selectors[2].score).to.be('0,0,2,0');
   });
-
-  it("can handle multiple pseudoclasses on a component parent reference that targets a part", function() {
-    [
-      getSelector('spec/scss/fixtures/part-nested-multiple-pseudo.css'),
-      getSelector('spec/postcss/fixtures/part-nested-multiple-pseudo.css')
-    ]
-    .forEach(function(selector) {
-      expect(selector.value).toBe(".frame:hover .frame__img, .frame:focus .frame__img");
-    })
+  
+  it('allows a custom tweak symbol', function() {
+    expect(selectors[3].value).to.be.ok();
+    expect(selectors[3].value).to.be('#app .\\!t1');
+    expect(selectors[3].score).to.be('0,1,1,0');
   });
-
-});
-
-describe("regular css", function() {
-  it("leaves regular selectors untouched", function() {
-    [
-      getSelector('spec/scss/fixtures/untouched.css'),
-      getSelector('spec/postcss/fixtures/untouched.css')
-    ]
-    .forEach(function(selector) {
-      expect(selector.value).toBe(".test");
-    })
+  
+  it('allows a custom location symbol', function() {
+    expect(selectors[4].value).to.be.ok();
+    expect(selectors[4].value).to.be('#app .\\*l1');
+    expect(selectors[4].score).to.be('0,1,1,0');
   });
-})
-
-describe("custom symbols", function(){
-  it("allows projects to customize their styling conventions", function(){
-    [
-      getSelector('spec/scss/fixtures/custom-symbols.css')
-    ]
-    .forEach(function(selector){
-      expect(selector.value).toBe(".\\$tweet");
-    })
+  
+  it('allows a custom root id', function() {
+    expect(selectors[5].value).to.be.ok();
+    expect(selectors[5].value).to.contain('#website');
+  });
+  
+  it('allows resetting to default synmbols', function() {
+    expect(selectors[6].value).to.be.ok();
+    expect(selectors[6].value).to.be('.c1');
+    expect(selectors[6].score).to.be('0,0,1,0');
+  });
+  
+  it('allows customizing symbols during runtime', function() {
+    expect(selectors[7].value).to.be.ok();
+    expect(selectors[7].value).to.be('.c1\\.p1');
+    expect(selectors[7].score).to.be('0,0,1,0');
   });
 });
-*/
