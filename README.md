@@ -1,5 +1,9 @@
+<!-- header start -->
+[![Build Status](https://travis-ci.org/CupOfTea696/csstyle.svg?branch=2.0)](https://travis-ci.org/CupOfTea696/csstyle)
+
 # [csstyle](http://csstyle.io)
 [![csstyle](https://github.com/geddski/csstyle/blob/master/site/common/images/csstyle.png)](http://csstyle.io)
+<!-- header end -->
 
 Clean, simple, for styling the web.
 
