@@ -26,6 +26,16 @@ $csstyle-root-id: 'app' !default;
 
 $_csstyle_rules: ();
 
+// Reset
+@mixin reset-csstyle() {
+  $csstyle-component-symbol: '' !global;
+  $csstyle-option-symbol: '--' !global;
+  $csstyle-part-symbol: '/' !global;
+  $csstyle-tweak-symbol: '+' !global;
+  $csstyle-location-symbol: '@' !global;
+  $csstyle-root-id: 'app' !global;
+}
+
 // components
 @import "functions/component";
 

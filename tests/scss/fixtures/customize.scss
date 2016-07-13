@@ -32,7 +32,7 @@ $csstyle-root-id: 'website';
   top: 0;
 }
 
-$reset: reset-csstyle();
+@include reset-csstyle;
 
 @include component(c1) {
   top: 0;

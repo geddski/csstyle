@@ -1,23 +1,5 @@
 $_csstyle_has_root_id: false;
 
-@function reset_csstyle() {
-  $csstyle-component-symbol: '' !global;
-  $csstyle-option-symbol: '--' !global;
-  $csstyle-part-symbol: '/' !global;
-  $csstyle-tweak-symbol: '+' !global;
-  $csstyle-location-symbol: '@' !global;
-  $csstyle-root-id: 'app' !global;
-  
-  @return (
-    id: $csstyle-root-id,
-    component: $csstyle-component-symbol,
-    option: $csstyle-option-symbol,
-    part: $csstyle-part-symbol,
-    tweak: $csstyle-tweak-symbol,
-    location: $csstyle-location-symbol,
-  );
-}
-
 @function _csstyle_compile_options($option_rules) {
   $options: ();
   
