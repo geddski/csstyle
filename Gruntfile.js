@@ -75,7 +75,7 @@ module.exports = function(grunt) {
           'scss'
         ]
       },
-      test: {
+      unit: {
         options: {
           outputStyle: 'expanded'
         },
@@ -91,10 +91,15 @@ module.exports = function(grunt) {
       }
     },
     mochacli: {
-      all: ['tests/*.test.js']
+      unit: ['tests/*.test.js']
     },
     clean: {
       fixtures: ['tests/fixtures']
+    },
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
     },
     notify_hooks: {
       options: {
@@ -117,13 +122,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-mocha-cli');
   grunt.loadNpmTasks('grunt-notify');
+  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-sass');
   
   grunt.task.run('notify_hooks');
   
   grunt.registerTask('test', [
-    'sass:test',
+    'sass:unit',
     'mochacli',
+    'karma',
     'clean:fixtures',
     'notify:test'
   ]);

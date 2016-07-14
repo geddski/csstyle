@@ -1,0 +1,72 @@
+@import 'csstyle';
+
+// Test 1
+@include component(tst1-c) {
+  width: 1px;
+  
+  @include option(tst1-o) {
+    width: 2px;
+  }
+}
+
+@include location(tst1-l) {
+  @include component(tst1-c) {
+    width: 3px;
+  }
+}
+
+
+// Test 2
+@include component(tst2-c) {
+  width: 1px;
+  
+  @include option(tst2-o) {
+    width: 2px;
+  }
+}
+
+@include location(tst2-l) {
+  @include component(tst2-c) {
+    width: 3px;
+    
+    @include option(tst2-o) {
+      width: 4px;
+    }
+  }
+}
+
+
+// Test 3
+@include component(tst3-c1) {
+  width: 1px;
+  
+  @include option(tst3-o) {
+    width: 2px;
+  }
+}
+
+@include component(tst3-c2) {
+  @include component(tst3-c1) {
+    width: 3px;
+  }
+}
+
+
+// Test 4
+@include component(tst4-c1) {
+  width: 1px;
+  
+  @include option(tst4-o) {
+    width: 2px;
+  }
+}
+
+@include component(tst4-c2) {
+  @include component(tst4-c1) {
+    width: 3px;
+    
+    @include option(tst4-o) {
+      width: 4px;
+    }
+  }
+}

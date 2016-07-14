@@ -1,4 +1,5 @@
 $_csstyle_has_root_id: false;
+$_csstyle_has_html: false;
 
 @function _csstyle_compile_options($option_rules) {
   $options: ();
@@ -19,6 +20,10 @@ $_csstyle_has_root_id: false;
         $options: append($options, option($alt))
       }
     }
+  }
+  
+  @if length($options) > 0 {
+    $_csstyle_has_html_tag: true !global;
   }
   
   @return $options;
@@ -153,7 +158,6 @@ $_csstyle_has_root_id: false;
 }
 
 @function _csstyle_compile_location($location, $options) {
-  $_csstyle_has_root_id: true !global;
   $selector: '';
   $location: location($location);
   $options: _csstyle_compile_options($options);
@@ -219,6 +223,7 @@ $_csstyle_has_root_id: false;
 @function _csstyle_compile() {
   $selector: '';
   $_csstyle_has_root_id: false !global;
+  $_csstyle_has_html_tag: false !global;
   
   @each $rule in $_csstyle_rules {
     @if $selector != '' {
@@ -230,6 +235,10 @@ $_csstyle_has_root_id: false;
   
   @if $_csstyle_has_root_id {
     @return selector-nest('#' + $csstyle-root-id, $selector);
+  }
+  
+  @if $_csstyle_has_html_tag {
+    @return selector-nest(html, $selector);
   }
   
   @return $selector;

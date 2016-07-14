@@ -3,23 +3,13 @@
 }
 
 @function _csstyle_start_location($locations) {
-  @if length($_csstyle_rules) > 0 {
-    $_csstyle_rules: join((
-      'location': $locations,
-      'tweak': null,
-      'component': null,
-      'parts': (),
-      'options': (),
-    ), $_csstyle_rules) !global;
-  } @else {
-    $_csstyle_rules: ((
-      'location': $locations,
-      'tweak': null,
-      'component': null,
-      'parts': (),
-      'options': (),
-    ),) !global;
-  }
+  $_csstyle_rules: join((
+    'location': $locations,
+    'tweak': null,
+    'component': null,
+    'parts': (),
+    'options': (),
+  ), $_csstyle_rules) !global;
   
   @return $_csstyle_rules;
 }
