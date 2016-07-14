@@ -9,7 +9,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'requirejs', 'expect', 'tinycolor', 'quixote'],
+    frameworks: ['mocha', 'requirejs', 'expect', 'quixote'],
 
     // list of files / patterns to load in the browser
     files: [
