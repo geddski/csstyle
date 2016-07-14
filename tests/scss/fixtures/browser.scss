@@ -1,72 +1,141 @@
 @import 'csstyle';
+$i: 1;
 
-// Test 1
-@include component(tst1-c) {
+/**
+ * Test #{$i}
+ */
+@include component(tst#{$i}-c) {
   width: 1px;
-  
-  @include option(tst1-o) {
+}
+
+@include location(tst#{$i}-l) {
+  @include component(tst#{$i}-c) {
     width: 2px;
   }
 }
 
-@include location(tst1-l) {
-  @include component(tst1-c) {
+$i: $i + 1;
+
+
+/**
+ * Test #{$i}
+ */
+@include component(tst#{$i}-c) {
+  @include part(tst#{$i}-p) {
+    width: 1px;
+  }
+}
+
+@include location(tst#{$i}-l) {
+  @include component(tst#{$i}-c) {
+    @include part(tst#{$i}-p) {
+      width: 2px;
+    }
+  }
+}
+
+$i: $i + 1;
+
+
+/**
+ * Test #{$i}
+ */
+@include component(tst#{$i}-c) {
+  width: 1px;
+  
+  @include option(tst#{$i}-o) {
+    width: 2px;
+  }
+}
+
+@include location(tst#{$i}-l) {
+  @include component(tst#{$i}-c) {
     width: 3px;
   }
 }
 
+$i: $i + 1;
 
-// Test 2
-@include component(tst2-c) {
+
+/**
+ * Test #{$i}
+ */
+@include component(tst#{$i}-c) {
   width: 1px;
   
-  @include option(tst2-o) {
+  @include option(tst#{$i}-o) {
     width: 2px;
   }
 }
 
-@include location(tst2-l) {
-  @include component(tst2-c) {
+@include location(tst#{$i}-l) {
+  @include component(tst#{$i}-c) {
     width: 3px;
     
-    @include option(tst2-o) {
+    @include option(tst#{$i}-o) {
       width: 4px;
     }
   }
 }
 
+$i: $i + 1;
 
-// Test 3
-@include component(tst3-c1) {
+
+/**
+ * Test #{$i}
+ */
+@include tweak(tst#{$i}-t) {
   width: 1px;
-  
-  @include option(tst3-o) {
+}
+
+@include location(tst#{$i}-l) {
+  @include tweak(tst#{$i}-t) {
     width: 2px;
   }
 }
 
-@include component(tst3-c2) {
-  @include component(tst3-c1) {
+$i: $i + 1;
+
+
+/**
+ * Test #{$i}
+ */
+@include component(tst#{$i}-c1) {
+  width: 1px;
+  
+  @include option(tst#{$i}-o) {
+    width: 2px;
+  }
+}
+
+@include component(tst#{$i}-c2) {
+  @include component(tst#{$i}-c1) {
     width: 3px;
   }
 }
 
+$i: $i + 1;
 
-// Test 4
-@include component(tst4-c1) {
+
+/**
+ * Test #{$i}
+ */
+@include component(tst#{$i}-c1) {
   width: 1px;
   
-  @include option(tst4-o) {
+  @include option(tst#{$i}-o) {
     width: 2px;
   }
 }
 
-@include component(tst4-c2) {
-  @include component(tst4-c1) {
+@include component(tst#{$i}-c2) {
+  @include component(tst#{$i}-c1) {
     width: 3px;
     
-    @include option(tst4-o) {
+    @include option(tst#{$i}-o) {
       width: 4px;
     }
   }
 }
+
+$i: $i + 1;
