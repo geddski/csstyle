@@ -33,7 +33,7 @@
   "bugs": {
     "url": "https://github.com/geddski/csstyle/issues"
   },
-  "homepage": "http://www.csstyle.io",
+  "homepage": "http://csstyle.io",
   "devDependencies": {
     "expect.js": "^0.3.1",
     "fs": "0.0.2",

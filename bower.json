@@ -19,7 +19,7 @@
     "method",
     "approach"
   ],
-  "homepage": "http://www.csstyle.io",
+  "homepage": "http://csstyle.io",
   "ignore": [
     "**/.*",
     "node_modules",
