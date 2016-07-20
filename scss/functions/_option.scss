@@ -14,7 +14,7 @@
 }
 
 @function _csstyle_stop_option() {
-  $current: last($_csstyle_rules));
+  $current: last($_csstyle_rules);
   
   $options: map-get($current, 'options');
   $options: remove-nth($options, length($options));

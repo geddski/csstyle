@@ -3,9 +3,9 @@
 }
 
 @function _csstyle_start_part($parts) {
-  $current: last($_csstyle_rules));
+  $current: last($_csstyle_rules);
   
-  @if map-get($current, 'component') == null {
+  @if length(map-get($current, 'component')) == 0 {
     @warn 'Parts can only be nested inside tweaks';
   }
   
@@ -33,7 +33,7 @@
 }
 
 @function _csstyle_stop_part() {
-  $current: last($_csstyle_rules));
+  $current: last($_csstyle_rules);
   
   @if map-get($current, 'component') == null {
     @return $_csstyle_rules;

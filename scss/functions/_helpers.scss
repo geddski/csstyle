@@ -40,7 +40,7 @@
 // Convert list to string
 // See http://hugogiraudel.com/2013/08/08/advanced-sass-list-functions/#miscellaneous
 @function to-string($list, $glue: '', $is-nested: false) {
-  $result: '';
+  $result: null;
   
   @if (length($list) == 0) {
     @return $result;

@@ -91,9 +91,9 @@ $_csstyle_rules: ();
 @import "functions/part";
 
 @mixin part($names...){
-  $current: last($_csstyle_rules));
+  $current: last($_csstyle_rules);
   
-  @if map-get($current, 'component') == null {
+  @if length(map-get($current, 'component')) == 0 {
     @warn 'Parts can only be nested inside tweaks';
   } @else {
     $parent: _csstyle_compile();

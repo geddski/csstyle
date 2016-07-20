@@ -58,7 +58,7 @@ $_csstyle_has_html: false;
     @each $identifier in $selector {
       $sep: list-separator($identifier);
       $sep: if($sep == space, ' ', '');
-      $identifier: to-string($identifier, $sep);
+      $identifier: to-string($identifier, unquote($sep));
       $componentStartIndex: null;
       
       @if $type == 'component' {
@@ -98,7 +98,7 @@ $_csstyle_has_html: false;
     }
   }
   
-  @return to-string($compiled, ',');
+  @return $compiled;
 }
 
 @function _csstyle_compile_parts($part_rules) {
