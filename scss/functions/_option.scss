@@ -3,19 +3,18 @@
 }
 
 @function _csstyle_start_option($options) {
-  $current: nth($_csstyle_rules, length($_csstyle_rules));
+  $current: last($_csstyle_rules);
   $current_options: map-get($current, 'options');
   
   $options: append($current_options, $options);
   $current: map-merge($current, ('options': $options));
   
   $_csstyle_rules: set-nth($_csstyle_rules, length($_csstyle_rules), $current) !global;
-  
   @return $_csstyle_rules;
 }
 
 @function _csstyle_stop_option() {
-  $current: nth($_csstyle_rules, length($_csstyle_rules));
+  $current: last($_csstyle_rules));
   
   $options: map-get($current, 'options');
   $options: remove-nth($options, length($options));

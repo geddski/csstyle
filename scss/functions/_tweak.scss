@@ -4,9 +4,9 @@
 
 @function _csstyle_start_tweak($tweaks) {
   $_csstyle_rules: append($_csstyle_rules, (
-    'location': null,
+    'location': (),
     'tweak': $tweaks,
-    'component': null,
+    'component': (),
     'parts': (),
     'options': (),
   )) !global;

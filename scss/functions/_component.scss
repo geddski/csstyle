@@ -4,8 +4,8 @@
 
 @function _csstyle_start_component($components) {
   $_csstyle_rules: append($_csstyle_rules, (
-    'location': null,
-    'tweak': null,
+    'location': (),
+    'tweak': (),
     'component': $components,
     'parts': (),
     'options': (),

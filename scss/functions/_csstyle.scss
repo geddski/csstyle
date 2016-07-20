@@ -31,17 +31,47 @@ $_csstyle_has_html: false;
 
 @function _csstyle_apply_options($selector) {
   $components: map-get(last($_csstyle_rules), 'component');
+  $tweaks: map-get(last($_csstyle_rules), 'tweak');
+  $locations: map-get(first($_csstyle_rules), 'location');
   $options: map-get(last($_csstyle_rules), 'options');
   $option_rules: _csstyle_compile_options($options);
   $selector: selector-parse($selector);
   $compiled: ();
+  $modifyables: ();
+  $type: 'component';
   
-  @each $component in $components {
+  @if length($components) > 0 {
+    $modifyables: $components;
+  }
+  
+  @if length($tweaks) > 0 {
+    $modifyables: $tweaks;
+    $type: 'tweak';
+  }
+  
+  @if length($locations) > 0 {
+    $modifyables: $locations;
+    $type: 'location';
+  }
+  
+  @each $component in $modifyables {
     @each $identifier in $selector {
       $sep: list-separator($identifier);
       $sep: if($sep == space, ' ', '');
       $identifier: to-string($identifier, $sep);
-      $componentStartIndex: str-index($identifier, '.' + $component);
+      $componentStartIndex: null;
+      
+      @if $type == 'component' {
+        $componentStartIndex: str-index($identifier,  component($component));
+      }
+      
+      @if $type == 'tweak' {
+        $componentStartIndex: str-index($identifier, tweak($component));
+      }
+      
+      @if $type == 'location' {
+        $componentStartIndex: str-index($identifier, location($component));
+      }
       
       @if $componentStartIndex != null {
         $component: str-slice($identifier, $componentStartIndex);
@@ -68,7 +98,7 @@ $_csstyle_has_html: false;
     }
   }
   
-  @return $compiled;
+  @return to-string($compiled, ',');
 }
 
 @function _csstyle_compile_parts($part_rules) {
@@ -185,7 +215,7 @@ $_csstyle_has_html: false;
   $parts: map-get($rule, 'parts');
   $options: map-get($rule, 'options');
   
-  @if ($components != null) {
+  @if length($components) > 0 {
     @each $component in $components {
       $selector: $selector + _csstyle_compile_component($component, $parts, $options);
       
@@ -197,7 +227,7 @@ $_csstyle_has_html: false;
     @return $selector;
   }
   
-  @if ($tweaks != null) {
+  @if length($tweaks) > 0 {
     @each $tweak in $tweaks {
       $selector: $selector + _csstyle_compile_tweak($tweak, $options);
       
@@ -229,7 +259,7 @@ $_csstyle_has_html: false;
     @if $selector != '' {
       $selector: selector-nest($selector, _csstyle_compile_rule($rule));
     } @else {
-      $selector: _csstyle_compile_rule($rule)
+      $selector: _csstyle_compile_rule($rule);
     }
   }
   

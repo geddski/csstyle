@@ -40,7 +40,11 @@
 // Convert list to string
 // See http://hugogiraudel.com/2013/08/08/advanced-sass-list-functions/#miscellaneous
 @function to-string($list, $glue: '', $is-nested: false) {
-  $result: null;
+  $result: '';
+  
+  @if (length($list) == 0) {
+    @return $result;
+  }
   
   @for $i from 1 through length($list) {
     $e: nth($list, $i);
