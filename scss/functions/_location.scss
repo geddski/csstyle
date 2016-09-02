@@ -4,6 +4,7 @@
 
 @function _csstyle_start_location($locations) {
   $_csstyle_rules: join((
+    'parent': '',
     'location': $locations,
     'tweak': (),
     'component': (),

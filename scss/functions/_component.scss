@@ -3,7 +3,18 @@
 }
 
 @function _csstyle_start_component($components) {
+  $parent: '';
+  
+  @if (length($_csstyle_rules) > 0) {
+    $compiled: _csstyle_compile();
+    
+    @if (& != null) and (selector-parse($compiled) != selector-parse(&)) {
+      $parent: &;
+    }
+  }
+  
   $_csstyle_rules: append($_csstyle_rules, (
+    'parent': $parent,
     'location': (),
     'tweak': (),
     'component': $components,

@@ -5,14 +5,15 @@
 @function _csstyle_start_part($parts) {
   $current: last($_csstyle_rules);
   
-  @if length(map-get($current, 'component')) == 0 {
+  @if length(map-get($current, 'component')) == 0 and length(map-get($current, 'tweak')) == 0 {
     @warn 'Parts can only be nested inside tweaks';
   }
   
   @if length(map-get($current, 'options')) > 0 {
     $new: (
-      'location': null,
-      'tweak': null,
+      'parent': map-get($current, 'parent'),
+      'location': (),
+      'tweak': map-get($current, 'tweak'),
       'component': map-get($current, 'component'),
       'parts': map-get($current, 'parts'),
       'options': (),
@@ -35,7 +36,7 @@
 @function _csstyle_stop_part() {
   $current: last($_csstyle_rules);
   
-  @if map-get($current, 'component') == null {
+  @if length(map-get($current, 'component')) == 0 and length(map-get($current, 'tweak')) == 0 {
     @return $_csstyle_rules;
   }
   
@@ -48,10 +49,12 @@
   @if length($_csstyle_rules) > 1 {
     $prev: nth($_csstyle_rules, length($_csstyle_rules) - 1);
     
-    @if (map-get($prev, 'component') == map-get($current, 'component')) and (map-get($prev, 'parts') == map-get($current, 'parts')) {
-      $_csstyle_rules: remove-nth($_csstyle_rules, length($_csstyle_rules)) !global;
-      
-      @return $_csstyle_rules;
+    @if map-get($prev, 'parts') == map-get($current, 'parts') {
+      @if (length(map-get($current, 'tweak')) > 0) and (map-get($prev, 'tweak') == map-get($current, 'tweak')) or (length(map-get($current, 'component')) > 0) and (map-get($prev, 'component') == map-get($current, 'component')) {
+        $_csstyle_rules: remove-nth($_csstyle_rules, length($_csstyle_rules)) !global;
+        
+        @return $_csstyle_rules;
+      }
     }
   }
   

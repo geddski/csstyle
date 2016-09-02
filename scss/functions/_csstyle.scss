@@ -166,21 +166,42 @@ $_csstyle_has_html: false;
   @return $selector;
 }
 
-@function _csstyle_compile_tweak($tweak, $options) {
+@function _csstyle_compile_tweak($tweak, $parts, $options) {
   $_csstyle_has_root_id: true !global;
   $selector: '';
   $tweak: tweak($tweak);
+  $parts: _csstyle_compile_parts($parts);
   $options: _csstyle_compile_options($options);
   
-  @if length($options) == 0 {
-    @return $tweak;
+  @each $part in $parts {
+    @each $option in $options {
+      $selector: $selector + $tweak + $part + $option;
+      
+      @if $option != last($options) {
+        $selector: $selector + ', ';
+      }
+    }
+    
+    @if length($options) == 0 {
+      $selector: $selector + $tweak + $part;
+    }
+    
+    @if $part != last($parts) {
+      $selector: $selector + ', ';
+    }
   }
   
-  @each $option in $options {
-    $selector: $selector + $tweak + $option;
+  @if length($parts) == 0 {
+    @if length($options) == 0 {
+      @return $tweak;
+    }
     
-    @if $option != last($options) {
-      $selector: $selector + ', ';
+    @each $option in $options {
+      $selector: $selector + $tweak + $option;
+      
+      @if $option != last($options) {
+        $selector: $selector + ', ';
+      }
     }
   }
   
@@ -229,7 +250,7 @@ $_csstyle_has_html: false;
   
   @if length($tweaks) > 0 {
     @each $tweak in $tweaks {
-      $selector: $selector + _csstyle_compile_tweak($tweak, $options);
+      $selector: $selector + _csstyle_compile_tweak($tweak, $parts, $options);
       
       @if $tweak != last($tweaks) {
         $selector: $selector + ', ';
@@ -252,22 +273,31 @@ $_csstyle_has_html: false;
 
 @function _csstyle_compile() {
   $selector: '';
+  $parent: if(length($_csstyle_rules) > 0, map-get(last($_csstyle_rules), 'parent'), '');
   $_csstyle_has_root_id: false !global;
   $_csstyle_has_html_tag: false !global;
   
-  @each $rule in $_csstyle_rules {
-    @if $selector != '' {
-      $selector: selector-nest($selector, _csstyle_compile_rule($rule));
-    } @else {
-      $selector: _csstyle_compile_rule($rule);
+  @if ($parent != '') {
+    $selector: selector-nest($parent, _csstyle_compile_rule(last($_csstyle_rules)));
+  } @else {
+    @each $rule in $_csstyle_rules {
+      @if $selector != '' {
+        $selector: selector-nest($selector, _csstyle_compile_rule($rule));
+      } @else {
+        $selector: _csstyle_compile_rule($rule);
+      }
     }
   }
   
-  @if $_csstyle_has_root_id {
+  @if $_csstyle_has_root_id and $_csstyle_has_html_tag {
+    @return selector-nest(html + '#' + $csstyle-root-id, $selector);
+  }
+  
+  @if $_csstyle_has_root_id and ($_csstyle_has_html_tag != true) {
     @return selector-nest('#' + $csstyle-root-id, $selector);
   }
   
-  @if $_csstyle_has_html_tag {
+  @if $_csstyle_has_html_tag and ($_csstyle_has_root_id != true)  {
     @return selector-nest(html, $selector);
   }
   

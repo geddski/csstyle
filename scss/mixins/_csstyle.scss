@@ -1,0 +1,112 @@
+$csstyle-component-symbol: '' !default;
+$csstyle-option-symbol: '--' !default;
+$csstyle-part-symbol: '/' !default;
+$csstyle-tweak-symbol: '+' !default;
+$csstyle-location-symbol: '@' !default;
+$csstyle-root-id: 'app' !default;
+
+$_csstyle_rules: ();
+
+// Reset
+@mixin reset-csstyle() {
+  $csstyle-component-symbol: '' !global;
+  $csstyle-option-symbol: '--' !global;
+  $csstyle-part-symbol: '/' !global;
+  $csstyle-tweak-symbol: '+' !global;
+  $csstyle-location-symbol: '@' !global;
+  $csstyle-root-id: 'app' !global;
+}
+
+// components
+@mixin component($names...){
+  $current: $_csstyle_rules;
+  
+  $c: _csstyle_start_component($names);
+  
+  @at-root {
+    #{_csstyle_compile()} {
+      @content;
+    }
+  }
+  
+  $c: _csstyle_stop_component();
+}
+
+// options
+// override components and parts
+@mixin option($names...){
+  $parent: _csstyle_compile();
+  $o: _csstyle_start_option($names);
+  
+  @if (& != null) and (selector-parse($parent) != selector-parse(&)) {
+    @at-root {
+      #{_csstyle_apply_options(&)} {
+        @content;
+      }
+    }
+  } @else {
+    @at-root {
+      #{_csstyle_compile()} {
+        @content;
+      }
+    }
+  }
+  
+  $o: _csstyle_stop_option();
+}
+
+// parts
+// make up the structure of a component
+// override components
+@mixin part($names...){
+  $current: last($_csstyle_rules);
+  
+  @if length(map-get($current, 'component')) == 0 and length(map-get($current, 'tweak')) == 0 {
+    @warn 'Parts can only be nested inside components and tweaks';
+  } @else {
+    $parent: _csstyle_compile();
+    $p: _csstyle_start_part($names);
+    
+    @if (& != null) and (selector-parse($parent) != selector-parse(&)) {
+      #{_csstyle_compile_rule(last($_csstyle_rules))} {
+        @content;
+      }
+    } @else {
+      @at-root {
+        #{_csstyle_compile()} {
+          @content;
+        }
+      }
+    }
+    
+    $p: _csstyle_stop_part();
+  }
+}
+
+// tweaks
+// override components, options, and parts
+@mixin tweak($names...){
+  $t: _csstyle_start_tweak($names);
+  
+  @at-root {
+    #{_csstyle_compile()} {
+      @content;
+    }
+  }
+  
+  $t: _csstyle_stop_tweak();
+}
+
+// locations
+// override components, parts, options, and tweaks
+@mixin location($names...){
+  $l: _csstyle_start_location($names);
+  
+  @at-root {
+    #{_csstyle_compile()} {
+      @content;
+    }
+  }
+  
+  $l: _csstyle_stop_location();
+}
