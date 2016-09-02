@@ -91,6 +91,9 @@ module.exports = function(grunt) {
       }
     },
     mochacli: {
+      options: {
+        force: true
+      },
       unit: ['tests/*.test.js']
     },
     clean: {
