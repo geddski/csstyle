@@ -1,0 +1,17 @@
+@mixin add-policy($name) {
+    @at-root {
+        %csstyle-policy-#{$name} {
+            @content;
+        }
+    }
+}
+
+@mixin policy($name, $add: false) {
+    @if ($add) {
+        @include add-policy($add) {
+            @content;
+        }
+    } @else {
+        @extend %csstyle-policy-#{$name};
+    }
+}
