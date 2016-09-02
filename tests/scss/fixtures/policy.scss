@@ -1,0 +1,30 @@
+@import 'csstyle';
+
+@include policy(add, p1) {
+  left: 1;
+}
+
+@include component(c1) {
+  top: 0;
+  
+  @include policy(p1);
+}
+
+@include policy(add, p2) {
+  left: 1;
+}
+
+@include component(c2) {
+  top: 0;
+  @include policy(p2);
+}
+
+@include component(c3) {
+  top: 0;
+  @include policy(p2);
+  
+  @include part(p1) {
+    top: 0;
+    @include policy(p2);
+  }
+}

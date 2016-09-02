@@ -272,7 +272,7 @@ describe('Customize Symbols', function() {
     expect(selectors[5].value).to.contain('#website');
   });
   
-  it('allows resetting to default synmbols', function() {
+  it('allows resetting to default symbols', function() {
     expect(selectors[6].value).to.be.ok();
     expect(selectors[6].value).to.be('.c1');
     expect(selectors[6].score).to.be('0,0,1,0');
@@ -282,5 +282,39 @@ describe('Customize Symbols', function() {
     expect(selectors[7].value).to.be.ok();
     expect(selectors[7].value).to.be('.c1\\.p1');
     expect(selectors[7].score).to.be('0,0,1,0');
+  });
+});
+
+describe('Policy', function() {
+  var selectors = Selector.getAll('tests/fixtures/policy.css');
+  
+  it('applies a policy to a component', function() {
+    expect(selectors[0].content).to.be.ok();
+    expect(selectors[0].content).to.be('left: 1;');
+    
+    expect(selectors[1].content).to.be.ok();
+    expect(selectors[1].content).to.be('top: 0;');
+  });
+  
+  it('applies a policy to multiple selectors', function() {
+    expect(selectors[2].value).to.be.ok();
+    expect(selectors[2].value).to.be('.c2, .c3, .c3\\/p1');
+    expect(selectors[2].content).to.be.ok();
+    expect(selectors[2].content).to.be('left: 1;');
+    
+    expect(selectors[3].value).to.be.ok();
+    expect(selectors[3].value).to.be('.c2');
+    expect(selectors[3].content).to.be.ok();
+    expect(selectors[3].content).to.be('top: 0;');
+    
+    expect(selectors[4].value).to.be.ok();
+    expect(selectors[4].value).to.be('.c3');
+    expect(selectors[4].content).to.be.ok();
+    expect(selectors[4].content).to.be('top: 0;');
+    
+    expect(selectors[5].value).to.be.ok();
+    expect(selectors[5].value).to.be('.c3\\/p1');
+    expect(selectors[5].content).to.be.ok();
+    expect(selectors[5].content).to.be('top: 0;');
   });
 });

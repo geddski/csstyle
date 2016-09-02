@@ -15,22 +15,26 @@ var Selector = function() {
     var contents = getFile(file);
     var selector = contents.match(/.*\{/g)[number].split('{')[0].trim();
     var score = specificity.calculate(selector)[0].specificity;
+    var content = contents.match(/{[^}]+/g)[number].replace('{', '').trim();
     
     return {
       value: selector,
-      score: score
+      score: score,
+      content: content
     };
   };
   
   this.getAll = function(file) {
     var contents = getFile(file);
-    var selectors = contents.match(/.*\{/g).map(function(selector) {
+    var selectors = contents.match(/.*\{/g).map(function(selector, number) {
       selector = selector.split('{')[0].trim();
       var score = specificity.calculate(selector)[0].specificity;
+      var content = contents.match(/{[^}]+/g)[number].replace('{', '').trim();
       
       return {
         value: selector,
-        score: score
+        score: score,
+        content: content
       };
     });
     
