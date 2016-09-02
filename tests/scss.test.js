@@ -47,8 +47,8 @@ describe('Option', function() {
   
   it('appends an option class to a tweak', function() {
     expect(selectors[4].value).to.be.ok();
-    expect(selectors[4].value).to.be('#app .\\+t1.\\--o1');
-    expect(selectors[4].score).to.be('0,1,2,0');
+    expect(selectors[4].value).to.be('html#app .\\+t1.\\--o1');
+    expect(selectors[4].score).to.be('0,1,2,1');
   });
   
   it('appends an option class to a location', function() {
@@ -85,8 +85,14 @@ describe('Part', function() {
     expect(selectors[3].score).to.be('0,0,1,0');
   });
   
-  it('doesn\'t create a part when nested inside of a tweak or location', function() {
-    expect(selectors[4]).to.not.be.ok();
+  it('appends a part to the tweak', function() {
+    expect(selectors[4].value).to.be.ok();
+    expect(selectors[4].value).to.be('#app .\\+t1\\/p1');
+    expect(selectors[4].score).to.be('0,1,1,0');
+  });
+  
+  it('doesn\'t create a part when nested inside of a location', function() {
+    expect(selectors[5]).to.not.be.ok();
   });
 });
 
@@ -107,8 +113,8 @@ describe('Tweaks', function() {
   
   it('can contain complex components', function() {
     expect(selectors[2].value).to.be.ok();
-    expect(selectors[2].value).to.be('#app .\\+t1 .c1\\/p1.\\--o1, #app .\\+t1 .c2\\/p1.\\--o1');
-    expect(selectors[2].score).to.be('0,1,3,0');
+    expect(selectors[2].value).to.be('html#app .\\+t1 .c1\\/p1.\\--o1, html#app .\\+t1 .c2\\/p1.\\--o1');
+    expect(selectors[2].score).to.be('0,1,3,1');
   });
 });
 
