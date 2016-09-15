@@ -11,6 +11,8 @@
     @if (& != null) and (selector-parse($compiled) != selector-parse(&)) {
       $parent: &;
     }
+  } @elseif (& != null) {
+    $parent: &;
   }
   
   $_csstyle_rules: append($_csstyle_rules, (
