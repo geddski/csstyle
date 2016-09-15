@@ -10,6 +10,7 @@
   $current: map-merge($current, ('options': $options));
   
   $_csstyle_rules: set-nth($_csstyle_rules, length($_csstyle_rules), $current) !global;
+  
   @return $_csstyle_rules;
 }
 
