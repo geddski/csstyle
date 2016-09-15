@@ -19,6 +19,7 @@ $_csstyle_rules: ();
 
 // components
 @mixin component($names...){
+  $names: flatten($names);
   $current: $_csstyle_rules;
   
   $c: _csstyle_start_component($names);
@@ -35,7 +36,9 @@ $_csstyle_rules: ();
 // options
 // override components and parts
 @mixin option($names...){
+  $names: flatten($names);
   $parent: _csstyle_compile();
+  
   $o: _csstyle_start_option($names);
   
   @if (& != null) and (selector-parse($parent) != selector-parse(&)) {
@@ -59,6 +62,7 @@ $_csstyle_rules: ();
 // make up the structure of a component
 // override components
 @mixin part($names...){
+  $names: flatten($names);
   $current: last($_csstyle_rules);
   
   @if length(map-get($current, 'component')) == 0 and length(map-get($current, 'tweak')) == 0 {
@@ -86,6 +90,8 @@ $_csstyle_rules: ();
 // tweaks
 // override components, options, and parts
 @mixin tweak($names...){
+  $names: flatten($names);
+  
   $t: _csstyle_start_tweak($names);
   
   @at-root {
@@ -100,6 +106,8 @@ $_csstyle_rules: ();
 // locations
 // override components, parts, options, and tweaks
 @mixin location($names...){
+  $names: flatten($names);
+  
   $l: _csstyle_start_location($names);
   
   @at-root {

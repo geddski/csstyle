@@ -6,6 +6,28 @@
   @return nth($list, length($list));
 }
 
+// Turns multidimensional `$list` into a one-level list.
+// See https://github.com/at-import/SassyLists/blob/master/stylesheets/SassyLists/_flatten.scss
+@function flatten($list) {
+  $result: ();
+  
+  @each $item in $list {
+    @if length($item) > 1 {
+      $flatten: flatten($item);
+      
+      @each $i in $flatten {
+        $result: append($result, $i, list-separator($list));
+      }
+    }
+    
+    @else {
+      $result: append($result, $item, list-separator($list));
+    }
+  }
+  
+  @return $result;
+}
+
 // Remove items from lists by index
 // See http://hugogiraudel.com/2013/08/08/advanced-sass-list-functions/#removing-values-from-list
 @function remove-nth($list, $index) {
