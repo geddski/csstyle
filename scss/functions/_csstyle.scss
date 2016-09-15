@@ -1,5 +1,6 @@
 $_csstyle_has_root_id: false;
 $_csstyle_has_html: false;
+// $_csstyle_important: false;
 
 @function _csstyle_compile_options($option_rules) {
   $options: ();
@@ -289,7 +290,29 @@ $_csstyle_has_html: false;
     }
   }
   
-  @if $_csstyle_has_root_id and $_csstyle_has_html_tag {
+  $selector-str: to-string($selector);
+  
+  @if str-index($selector-str, html + '#' + $csstyle-root-id) != null {
+    @return $selector;
+  }
+  
+  @if str-index($selector-str, '#' + $csstyle-root-id) != null {
+    @if $_csstyle_has_html_tag { // or $_csstyle_important {
+      @return selector-parse(html + $selector-str);
+    }
+    
+    @return $selector;
+  }
+  
+  @if str-index($selector-str, html) != null {
+    @if $_csstyle_has_root_id { // or $_csstyle_important {
+      @return selector-parse(str-insert($selector-str, '#' + $csstyle-root-id, str-index($selector-str, html) + str-length(html)));
+    }
+    
+    @return $selector;
+  }
+  
+  @if ($_csstyle_has_root_id and $_csstyle_has_html_tag) { // or $_csstyle_important {
     @return selector-nest(html + '#' + $csstyle-root-id, $selector);
   }
   

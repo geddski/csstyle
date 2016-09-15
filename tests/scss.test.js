@@ -206,6 +206,14 @@ describe('Nesting', function() {
       expect(selectors[7].score).to.be('0,0,2,0');
     });
   });
+  
+  describe('Option + Option', function() {
+    it('nests the option inside the sibling option', function() {
+      expect(selectors[8].value).to.be.ok();
+      expect(selectors[8].value).to.be('html .c1.\\--o1 + .c1.\\--o1');
+      expect(selectors[8].score).to.be('0,0,4,1');
+    });
+  });
 });
 
 describe('Nesting non-csstyle selectors', function() {
