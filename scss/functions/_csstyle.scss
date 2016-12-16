@@ -290,7 +290,7 @@ $_csstyle_has_html: false;
     }
   }
   
-  $selector-str: to-string($selector);
+  $selector-str: $selector + '';
   
   @if str-index($selector-str, html + '#' + $csstyle-root-id) != null {
     @return $selector;
@@ -298,7 +298,7 @@ $_csstyle_has_html: false;
   
   @if str-index($selector-str, '#' + $csstyle-root-id) != null {
     @if $_csstyle_has_html_tag { // or $_csstyle_important {
-      @return selector-parse(html + $selector-str);
+      @return selector-replace($selector, '#' + $csstyle-root-id, html + '#' + $csstyle-root-id);
     }
     
     @return $selector;
@@ -306,7 +306,7 @@ $_csstyle_has_html: false;
   
   @if str-index($selector-str, html) != null {
     @if $_csstyle_has_root_id { // or $_csstyle_important {
-      @return selector-parse(str-insert($selector-str, '#' + $csstyle-root-id, str-index($selector-str, html) + str-length(html)));
+      @return selector-replace($selector, html, html + '#' + $csstyle-root-id);
     }
     
     @return $selector;
