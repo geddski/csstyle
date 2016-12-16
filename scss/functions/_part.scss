@@ -49,7 +49,7 @@
   @if length($_csstyle_rules) > 1 {
     $prev: nth($_csstyle_rules, length($_csstyle_rules) - 1);
     
-    @if map-get($prev, 'parts') == map-get($current, 'parts') {
+    @if map-get($prev, 'parts') == map-get($current, 'parts') and map-get($current, 'parent') == "" {
       @if (length(map-get($current, 'tweak')) > 0) and (map-get($prev, 'tweak') == map-get($current, 'tweak')) or (length(map-get($current, 'component')) > 0) and (map-get($prev, 'component') == map-get($current, 'component')) {
         $_csstyle_rules: remove-nth($_csstyle_rules, length($_csstyle_rules)) !global;
         
