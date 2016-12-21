@@ -13,7 +13,7 @@ exec('sass --update spec/scss/fixtures --style expanded --sourcemap=none');
 // compile postcss fixtures
 var processor = postcss([
   require('postcss-nested'),
-  require('postcss-simple-vars'),
+  // require('postcss-simple-vars'),
   require('../csstyle')
 ]);
 var files = glob.sync(__dirname + "/postcss/fixtures/**/*.pcss");
