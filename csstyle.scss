@@ -47,19 +47,19 @@ $csstyle-root-id: 'csstyle' !default;
 // override components
 @mixin part($names...){
     // check if nested in an option
-    $optionIndex: str-index(#{&}, "." + $csstyle-option-symbol);
+    $optionIndex: str-index(unquote("#{&}"), "." + $csstyle-option-symbol);
     @if str-index($csstyle-option-symbol, "\\") == 1 and $optionIndex == null {
-      $optionIndex: str-index(#{&}, "." + str-slice($csstyle-option-symbol, 2));
+      $optionIndex: str-index(unquote("#{&}"), "." + str-slice($csstyle-option-symbol, 2));
     }
     $optionIndex: 0 !default;
     $optionIndex: $optionIndex - 1;
 
     // check if nested in another part
-    $partIndex: str-index(#{&}, $csstyle-part-symbol);
+    $partIndex: str-index(unquote("#{&}"), $csstyle-part-symbol);
     $partIndex: 0 !default;
     $partIndex: $partIndex - 1;
 
-    $component: str-slice(#{&}, 0, $optionIndex);
+    $component: str-slice(unquote("#{&}"), 0, $optionIndex);
 
     // part is nested in an option
     @if $optionIndex > 0 {
@@ -94,7 +94,7 @@ $csstyle-root-id: 'csstyle' !default;
 // override components, parts, options, and tweaks
 @mixin location($names...){
   @warn "locations will be deprecated soon. Please use components instead.";
-  
+
   #{_build_selector("#" + $csstyle-root-id + " ." + $csstyle-location-symbol, $names)}{
     @content;
   }

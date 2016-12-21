@@ -2,7 +2,8 @@ require('shelljs/global');
 var specificity = require('specificity');
 var postcss = require('postcss');
 var fs = require('fs-extra');
-var glob = require("glob");
+var glob = require('glob');
+var stylus = require('stylus');
 
 // delete previous css
 exec('rm -rf spec/scss/fixtures/*.css');
@@ -20,6 +21,20 @@ var files = glob.sync(__dirname + "/postcss/fixtures/**/*.pcss");
 files.forEach(function(file){
   var result = processor.process(fs.readFileSync(file));
   fs.writeFileSync(file.replace('.pcss', '.css'), result.css);
+});
+
+// compile stylus fixtures
+files = glob.sync(__dirname + '/stylus/fixtures/**/*.styl');
+files.forEach(function (file) {
+    var str = fs.readFileSync(file, 'utf8');
+
+    stylus(str)
+        .set('filename', file)
+        .import('../../../csstyle')
+        .render(function(err, css) {
+            if (err) throw err;
+            fs.writeFileSync(file.replace('.styl', '.css'), css, 'utf8');
+        });
 });
 
 var customMatchers = {

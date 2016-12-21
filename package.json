@@ -18,7 +18,8 @@
     "postcss-nested": "^0.2.1",
     "postcss-simple-vars": "^0.2.3",
     "shelljs": "~0.3.0",
-    "specificity": "~0.1.4"
+    "specificity": "~0.1.4",
+    "stylus": "^0.54.2"
   },
   "main": "csstyle.js",
   "scripts": {
