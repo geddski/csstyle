@@ -10,6 +10,8 @@
     
     @if (& != null) and (selector-parse($compiled) != selector-parse(&)) {
       $parent: &;
+    } @else {
+      $parent: map-get(last($_csstyle_rules), parent);
     }
   } @elseif (& != null) {
     $parent: &;
