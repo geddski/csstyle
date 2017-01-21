@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         tagName: 'v<%= version %>',
         tagMessage: 'v<%= version %>'
       }
-  }  
+  }
   });
 
   grunt.loadNpmTasks('grunt-release');

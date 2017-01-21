@@ -41,9 +41,10 @@ Now you're set and can start creating components with options & parts, adding in
 csstyle lets you change the style conventions to whatever suits your style.
 
 ### Default Symbols
-- `options`: `\--`
+- `options`: `--`
 - `parts`: `__`
-- `tweaks`: `\+`
+- `tweaks`: `+`
+- `locations`: `@`
 - `rootId`: `csstyle`
 
 ### With SASS
@@ -53,9 +54,9 @@ Override the defaults using SASS variables.
 - `tweaks`: `$csstyle-tweak-symbol`
 - `rootId`: `$csstyle-root-id`
 
-Example: 
+Example:
 ```scss
-  $csstyle-part-symbol: '\\/';
+  $csstyle-part-symbol: '/';
   $csstyle-root-id: 'app';
 ```
 
@@ -66,7 +67,7 @@ Override the defaults by calling the cssytle function with an options object.
 - `tweaks`: `tweakSymbol`
 - `rootId`: `rootId`
 
-Example: 
+Example:
 
 ```js
   require('../csstyle')({optionSymbol: '\\-', partSymbol: '\\/', rootId: 'app'})
