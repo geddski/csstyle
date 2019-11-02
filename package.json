@@ -6,7 +6,7 @@
     "test": "test"
   },
   "dependencies": {
-    "lodash": "^3.2.0"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "fs-extra": "^0.16.3",
